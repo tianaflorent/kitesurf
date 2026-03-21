@@ -33,10 +33,14 @@ export const translations = {
     backHome: "Retour à l'accueil",
     // Review Form
     reviewFormTitle: "Partagez votre avis",
-    namePlaceholder: "Votre nom",
+    namePlaceholder: "Votre pseudo / prénom",
+    firstNamePlaceholder: "Prénom (optionnel)",
+    lastNamePlaceholder: "Nom de famille (optionnel)",
+    emailPlaceholder: "Email (optionnel)",
     commentPlaceholder: "Votre commentaire...",
     reviewFormSubmit: "Publier mon témoignage ",
-    reviewFormEmptyAlert: "Veuillez remplir tous les champs.",
+    fillAllFields: "Veuillez remplir tous les champs obligatoires.",
+    reviewFormEmptyAlert: "Veuillez remplir tous les champs obligatoires.",
     reviewSuccess: " Votre témoignage est en attente de l'approbation de l'administrateur",
     },
     EN: {
@@ -73,11 +77,15 @@ export const translations = {
     backHome: "Back to Home",
     // Review Form
     reviewFormTitle: "Share your review",
-    namePlaceholder: "Your name",
+    namePlaceholder: "Your nickname / first name",
+    firstNamePlaceholder: "First name (optional)",
+    lastNamePlaceholder: "Last name (optional)",
+    emailPlaceholder: "Email (optional)",
     commentPlaceholder: "Your comment...",
     reviewFormSubmit: "Submit my review ",
-    reviewFormEmptyAlert: "Please fill in all fields.",
-    reviewSuccess: " Your review will be going to be approved by the moderator.",
+    fillAllFields: "Please fill in all required fields.",
+    reviewFormEmptyAlert: "Please fill in all required fields.",
+    reviewSuccess: " Your review is pending administrator approval.",
     }
   };
 

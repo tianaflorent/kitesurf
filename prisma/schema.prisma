@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/prisma-client"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// Statuts possibles pour un commentaire
+// PENDING  -> en attente de modération
+// APPROVED -> approuvé, visible publiquement
+// REJECTED -> rejeté par l'admin
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  /// Pseudo/surnom affiché publiquement (obligatoire)
+  name      String
+  /// Prénom réel (optionnel, non affiché publiquement)
+  firstName String?
+  /// Nom de famille (optionnel, non affiché publiquement)
+  lastName  String?
+  /// Email (optionnel, non affiché publiquement)
+  email     String?
+  comment   String
+  rating    Int
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reviews")
+}
