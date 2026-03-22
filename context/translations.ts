@@ -36,7 +36,7 @@ export const translations = {
     namePlaceholder: "Votre pseudo / prénom",
     firstNamePlaceholder: "Prénom (optionnel)",
     lastNamePlaceholder: "Nom de famille (optionnel)",
-    emailPlaceholder: "Email (optionnel)",
+    emailPlaceholder: "john.doe@email.com",
     commentPlaceholder: "Votre commentaire...",
     reviewFormSubmit: "Publier mon témoignage ",
     fillAllFields: "Veuillez remplir tous les champs obligatoires.",

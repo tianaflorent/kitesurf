@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import StarRating from "./StarRating";
 
 interface ReviewFormTranslations {
@@ -21,6 +22,13 @@ interface ReviewFormProps {
   onSuccess?: () => void;
 }
 
+type ReviewFormValues = {
+  name?: string;
+  email?: string;
+  comment: string;
+  rating: number;
+};
+
 /**
  * Formulaire de soumission d'un avis.
  * Champs obligatoires : nom (pseudo), note, commentaire.
@@ -28,32 +36,35 @@ interface ReviewFormProps {
  * Après soumission, l'avis est en attente de modération.
  */
 export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
-  const [name, setName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [comment, setComment] = useState("");
-  const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
+  const {
+    register,
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ReviewFormValues>({
+    defaultValues: {
+      name: "",
+      email: "",
+      comment: "",
+      rating: 0,
+    },
+  });
 
-    if (!name.trim() || !comment.trim() || rating === 0) {
-      setError(t.fillAllFields);
-      return;
-    }
-
-    setLoading(true);
+  const onSubmit = async (values: ReviewFormValues) => {
     try {
       const res = await fetch("/api/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, firstName, lastName, email, comment, rating }),
+        body: JSON.stringify({
+          ...values,
+          name: values.name?.trim() || "",
+          email: values.email?.trim() || "",
+          comment: values.comment,
+          rating: values.rating,
+        }),
       });
 
       if (!res.ok) {
@@ -61,20 +72,11 @@ export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
         throw new Error(data.error ?? "Erreur lors de la soumission.");
       }
 
-      // Reset du formulaire
-      setName("");
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setComment("");
-      setRating(0);
-      setSuccess(true);
+      reset();
+      toast.success(t.reviewSuccess);
       onSuccess?.();
-      setTimeout(() => setSuccess(false), 5000);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Erreur inconnue.");
-    } finally {
-      setLoading(false);
+      toast.error(err instanceof Error ? err.message : "Erreur inconnue.");
     }
   };
 
@@ -84,91 +86,99 @@ export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
         {t.reviewButton}
       </h3>
 
-      {success && (
-        <div className="mb-6 p-4 rounded-xl bg-green-100 text-green-700 text-center font-medium">
-          <span className="inline-flex items-center justify-center gap-2">
-            <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
-            <span>{t.reviewSuccess}</span>
-          </span>
-        </div>
-      )}
-
-      {error && (
-        <div className="mb-6 p-4 rounded-xl bg-red-100 text-red-700 text-center font-medium">
-          <span className="inline-flex items-center justify-center gap-2">
-            <AlertTriangle className="h-5 w-5" aria-hidden="true" />
-            <span>{error}</span>
-          </span>
-        </div>
-      )}
-
-      <form className="space-y-5" onSubmit={handleSubmit}>
-        {/* Pseudo / nom affiché (obligatoire) */}
-        <input
-          type="text"
-          placeholder={t.namePlaceholder + " *"}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300"
-          required
-        />
-
-        {/* Prénom et Nom (optionnels) */}
-        <div className="grid sm:grid-cols-2 gap-4">
+      <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="space-y-2">
+          <label className="block text-sm font-medium text-blue-900">
+            Nom et prénom (optionnel)
+          </label>
           <input
             type="text"
-            placeholder={t.firstNamePlaceholder ?? "Prénom (optionnel)"}
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="John Doe"
+            {...register("name")}
             className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300"
           />
-          <input
-            type="text"
-            placeholder={t.lastNamePlaceholder ?? "Nom (optionnel)"}
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300"
-          />
+          {errors.name?.message && (
+            <p className="text-sm text-red-600">{errors.name.message}</p>
+          )}
         </div>
 
-        {/* Email (optionnel) */}
-        <input
-          type="email"
-          placeholder={t.emailPlaceholder ?? "Email (optionnel)"}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300"
-        />
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-blue-900">
+            Email (optionnel)
+          </label>
+          <input
+            type="email"
+            placeholder={t.emailPlaceholder ?? "john.doe@email.com"}
+            {...register("email", {
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Email invalide.",
+              },
+            })}
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300"
+          />
+          {errors.email?.message && (
+            <p className="text-sm text-red-600">{errors.email.message}</p>
+          )}
+        </div>
+        </div>
 
         {/* Note (étoiles) */}
-        <div className="flex justify-center py-2">
-          <StarRating
-            rating={rating}
-            interactive
-            size={32}
-            onChange={setRating}
-            hover={hover}
-            onHoverChange={setHover}
-          />
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-blue-900">Note *</label>
+          <div className="flex justify-center py-2">
+            <Controller
+              control={control}
+              name="rating"
+              rules={{
+                required: "La note est obligatoire.",
+                min: { value: 1, message: "La note est obligatoire." },
+              }}
+              render={({ field }) => (
+                <StarRating
+                  rating={field.value}
+                  interactive
+                  size={32}
+                  onChange={field.onChange}
+                  hover={hover}
+                  onHoverChange={setHover}
+                />
+              )}
+            />
+          </div>
+          {errors.rating?.message && (
+            <p className="text-sm text-red-600 text-center">{errors.rating.message}</p>
+          )}
         </div>
 
         {/* Commentaire */}
-        <textarea
-          rows={5}
-          placeholder={t.commentPlaceholder + " *"}
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300"
-          required
-        />
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-blue-900">
+            Commentaire *
+          </label>
+          <textarea
+            rows={5}
+            placeholder={t.commentPlaceholder}
+            {...register("comment", {
+              required: "Le commentaire est obligatoire.",
+              validate: (v) => v.trim().length > 0 || "Le commentaire est obligatoire.",
+            })}
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300"
+            required
+          />
+          {errors.comment?.message && (
+            <p className="text-sm text-red-600">{errors.comment.message}</p>
+          )}
+        </div>
 
         <div className="text-center">
           <button
             type="submit"
-            disabled={loading}
-            className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-10 py-4 rounded-full font-semibold disabled:opacity-60 hover:opacity-90 transition"
+            disabled={isSubmitting}
+            className="bg-blue-700 text-white px-10 py-4 rounded-full font-semibold disabled:opacity-60 hover:opacity-90 transition"
           >
-            {loading ? "Envoi en cours..." : t.reviewButton}
+            {isSubmitting ? "Envoi en cours..." : t.reviewButton}
           </button>
         </div>
       </form>

@@ -13,9 +13,9 @@ export async function POST(request: NextRequest) {
     const { name, firstName, lastName, email, comment, rating } = body;
 
     // Validation des champs obligatoires
-    if (!name || !comment || !rating) {
+    if (!comment || !rating) {
       return NextResponse.json(
-        { error: "Les champs nom, commentaire et note sont obligatoires." },
+        { error: "Les champs commentaire et note sont obligatoires." },
         { status: 400 }
       );
     }
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
     const review = await prisma.review.create({
       data: {
-        name: name.trim(),
+        name: name?.trim() || "Anonyme",
         firstName: firstName?.trim() || null,
         lastName: lastName?.trim() || null,
         email: email?.trim() || null,

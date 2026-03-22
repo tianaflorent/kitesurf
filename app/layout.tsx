@@ -44,12 +44,39 @@ import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext"; // <-- nouveau
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({ children }: { children: React.ReactNode; }) {
   return (
     <html lang="fr">
       <body className="flex flex-col min-h-screen relative">
         <LanguageProvider> {/* <-- enveloppe tout le site */}
+
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              success: {
+                style: {
+                  background: "#16a34a",
+                  color: "#ffffff",
+                },
+                iconTheme: {
+                  primary: "#ffffff",
+                  secondary: "#16a34a",
+                },
+              },
+              error: {
+                style: {
+                  background: "#dc2626",
+                  color: "#ffffff",
+                },
+                iconTheme: {
+                  primary: "#ffffff",
+                  secondary: "#dc2626",
+                },
+              },
+            }}
+          />
 
           {/* Navbar */}
           <Navbar />

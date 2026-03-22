@@ -14,7 +14,7 @@ export interface Review {
 }
 
 export interface CreateReviewPayload {
-  name: string;
+  name?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
