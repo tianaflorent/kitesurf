@@ -3,15 +3,10 @@
 import { Star } from "lucide-react";
 
 interface StarRatingProps {
-  /** Note actuelle (0-5) */
   rating: number;
-  /** Si true, les étoiles sont cliquables */
   interactive?: boolean;
-  /** Taille des étoiles (px) */
   size?: number;
-  /** Callback appelé quand l'utilisateur clique sur une étoile */
   onChange?: (value: number) => void;
-  /** État de survol interne (géré par le parent si interactive) */
   hover?: number;
   onHoverChange?: (value: number) => void;
 }

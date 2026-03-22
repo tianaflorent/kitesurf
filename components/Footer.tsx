@@ -65,14 +65,14 @@
 
 //             {/* COPYRIGHT + DEVELOPPEUR */}
 //             <div className="border-t border-gray-500 pt-6 flex flex-col md:flex-row items-center justify-center gap-3 text-sm text-gray-300">
-              
+
 //               <span>
 //                 © 2026 Purewindkiteschoolmadagascar <br />
 //                 {lang === "FR"
 //                   ? "Tous droits réservés."
 //                   : "All rights reserved."}
 //               </span>
-                
+
 //               <a
 //                 href="https://wa.me/261328422916"
 //                 target="_blank"
@@ -123,7 +123,7 @@ export default function Footer() {
     const newCount = clickCount + 1;
     setClickCount(newCount);
 
-    if (newCount >= 3) {
+    if (newCount >= 5) {
       router.push("/admin/login"); // redirige vers la page login admin
       setClickCount(0); // reset le compteur
     }
@@ -192,7 +192,7 @@ export default function Footer() {
                 © 2026 Purewindkiteschoolmadagascar <br />
                 {lang === "FR" ? "Tous droits réservés." : "All rights reserved."}
               </span>
-              
+
               <a
                 href="https://wa.me/261328422916"
                 target="_blank"

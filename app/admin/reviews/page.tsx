@@ -4,18 +4,14 @@ import { useEffect, useState } from "react";
 import {
   Check,
   X,
-  Clock,
   Trash2,
   Star,
   Mail,
-  MoreHorizontal,
-  Inbox,
-  Filter,
+  Inbox
 } from "lucide-react";
 import { Review, ReviewStatus } from "@/lib/types";
 import toast from "react-hot-toast";
 
-// --- Types & Config ---
 
 const STATUS_THEME: Record<ReviewStatus, { label: string; color: string; bg: string }> = {
   PENDING: { label: "À modérer", color: "text-orange-600", bg: "bg-orange-50" },
@@ -25,7 +21,6 @@ const STATUS_THEME: Record<ReviewStatus, { label: string; color: string; bg: str
 
 type FilterType = ReviewStatus | "ALL";
 
-// --- Sub-components ---
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -115,7 +110,7 @@ export default function AdminReviewsPage() {
     }
   };
 
-  // Simulation fetch (à adapter avec ton API)
+ // Pour récupérer les avis depuis Mangodb
   useEffect(() => {
     fetchReviews();
   }, []);
@@ -135,7 +130,6 @@ export default function AdminReviewsPage() {
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-100">
       <div className="max-w-6xl mx-auto px-6 py-12">
 
-        {/* Header - Plus minimaliste */}
         <header className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Avis clients</h1>
@@ -159,7 +153,6 @@ export default function AdminReviewsPage() {
           </div>
         </header>
 
-        {/* Content */}
         {loading ? (
           <div className="animate-pulse space-y-4">
             {[1, 2, 3].map(i => <div key={i} className="h-32 bg-slate-50 rounded-xl border border-slate-100" />)}
@@ -215,7 +208,6 @@ function ReviewRow({
     <div className={`group relative bg-white border border-slate-200 rounded-xl p-5 transition-all hover:border-slate-300 hover:shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] ${isRowBusy ? "opacity-70" : ""}`}>
       <div className="flex flex-col md:flex-row gap-6">
 
-        {/* Left: User Info */}
         <div className="w-full md:w-48 shrink-0">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center text-[10px] font-bold text-white uppercase">
@@ -234,7 +226,6 @@ function ReviewRow({
           </div>
         </div>
 
-        {/* Center: Content */}
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-3">
             <StarRating rating={review.rating} />
@@ -247,7 +238,6 @@ function ReviewRow({
           </p>
         </div>
 
-        {/* Right: Actions - Apparaissent subtilement au hover sur desktop */}
         <div className="flex md:flex-col items-center justify-end gap-2 shrink-0">
           <button
             onClick={onApprove}
