@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AlertTriangle, CheckCircle2 } from "lucide-react";
 import StarRating from "./StarRating";
 
 interface ReviewFormTranslations {
@@ -85,13 +86,19 @@ export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
 
       {success && (
         <div className="mb-6 p-4 rounded-xl bg-green-100 text-green-700 text-center font-medium">
-          ✅ {t.reviewSuccess}
+          <span className="inline-flex items-center justify-center gap-2">
+            <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+            <span>{t.reviewSuccess}</span>
+          </span>
         </div>
       )}
 
       {error && (
         <div className="mb-6 p-4 rounded-xl bg-red-100 text-red-700 text-center font-medium">
-          ⚠️ {error}
+          <span className="inline-flex items-center justify-center gap-2">
+            <AlertTriangle className="h-5 w-5" aria-hidden="true" />
+            <span>{error}</span>
+          </span>
         </div>
       )}
 

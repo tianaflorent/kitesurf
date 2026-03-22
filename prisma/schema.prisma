@@ -20,13 +20,9 @@ datasource db {
 
 model Review {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  /// Pseudo/surnom affiché publiquement (obligatoire)
   name      String
-  /// Prénom réel (optionnel, non affiché publiquement)
   firstName String?
-  /// Nom de famille (optionnel, non affiché publiquement)
   lastName  String?
-  /// Email (optionnel, non affiché publiquement)
   email     String?
   comment   String
   rating    Int
