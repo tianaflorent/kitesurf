@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { LayoutDashboard, LogOut } from "lucide-react";
 import { StaffUser } from "@/app/hooks/useStaffUser";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/context/translations";
 
 type Props = {
   user: StaffUser | null;
@@ -19,6 +21,9 @@ export default function StaffProfileMenu({
   setOpen,
   onLogout,
 }: Props) {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   return (
     <>
       <button
@@ -47,7 +52,7 @@ export default function StaffProfileMenu({
               className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-gray-50"
             >
               <LayoutDashboard size={16} />
-              Dashboard
+              {t.dashboard}
             </Link>
             <button
               type="button"
@@ -55,7 +60,7 @@ export default function StaffProfileMenu({
               className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-gray-50 cursor-pointer"
             >
               <LogOut size={16} />
-              Déconnexion
+              {t.logout}
             </button>
           </div>
         </div>
