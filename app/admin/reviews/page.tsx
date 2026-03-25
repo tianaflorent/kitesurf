@@ -127,8 +127,7 @@ export default function AdminReviewsPage() {
     : reviews.filter(r => r.status === activeFilter);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-100">
-      <div className="max-w-6xl mx-auto px-6 py-12">
+    <div className="min-h-screen font-sans">
 
         <header className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
@@ -177,7 +176,6 @@ export default function AdminReviewsPage() {
             ))}
           </div>
         )}
-      </div>
     </div>
   );
 }
@@ -234,7 +232,7 @@ function ReviewRow({
             </span>
           </div>
           <p className="text-sm text-slate-600 leading-relaxed italic border-l-2 border-slate-100 pl-4">
-            "{review.comment}"
+            &ldquo;{review.comment}&rdquo;
           </p>
         </div>
 

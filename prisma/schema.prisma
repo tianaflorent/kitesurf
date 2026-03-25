@@ -34,14 +34,17 @@ model Review {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  firstName String
-  lastName  String
-  email     String   @unique
-  password  String
-  role      String   @default("MODERATOR")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  firstName    String
+  lastName     String
+  email        String    @unique
+  password     String
+  role         String    @default("MODERATOR")
+  inviteToken  String?   @unique
+  inviteStatus String    @default("ACCEPTED")
+  invitedAt    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
   @@map("users")
 }
