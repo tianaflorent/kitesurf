@@ -40,7 +40,7 @@ export default function Navbar() {
   return (
     <>
       {/* ================= NAVBAR TOP (TOUS ÉCRANS) ================= */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b shadow-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md shadow-sm">
         <div className="max-w-7xl mx-auto w-full flex justify-between items-center px-5 lg:px-1 py-1 lg:py-3">
 
           {/* LOGO */}

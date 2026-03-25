@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 export type StaffUser = {
   email: string;
   role: string;
+  firstName?: string;
+  lastName?: string;
 };
 
 export default function useStaffUser(pathname: string) {

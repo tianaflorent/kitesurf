@@ -21,7 +21,7 @@ interface Moderator {
   createdAt: string;
 }
 
-type ModalMode = "create" | "edit" | null;
+type ModalMode = "create" | "edit" | "delete" | null;
 
 const STATUS_THEME: Record<string, { label: string; color: string; bg: string }> = {
   PENDING: { label: "En attente", color: "text-orange-600", bg: "bg-orange-50" },
@@ -96,12 +96,17 @@ export default function AdminModeratorsPage() {
           body: JSON.stringify({ firstName, lastName, email }),
         });
 
+        const data = await res.json().catch(() => null);
+
         if (!res.ok) {
-          const data = await res.json().catch(() => null);
           throw new Error(data?.error ?? "Erreur lors de la création");
         }
 
-        toast.success("Modérateur créé avec succès.");
+        if (data?.warning) {
+          toast.error(data.warning, { duration: 6000 });
+        } else {
+          toast.success("Modérateur créé et invitation envoyée.");
+        }
       } else if (modalMode === "edit" && editingMod) {
         const res = await fetch(`/api/admin/moderators/${editingMod.id}`, {
           method: "PATCH",
@@ -127,12 +132,18 @@ export default function AdminModeratorsPage() {
     }
   };
 
-  const handleDelete = async (mod: Moderator) => {
-    if (!confirm(`Supprimer ${mod.firstName} ${mod.lastName} ?`)) return;
-    setActionLoading(mod.id + "DELETE");
+  const handleDeleteRequest = (mod: Moderator) => {
+    setEditingMod(mod);
+    setModalMode("delete");
+  };
+
+  const confirmDelete = async () => {
+    if (!editingMod) return;
+    
+    setActionLoading(editingMod.id + "DELETE");
 
     try {
-      const res = await fetch(`/api/admin/moderators/${mod.id}`, {
+      const res = await fetch(`/api/admin/moderators/${editingMod.id}`, {
         method: "DELETE",
       });
 
@@ -142,6 +153,7 @@ export default function AdminModeratorsPage() {
       }
 
       toast.success("Modérateur supprimé.");
+      closeModal();
       await fetchModerators();
     } catch (err) {
       const message = err instanceof Error ? err.message : "Erreur";
@@ -270,10 +282,10 @@ export default function AdminModeratorsPage() {
                       onClick={() => handleSendInvite(mod)}
                       disabled={busy}
                       className="h-8 px-3 text-xs font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                      title="Envoyer l'invitation"
+                      title="Renvoyer l'invitation"
                     >
                       <Send className="w-3 h-3" />
-                      Inviter
+                      Renvoyer
                     </button>
                   )}
                   <button
@@ -285,7 +297,7 @@ export default function AdminModeratorsPage() {
                     <Pencil className="w-3.5 h-3.5" />
                   </button>
                   <button
-                    onClick={() => handleDelete(mod)}
+                    onClick={() => handleDeleteRequest(mod)}
                     disabled={busy}
                     className="h-8 w-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:text-red-500 hover:bg-red-50 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Supprimer"
@@ -313,7 +325,9 @@ export default function AdminModeratorsPage() {
                 <h2 className="text-lg font-semibold text-slate-900">
                   {modalMode === "create"
                     ? "Inviter un modérateur"
-                    : "Modifier le modérateur"}
+                    : modalMode === "edit"
+                      ? "Modifier le modérateur"
+                      : "Confirmer la suppression"}
                 </h2>
                 <button
                   onClick={closeModal}
@@ -323,80 +337,107 @@ export default function AdminModeratorsPage() {
                 </button>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              {modalMode === "delete" ? (
+                <div className="space-y-6">
+                  <div className="p-4 bg-red-50 border border-red-100 rounded-xl">
+                    <p className="text-sm text-red-800 leading-relaxed">
+                      Êtes-vous sûr de vouloir supprimer <strong>{editingMod?.firstName} {editingMod?.lastName}</strong> ? Cette action est irréversible.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-end gap-3">
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      className="px-4 py-2 text-sm font-medium text-slate-500 hover:text-slate-700 transition cursor-pointer"
+                    >
+                      Annuler
+                    </button>
+                    <button
+                      type="button"
+                      onClick={confirmDelete}
+                      disabled={actionLoading?.endsWith("DELETE")}
+                      className="px-5 py-2.5 text-sm font-semibold bg-red-600 text-white rounded-xl hover:bg-red-700 transition shadow-sm cursor-pointer disabled:opacity-50"
+                    >
+                      {actionLoading?.endsWith("DELETE") ? "Suppression..." : "Supprimer"}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="firstName"
+                        className="block text-sm font-medium text-slate-700 mb-1"
+                      >
+                        Prénom
+                      </label>
+                      <input
+                        id="firstName"
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        placeholder="John"
+                        className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="lastName"
+                        className="block text-sm font-medium text-slate-700 mb-1"
+                      >
+                        Nom
+                      </label>
+                      <input
+                        id="lastName"
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        placeholder="Doe"
+                        className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition"
+                      />
+                    </div>
+                  </div>
+
                   <div>
                     <label
-                      htmlFor="firstName"
+                      htmlFor="email"
                       className="block text-sm font-medium text-slate-700 mb-1"
                     >
-                      Prénom
+                      Email
                     </label>
                     <input
-                      id="firstName"
-                      type="text"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                      placeholder="John"
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="john.doe@email.com"
                       className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition"
                     />
                   </div>
-                  <div>
-                    <label
-                      htmlFor="lastName"
-                      className="block text-sm font-medium text-slate-700 mb-1"
+
+                  <div className="flex items-center justify-end gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      className="px-4 py-2 text-sm font-medium text-slate-500 hover:text-slate-700 transition cursor-pointer"
                     >
-                      Nom
-                    </label>
-                    <input
-                      id="lastName"
-                      type="text"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      placeholder="Doe"
-                      className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition"
-                    />
+                      Annuler
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={actionLoading === "form"}
+                      className="px-5 py-2.5 text-sm font-semibold bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {actionLoading === "form"
+                        ? "Chargement..."
+                        : modalMode === "create"
+                          ? "Inviter" 
+                          : "Enregistrer"}
+                    </button>
                   </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-slate-700 mb-1"
-                  >
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="john.doe@email.com"
-                    className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition"
-                  />
-                </div>
-
-                <div className="flex items-center justify-end gap-3 pt-2">
-                  <button
-                    type="button"
-                    onClick={closeModal}
-                    className="px-4 py-2 text-sm font-medium text-slate-500 hover:text-slate-700 transition cursor-pointer"
-                  >
-                    Annuler
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={actionLoading === "form"}
-                    className="px-5 py-2.5 text-sm font-semibold bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {actionLoading === "form"
-                      ? "Chargement..."
-                      : modalMode === "create"
-                        ? "Créer"
-                        : "Enregistrer"}
-                  </button>
-                </div>
-              </form>
+                </form>
+              )}
             </div>
           </div>
         </>

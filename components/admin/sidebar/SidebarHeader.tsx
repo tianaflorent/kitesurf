@@ -2,6 +2,7 @@
 
 import {  X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface SidebarHeaderProps {
   onClose?: () => void;
@@ -11,6 +12,8 @@ interface SidebarHeaderProps {
 export default function SidebarHeader({ onClose, collapsed }: SidebarHeaderProps) {
   return (
     <div className={`flex items-center px-5 py-5 border-b border-slate-100 ${collapsed ? "justify-center" : "justify-between"}`}>
+
+      <Link href="/">
       <div className="flex items-center gap-3 overflow-hidden">
         <div className="w-20 shrink-0 rounded-xl -white flex items-center justify-center transition-all">
           <Image
@@ -29,6 +32,7 @@ export default function SidebarHeader({ onClose, collapsed }: SidebarHeaderProps
           </div>
         )}
       </div>
+      </Link>
       {onClose && (
         <button
           type="button"

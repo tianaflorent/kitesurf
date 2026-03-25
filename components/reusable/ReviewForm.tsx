@@ -10,8 +10,17 @@ import RatingField from "./RatingField";
 import PrimaryButton from "./PrimaryButton";
 import LoadingSpinner from "./LoadingSpinner";
 
+import { TranslationType } from "@/context/translations";
+
+interface ReviewFormValues {
+  name: string;
+  email: string;
+  comment: string;
+  rating: number;
+}
+
 interface ReviewFormProps {
-  t: any;
+  t: TranslationType;
   onSuccess?: () => void;
 }
 
@@ -22,11 +31,11 @@ export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<ReviewFormValues>({
     defaultValues: { name: "", email: "", comment: "", rating: 0 },
   });
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: ReviewFormValues) => {
     try {
       const res = await fetch("/api/reviews", {
         method: "POST",

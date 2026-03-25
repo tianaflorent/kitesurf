@@ -70,8 +70,8 @@ export default function AdminSidebar({ collapsed, setCollapsed }: AdminSidebarPr
           </SidebarSection>
         </div>
 
-        <div className={`p-4 border-t border-slate-100 flex ${isCollapsed ? 'flex-col items-center gap-4' : 'flex-row items-center justify-between'}`}>
-          {/* Avatar and Menu */}
+        <div className={`p-4 border-t border-slate-100 flex ${isCollapsed ? 'flex-col items-center gap-4' : 'flex-row items-center justify-between group/footer'}`}>
+          {/* Avatar and Profile Info */}
           <div className="relative" ref={profileRef}>
             <StaffProfileMenu
               user={user}
@@ -79,6 +79,7 @@ export default function AdminSidebar({ collapsed, setCollapsed }: AdminSidebarPr
               open={profileOpen}
               setOpen={setProfileOpen}
               onLogout={onLogout}
+              variant="sidebar"
             />
           </div>
 
@@ -86,7 +87,7 @@ export default function AdminSidebar({ collapsed, setCollapsed }: AdminSidebarPr
           {!isMobile && (
             <button
               onClick={() => setCollapsed(!collapsed)}
-              className="lg:flex items-center justify-center p-2 rounded-xl text-slate-500 hover:bg-slate-100 transition"
+              className="lg:flex items-center justify-center p-2 rounded-xl text-slate-500 hover:bg-slate-100 transition cursor-pointer"
               aria-label={collapsed ? "Agrandir le menu" : "Réduire le menu"}
             >
               {collapsed ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}

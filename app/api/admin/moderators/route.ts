@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireRole, hashPassword } from "@/lib/auth";
+import { sendInviteEmail } from "@/lib/email";
 import { randomUUID } from "crypto";
 
 /**
@@ -103,6 +104,20 @@ export async function POST(request: Request) {
         createdAt: true,
       },
     });
+
+    const emailResult = await sendInviteEmail({
+      to: email,
+      firstName,
+      inviteToken,
+    });
+
+    if (!emailResult.success) {
+      console.error("[POST /api/admin/moderators] Erreur email :", emailResult.error);
+      return NextResponse.json(
+        { ...moderator, warning: "Le compte a été créé, mais l'envoi de l'email d'invitation a échoué. Veuillez renvoyer l'invitation." },
+        { status: 201 }
+      );
+    }
 
     return NextResponse.json(moderator, { status: 201 });
   } catch (error) {

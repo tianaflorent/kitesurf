@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import ReviewCard from "@/components/reusable/ReviewCard";
 import ReviewForm from "@/components/reusable/ReviewForm";
+import { TranslationType } from "@/context/translations";
 import { Review } from "@/lib/types";
 
-export default function TestimonialsSection({ t }: { t: any }) {
+export default function TestimonialsSection({ t }: { t: TranslationType }) {
   const [reviews, setReviews] = useState<Review[]>([]);
 
   const loadReviews = async () => {

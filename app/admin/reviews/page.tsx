@@ -140,7 +140,7 @@ export default function AdminReviewsPage() {
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-4 py-1.5 text-xs font-medium rounded-md transition-all ${activeFilter === f
+                className={`px-4 py-1.5 text-xs font-medium rounded-md transition-all cursor-pointer ${activeFilter === f
                     ? "bg-white text-slate-900 shadow-sm border border-slate-200"
                     : "text-slate-500 hover:text-slate-800"
                   }`}

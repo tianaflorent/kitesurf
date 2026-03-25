@@ -139,5 +139,6 @@ export const translations = {
   }
 };
 
+export type TranslationType = typeof translations.FR;
 
 // translations.ts
