@@ -7,11 +7,12 @@ type Props = {
   label: string;
   optionalText?: string;
   icon?: LucideIcon;
+  rightIcon?: ReactNode;
   error?: string;
   children: ReactNode;
 };
 
-export default function FormField({ label, optionalText, icon: Icon, error, children }: Props) {
+export default function FormField({ label, optionalText, icon: Icon, rightIcon, error, children }: Props) {
   return (
     <div className="space-y-1.5">
       <label className="text-sm font-medium text-slate-700 ml-1 flex items-center gap-2">
@@ -21,7 +22,12 @@ export default function FormField({ label, optionalText, icon: Icon, error, chil
           <span className="text-slate-400 font-normal text-xs">{optionalText}</span>
         ) : null}
       </label>
-      {children}
+      <div className="relative">
+        {children}
+        {rightIcon ? (
+          <div className="absolute right-3 top-1/2 -translate-y-1/2">{rightIcon}</div>
+        ) : null}
+      </div>
       {error ? <p className="text-[11px] text-red-500 font-medium">{error}</p> : null}
     </div>
   );

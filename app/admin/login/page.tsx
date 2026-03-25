@@ -3,11 +3,12 @@
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Lock, Mail, Shield } from "lucide-react";
+import { Lock, Mail, Shield, Eye, EyeClosed } from "lucide-react";
 import FormField from "@/components/reusable/FormField";
 import TextInput from "@/components/reusable/TextInput";
 import PrimaryButton from "@/components/reusable/PrimaryButton";
 import LoadingSpinner from "@/components/reusable/LoadingSpinner";
+import { useState } from "react";
 
 type Values = {
   email: string;
@@ -16,6 +17,8 @@ type Values = {
 
 export default function AdminLoginPage() {
   const router = useRouter();
+
+  const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const {
     register,
@@ -82,9 +85,19 @@ export default function AdminLoginPage() {
             label="Mot de passe"
             icon={Lock}
             error={errors.password?.message}
+            rightIcon={
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="text-gray-400 hover:text-gray-600 transition cursor-pointer"
+                aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+              >
+                {showPassword ? <EyeClosed size={18} /> : <Eye size={18} />}
+              </button>
+            }
           >
             <TextInput
-              type="password"
+              type={showPassword ? "text" : "password"}
               autoComplete="current-password"
               placeholder="••••••••"
               {...register("password", { required: "Le mot de passe est requis" })}
