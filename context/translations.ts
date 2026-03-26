@@ -1,3 +1,4 @@
+// translations.ts
 export const translations = {
     FR: {
       heroTitle: "Bienvenue à Purewind kite school Madagascar",
@@ -90,4 +91,4 @@ export const translations = {
   };
 
 
-// translations.ts
+
