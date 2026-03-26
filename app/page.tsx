@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Star, ShieldCheck, Smile, TrendingUp, Users, MapPin } from "lucide-react";
+import { ShieldCheck, Smile, TrendingUp, Users, MapPin, LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/context/translations";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import Image from "next/image";
 
 export default function Home() {
   const { lang } = useLanguage();
@@ -55,7 +55,8 @@ export default function Home() {
             </div>
           </div>
           <div className="rounded-2xl overflow-hidden shadow-lg">
-            <img src="/images/IMG-20260304-WA0043.jpg" alt="Baie Sakalava" className="w-full h-80 object-cover" />
+
+            <Image src="/images/IMG-20260304-WA0043.jpg" alt="Baie Sakalava" width={800} height={320} className="w-full h-80 object-cover" />
           </div>
         </div>
       </section>
@@ -94,7 +95,15 @@ export default function Home() {
 }
 
 /* ================= COMPONENTS ================= */
-function ValueCard({ Icon, iconBg, iconColor, title, desc }: any) {
+interface ValueCardProps {
+  Icon: LucideIcon;
+  iconBg: string;
+  iconColor: string;
+  title: string;
+  desc: string;
+}
+
+function ValueCard({ Icon, iconBg, iconColor, title, desc }: ValueCardProps) {
   return (
     <div className="group bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
       <div className={`w-16 h-16 mx-auto flex items-center justify-center rounded-full ${iconBg} transition`}>
@@ -106,17 +115,19 @@ function ValueCard({ Icon, iconBg, iconColor, title, desc }: any) {
   );
 }
 
-function GallerySlider({ t }: any) {
+import { TranslationType } from "@/context/translations";
+
+function GallerySlider({ t }: { t: TranslationType }) {
   return (
     <div className="relative">
       <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 scrollbar-hide">
         {["IMG-20260304-WA0042.jpg", "IMG-20260304-WA0029.jpg", "IMG-20260304-WA0024.jpg"].map((img, i) => (
           <div key={i} className="snap-center shrink-0 w-[80%] sm:w-[60%] lg:w-[30%] rounded-2xl overflow-hidden shadow-lg group">
-            <img src={`/images/${img}`} alt={`Kitesurf ${i}`} className="w-full h-80 object-cover group-hover:scale-105 transition duration-500" />
+            <Image src={`/images/${img}`} alt={`Kitesurf ${i}`} width={800} height={320} className="w-full h-80 object-cover group-hover:scale-105 transition duration-500" />
           </div>
         ))}
         <div className="snap-center shrink-0 w-[80%] sm:w-[60%] lg:w-[30%] rounded-2xl overflow-hidden shadow-lg relative group cursor-pointer">
-          <img src="/images/IMG-20260304-WA0038.jpg" alt="Voir plus" className="w-full h-80 object-cover group-hover:scale-105 transition duration-500" />
+          <Image src="/images/IMG-20260304-WA0038.jpg" alt="Voir plus" width={800} height={320} className="w-full h-80 object-cover group-hover:scale-105 transition duration-500" />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <Link href="/galerie" className="text-white text-xl md:text-2xl font-bold border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-black transition">{t.morephoto}</Link>
           </div>

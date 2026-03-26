@@ -45,11 +45,16 @@ import BottomNav from "@/components/BottomNav";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext"; // <-- nouveau
 import { Toaster } from "react-hot-toast";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({ children }: { children: React.ReactNode; }) {
+  const pathname = usePathname();
+  // Hide Navbar and Footer on admin and auth routes
+  const isAppSite = !pathname?.startsWith("/admin") && !pathname?.startsWith("/auth");
+
   return (
     <html lang="fr">
-      <body className="flex flex-col min-h-screen relative">
+      <body className="flex flex-col min-h-screen relative bg-slate-50 text-slate-800">
         <LanguageProvider> {/* <-- enveloppe tout le site */}
 
           <Toaster
@@ -79,18 +84,20 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
           />
 
           {/* Navbar */}
-          <Navbar />
+          {isAppSite && <Navbar />}
 
           {/* Contenu principal */}
           <main className="flex-1">{children}</main>
 
           {/* Footer */}
-          <Footer />
+          {isAppSite && <Footer />}
 
           {/* BottomNav fixe mobile */}
-          <div className="fixed bottom-0 left-0 right-0 lg:hidden">
-            <BottomNav />
-          </div>
+          {isAppSite && (
+            <div className="fixed bottom-0 left-0 right-0 lg:hidden">
+              <BottomNav />
+            </div>
+          )}
 
         </LanguageProvider>
       </body>

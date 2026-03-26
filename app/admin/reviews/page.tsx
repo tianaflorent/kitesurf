@@ -127,13 +127,12 @@ export default function AdminReviewsPage() {
     : reviews.filter(r => r.status === activeFilter);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-100">
-      <div className="max-w-6xl mx-auto px-6 py-12">
+    <div className="min-h-screen font-sans">
 
         <header className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Avis clients</h1>
-            <p className="text-slate-500 mt-1 text-sm">Gérez et modérez les retours d'expérience utilisateurs.</p>
+            <p className="text-slate-500 mt-1 text-sm">Gérez et modérez les retours d&apos;expérience utilisateurs.</p>
           </div>
 
           <div className="flex items-center gap-2 bg-slate-50 p-1 rounded-lg border border-slate-200/60">
@@ -141,7 +140,7 @@ export default function AdminReviewsPage() {
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-4 py-1.5 text-xs font-medium rounded-md transition-all ${activeFilter === f
+                className={`px-4 py-1.5 text-xs font-medium rounded-md transition-all cursor-pointer ${activeFilter === f
                     ? "bg-white text-slate-900 shadow-sm border border-slate-200"
                     : "text-slate-500 hover:text-slate-800"
                   }`}
@@ -161,7 +160,7 @@ export default function AdminReviewsPage() {
           <div className="py-24 flex flex-col items-center text-center border-2 border-dashed border-slate-100 rounded-3xl">
             <Inbox className="w-12 h-12 text-slate-200 mb-4" />
             <h3 className="text-slate-900 font-medium">Aucun avis trouvé</h3>
-            <p className="text-slate-400 text-sm">Il n'y a pas d'avis correspondant à ce filtre.</p>
+            <p className="text-slate-400 text-sm">Il n&apos;y a pas d&apos;avis correspondant à ce filtre.</p>
           </div>
         ) : (
           <div className="grid gap-4">
@@ -177,7 +176,6 @@ export default function AdminReviewsPage() {
             ))}
           </div>
         )}
-      </div>
     </div>
   );
 }
@@ -234,20 +232,33 @@ function ReviewRow({
             </span>
           </div>
           <p className="text-sm text-slate-600 leading-relaxed italic border-l-2 border-slate-100 pl-4">
-            "{review.comment}"
+            &ldquo;{review.comment}&rdquo;
           </p>
         </div>
 
         <div className="flex md:flex-col items-center justify-end gap-2 shrink-0">
           <button
             onClick={onApprove}
-            disabled={busy}
-            className="h-9 px-4 text-xs font-semibold bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2 cursor-pointer"
+            disabled={busy || review.status === "APPROVED"}
+            className={`h-9 px-4 text-xs font-semibold text-white rounded-lg transition-colors flex items-center gap-2 ${
+              busy || review.status === "APPROVED"
+                ? "bg-green-600 opacity-50 cursor-not-allowed"
+                : "bg-green-600 hover:bg-green-700 cursor-pointer"
+            }`}
             title="Approuver"
           >
             <Check className="w-3.5 h-3.5" /> Approuver
           </button>
           <div className="flex gap-2">
+            {review.email && (
+              <a
+                href={`mailto:${review.email}`}
+                className="h-9 w-9 flex items-center justify-center rounded-lg border border-slate-200 text-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-colors cursor-pointer"
+                title="Envoyer un email"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            )}
             <button
               onClick={onReject}
               disabled={busy}

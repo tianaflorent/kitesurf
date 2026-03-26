@@ -2,7 +2,7 @@ export const translationsGalerie = {
     FR: {
       heroTitle: "Galerie Kitesurf",
       heroSubtitle:
-        "Explorez nos moments de glisse, d'apprentissage et les paysages magnifiques de Madagascar.",
+        "Explorez nos moments de glisse, d'apprentissage et les paysages magnifiques de DIEGO-SUAREZ.",
   
       all: "Tous",
       navigation: "Navigation",
@@ -16,7 +16,7 @@ export const translationsGalerie = {
     EN: {
       heroTitle: "Kitesurf Gallery",
       heroSubtitle:
-        "Explore our riding moments, learning sessions and the beautiful landscapes of Madagascar.",
+        "Explore our riding moments, learning sessions and the beautiful landscapes of DIEGO-SUAREZ.",
   
       all: "All",
       navigation: "Riding",
