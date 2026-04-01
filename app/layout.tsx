@@ -75,10 +75,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  verification: {
-    // À compléter lors de la vérification Google Search Console
-    // google: "VOTRE_CODE_VERIFICATION",
-  },
+
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

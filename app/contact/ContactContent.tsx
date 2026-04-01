@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { translationsContact } from "@/context/translationcontact";
 import { useLanguage } from "@/context/LanguageContext";
@@ -33,8 +34,7 @@ export default function ContactContent() {
 
       {/* HERO */}
       <section className="relative h-75 mt-7 rounded-2xl overflow-hidden border border-gray-300 shadow-md">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/IMG-20260304-WA0028.jpg" alt="Contactez Pure Wind Kite School – école de kitesurf à Diego Suarez, Madagascar" className="absolute inset-0 w-full h-full object-cover" />
+        <Image src="/images/IMG-20260304-WA0028.jpg" alt="Contactez Pure Wind Kite School – école de kitesurf à Diego Suarez, Madagascar" fill className="absolute inset-0 object-cover" />
         <div className="absolute inset-0 bg-black/70" />
         <div className="relative z-10 h-full flex flex-col justify-center px-6 text-white">
           <h1 className="text-3xl font-bold mb-2">{t.heroTitle}</h1>

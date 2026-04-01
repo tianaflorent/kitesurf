@@ -1,22 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify, SignJWT } from "jose";
-
-const ACCESS_TOKEN_COOKIE = "admin_session";
-const REFRESH_TOKEN_COOKIE = "admin_refresh";
-
-const ACCESS_TOKEN_MAX_AGE = 15 * 60; // 15 minutes
-
-function getAccessSecret(): Uint8Array {
-  const secret = process.env.JWT_SECRET;
-  if (!secret) throw new Error("JWT_SECRET manquant — vérifiez vos variables d'environnement.");
-  return new TextEncoder().encode(secret);
-}
-
-function getRefreshSecret(): Uint8Array {
-  const secret = process.env.JWT_REFRESH_SECRET;
-  if (!secret) throw new Error("JWT_REFRESH_SECRET manquant — vérifiez vos variables d'environnement.");
-  return new TextEncoder().encode(secret);
-}
+import { TokenPayload, ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE, getAccessSecret, getRefreshSecret, ACCESS_TOKEN_MAX_AGE } from "@/lib/auth-edge";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -39,12 +23,12 @@ export async function middleware(request: NextRequest) {
   const refreshToken = request.cookies.get(REFRESH_TOKEN_COOKIE)?.value;
 
   let isAuthenticated = false;
-  let payload: any = null;
+  let payload: TokenPayload | null = null;
 
   if (accessToken) {
     try {
       const { payload: verified } = await jwtVerify(accessToken, getAccessSecret());
-      payload = verified;
+      payload = verified as TokenPayload;
       isAuthenticated = true;
     } catch {
       // Access token invalid or expired.
@@ -56,7 +40,7 @@ export async function middleware(request: NextRequest) {
   if (!isAuthenticated && refreshToken) {
     try {
       const { payload: refreshPayload } = await jwtVerify(refreshToken, getRefreshSecret());
-      payload = refreshPayload;
+      payload = refreshPayload as TokenPayload;
       isAuthenticated = true;
       shouldSetNewAccessToken = true;
     } catch {
