@@ -9,8 +9,8 @@ const navFr = {
 };
 
 const homeFr = {
-  heroTitle: "Bienvenue à Purewind kite school Madagascar",
-  heroSubtitle: "Découvrez le kitesurf dans les eaux cristallines du baie de Sakalava",
+  heroTitle: "Bienvenue chez Purewind kite school Madagascar",
+  heroSubtitle: "Plongez dans l’univers du kitesurf et vivez une expérience unique au cœur de la baie de Sakalava, entre eaux turquoise, vent constant et paysages à couper le souffle",
   bookButton: "Réservez votre cours",
   coursesButton: "Voir les cours",
   morephoto: "Voir plus",
@@ -201,7 +201,7 @@ const navEn: typeof navFr = {
 
 const homeEn: typeof homeFr = {
   heroTitle: "Welcome to Purewind kite school Madagascar",
-  heroSubtitle: "Discover kitesurfing in the crystal-clear waters of Sakalava bay",
+  heroSubtitle: "Dive into the world of kitesurfing and enjoy a unique experience in the heart of Sakalava Bay, surrounded by turquoise waters, steady winds, and breathtaking landscapes",
   bookButton: "Book your lesson",
   coursesButton: "See the courses",
   morephoto: "See more",
