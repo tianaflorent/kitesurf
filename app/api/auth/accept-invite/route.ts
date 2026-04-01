@@ -52,7 +52,8 @@ export async function POST(request: Request) {
       data: {
         password: hashedPassword,
         inviteStatus: "ACCEPTED",
-        inviteToken: null,
+        // Au lieu de null (qui crashe MongoDB car null doit être unique), on met un identifiant révoqué unique
+        inviteToken: `revoked-${user.id}`,
       },
     });
 
