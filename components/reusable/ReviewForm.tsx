@@ -1,6 +1,8 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import toast from "react-hot-toast";
 import { Send, User, Mail, MessageSquare } from "lucide-react";
 import FormField from "./FormField";
@@ -12,12 +14,15 @@ import LoadingSpinner from "./LoadingSpinner";
 
 import { type Dictionary } from "@/context/translations";
 
-interface ReviewFormValues {
-  name: string;
-  email: string;
-  comment: string;
-  rating: number;
-}
+const getReviewSchema = (t: Dictionary['home']) =>
+  z.object({
+    name: z.string(),
+    email: z.union([z.string().email({ message: t.invalidEmail || "Email invalide" }), z.literal("")]),
+    comment: z.string().min(1, { message: t.commentError }),
+    rating: z.number().min(1, { message: t.ratingError }).max(5),
+  });
+
+type ReviewFormValues = z.infer<ReturnType<typeof getReviewSchema>>;
 
 interface ReviewFormProps {
   t: Dictionary['home'];
@@ -25,6 +30,8 @@ interface ReviewFormProps {
 }
 
 export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
+  const reviewSchema = getReviewSchema(t);
+
   const {
     register,
     control,
@@ -32,6 +39,7 @@ export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ReviewFormValues>({
+    resolver: zodResolver(reviewSchema),
     defaultValues: { name: "", email: "", comment: "", rating: 0 },
   });
 
@@ -92,7 +100,7 @@ export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
         >
           <TextArea
             rows={4}
-            {...register("comment", { required: true })}
+            {...register("comment")}
             placeholder={t.commentPlaceholder2}
           />
         </FormField>
