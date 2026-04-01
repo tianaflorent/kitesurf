@@ -3,14 +3,12 @@
 import { ShieldCheck, Smile, TrendingUp, Users, MapPin, LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
-import { translations } from "@/context/translations";
+import { dictionaries, type Dictionary } from "@/context/translations";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Image from "next/image";
-import { TranslationType } from "@/context/translations";
-
 export default function HomeContent() {
   const { lang } = useLanguage();
-  const t = translations[lang];
+  const t = dictionaries[lang].home;
 
   return (
     <main className="pb-20">
@@ -121,7 +119,7 @@ function ValueCard({ Icon, iconBg, iconColor, title, desc }: ValueCardProps) {
   );
 }
 
-function GallerySlider({ t }: { t: TranslationType }) {
+function GallerySlider({ t }: { t: Dictionary['home'] }) {
   return (
     <div className="relative">
       <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 scrollbar-hide">

@@ -3,12 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
-import { translationsReservation } from "@/context/translationreservation";
+import { dictionaries } from "@/context/translations";
 
 
 export default function ReservationContent() {
   const { lang } = useLanguage();
-  const t = translationsReservation[lang];
+  const t = dictionaries[lang].reservation;
 
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");

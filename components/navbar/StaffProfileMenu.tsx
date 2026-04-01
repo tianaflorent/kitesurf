@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LayoutDashboard, LogOut } from "lucide-react";
 import { StaffUser } from "@/app/hooks/useStaffUser";
 import { useLanguage } from "@/context/LanguageContext";
-import { translations } from "@/context/translations";
+import { dictionaries } from "@/context/translations";
 
 type Props = {
   user: StaffUser | null;
@@ -24,7 +24,7 @@ export default function StaffProfileMenu({
   variant = "navbar",
 }: Props) {
   const { lang } = useLanguage();
-  const t = translations[lang];
+  const t = dictionaries[lang].home;
 
   const menuPosition = variant === "navbar" 
     ? "absolute right-0 mt-3" 

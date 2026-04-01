@@ -6,12 +6,12 @@ import Image from "next/image";
 import {
   Menu, Wind, Zap, GraduationCap, Mountain, Package, Grid, Wallet,
 } from "lucide-react";
-import { translationsGalerie } from "@/context/translationgalerie";
+import { dictionaries } from "@/context/translations";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function GalerieContent() {
   const { lang } = useLanguage();
-  const t = translationsGalerie[lang];
+  const t = dictionaries[lang].galerie;
 
   const categories = [
     { name: t.all, value: "Tous", icon: Grid },

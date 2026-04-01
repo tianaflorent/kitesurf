@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
-import { translations } from "@/context/translations";
+import { dictionaries } from "@/context/translations";
 import ReviewCard from "@/components/reusable/ReviewCard";
 import StarRating from "@/components/reusable/StarRating";
 import { Review } from "@/lib/types";
 
 export default function TemoignagesContent() {
   const { lang } = useLanguage();
-  const t = translations[lang];
+  const t = dictionaries[lang].home;
 
   const [reviews, setReviews] = useState<Review[]>([]);
   const [average, setAverage] = useState(0);

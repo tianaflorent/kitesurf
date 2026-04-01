@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import ReviewCard from "@/components/reusable/ReviewCard";
 import ReviewForm from "@/components/reusable/ReviewForm";
-import { TranslationType } from "@/context/translations";
+import { type Dictionary } from "@/context/translations";
 import { Review } from "@/lib/types";
 
-export default function TestimonialsSection({ t }: { t: TranslationType }) {
+export default function TestimonialsSection({ t }: { t: Dictionary['home'] }) {
   const [reviews, setReviews] = useState<Review[]>([]);
 
   const loadReviews = async () => {

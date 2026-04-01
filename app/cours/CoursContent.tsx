@@ -4,11 +4,11 @@ import { CheckCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
-import { translationCours } from "@/context/translationcours";
+import { dictionaries } from "@/context/translations";
 
 export default function CoursContent() {
   const { lang } = useLanguage();
-  const t = translationCours[lang];
+  const t = dictionaries[lang].cours;
 
   const equipments = [
     { title: t.kite, desc: t.kiteDesc, img: "/images/best-ts-2016-8m.jpg", alt: "Cerf-volant (kite) de kitesurf – matériel fourni par Pure Wind Kite School Madagascar" },

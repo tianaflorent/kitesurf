@@ -10,7 +10,7 @@ import RatingField from "./RatingField";
 import PrimaryButton from "./PrimaryButton";
 import LoadingSpinner from "./LoadingSpinner";
 
-import { TranslationType } from "@/context/translations";
+import { type Dictionary } from "@/context/translations";
 
 interface ReviewFormValues {
   name: string;
@@ -20,7 +20,7 @@ interface ReviewFormValues {
 }
 
 interface ReviewFormProps {
-  t: TranslationType;
+  t: Dictionary['home'];
   onSuccess?: () => void;
 }
 
