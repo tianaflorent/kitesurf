@@ -7,11 +7,15 @@ const REFRESH_TOKEN_COOKIE = "admin_refresh";
 const ACCESS_TOKEN_MAX_AGE = 15 * 60; // 15 minutes
 
 function getAccessSecret(): Uint8Array {
-  return new TextEncoder().encode(process.env.JWT_SECRET || "");
+  const secret = process.env.JWT_SECRET;
+  if (!secret) throw new Error("JWT_SECRET manquant — vérifiez vos variables d'environnement.");
+  return new TextEncoder().encode(secret);
 }
 
 function getRefreshSecret(): Uint8Array {
-  return new TextEncoder().encode(process.env.JWT_REFRESH_SECRET || "");
+  const secret = process.env.JWT_REFRESH_SECRET;
+  if (!secret) throw new Error("JWT_REFRESH_SECRET manquant — vérifiez vos variables d'environnement.");
+  return new TextEncoder().encode(secret);
 }
 
 export async function middleware(request: NextRequest) {

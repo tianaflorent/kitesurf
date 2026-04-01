@@ -20,9 +20,9 @@ export async function POST(request: Request) {
 
     const { token, password } = body as { token: string; password: string };
 
-    if (password.length < 6) {
+    if (password.length < 8) {
       return NextResponse.json(
-        { error: "Le mot de passe doit contenir au moins 6 caractères." },
+        { error: "Le mot de passe administrateur/modérateur doit contenir au moins 8 caractères." },
         { status: 400 }
       );
     }
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
       data: {
         password: hashedPassword,
         inviteStatus: "ACCEPTED",
-        inviteToken: `accepted-${user.id}`,
+        inviteToken: null,
       },
     });
 
