@@ -1,14 +1,10 @@
-export type ReviewStatus = "PENDING" | "APPROVED" | "REJECTED";
+import type { Review as PrismaReview, ReviewStatus } from "./prisma-client/client";
 
-export interface Review {
-  id: string;
-  name: string;
-  firstName?: string | null;
-  lastName?: string | null;
-  email?: string | null;
-  comment: string;
-  rating: number;
-  status: ReviewStatus;
+// Re-export pour l'utilisation dans le frontend
+export type { ReviewStatus };
+
+// Surcharge légère pour autoriser Date | string côté frontend (sérialisation JSON)
+export interface Review extends Omit<PrismaReview, "createdAt" | "updatedAt"> {
   createdAt: Date | string;
   updatedAt: Date | string;
 }

@@ -14,9 +14,17 @@ datasource db {
 }
 
 // Statuts possibles pour un commentaire
-// PENDING  -> en attente de modération
-// APPROVED -> approuvé, visible publiquement
-// REJECTED -> rejeté par l'admin
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// Rôles utilisateurs
+enum UserRole {
+  ADMIN
+  MODERATOR
+}
 
 model Review {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -26,8 +34,8 @@ model Review {
   email     String?
   comment   String
   rating    Int
-  status    String   @default("PENDING")
-  createdAt DateTime @default(now())
+  status    ReviewStatus @default(PENDING)
+  createdAt DateTime     @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("reviews")
@@ -39,7 +47,7 @@ model User {
   lastName     String
   email        String    @unique
   password     String
-  role         String    @default("MODERATOR")
+  role         UserRole  @default(MODERATOR)
   inviteToken  String?   @unique
   inviteStatus String    @default("ACCEPTED")
   invitedAt    DateTime?
