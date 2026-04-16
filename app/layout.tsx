@@ -1,110 +1,89 @@
-// import "./globals.css";
-// import BottomNav from "@/components/BottomNav";
-// import Navbar from "@/components/Navbar";
-// import Footer from "@/components/Footer";
-
-// export default function RootLayout({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   return (
-//     <html lang="fr">
-//       <body className="bg-white text-gray-800 flex flex-col min-h-screen">
-
-//         {/* Navbar */}
-//         <Navbar />
-
-//         {/* Contenu principal */}
-//         <main className="flex-1 md:pt-20">
-//           {children}
-//         </main>
-
-//         {/* Footer */}
-//         <div className="mb-17.5 md:mb-0"> {/* marge pour BottomNav mobile */}
-//           <Footer />
-//         </div>
-
-//         {/* Bottom Navigation (mobile) */}
-//         <div className="fixed bottom-0 left-0 right-0 md:hidden">
-//           <BottomNav />
-//         </div>
-
-//       </body>
-//     </html>
-//   );
-// }
-
-// 
-
-
-"use client";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import BottomNav from "@/components/BottomNav";
+import type { Metadata } from "next";
 import "./globals.css";
-import { LanguageProvider } from "@/context/LanguageContext"; // <-- nouveau
-import { Toaster } from "react-hot-toast";
-import { usePathname } from "next/navigation";
+import ClientLayout from "./components/ClientLayout";
 
-export default function RootLayout({ children }: { children: React.ReactNode; }) {
-  const pathname = usePathname();
-  // Hide Navbar and Footer on admin and auth routes
-  const isAppSite = !pathname?.startsWith("/admin") && !pathname?.startsWith("/auth");
+const BASE_URL = "https://purewindkiteschool.vercel.app";
 
+export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "Pure Wind Kite School Madagascar | Cours de Kitesurf à Diego Suarez",
+    template: "%s | Pure Wind Kite School Madagascar",
+  },
+  description:
+    "École de kitesurf à la Baie de Sakalava, Antsiranana (Diego Suarez), Nord de Madagascar. Cours pour tous niveaux, matériel certifié fourni. Réservez votre session dès maintenant !",
+  keywords: [
+    "kitesurf",
+    "Madagascar",
+    "Diego Suarez",
+    "Antsiranana",
+    "Baie de Sakalava",
+    "cours kitesurf",
+    "école kitesurf",
+    "kite school",
+    "kitesurf Madagascar",
+    "kite Diego Suarez",
+    "apprendre kitesurf",
+    "spot kitesurf Madagascar",
+  ],
+  authors: [{ name: "Pure Wind Kite School Madagascar" }],
+  creator: "Pure Wind Kite School",
+  publisher: "Pure Wind Kite School",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    alternateLocale: ["en_US"],
+    siteName: "Pure Wind Kite School Madagascar",
+    title: "Pure Wind Kite School Madagascar | Cours de Kitesurf à Diego Suarez",
+    description:
+      "École de kitesurf à la Baie de Sakalava, Antsiranana (Diego Suarez). Cours pour tous niveaux, matériel certifié fourni.",
+    url: BASE_URL,
+    images: [
+      {
+        url: "/images/IMG-20260304-WA0043.jpg",
+        width: 800,
+        height: 600,
+        alt: "Kitesurf à la Baie de Sakalava, Diego Suarez, Madagascar – Pure Wind Kite School",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pure Wind Kite School Madagascar | Cours de Kitesurf Diego Suarez",
+    description:
+      "École de kitesurf à la Baie de Sakalava, Diego Suarez. Cours pour tous niveaux, matériel fourni.",
+    images: ["/images/IMG-20260304-WA0043.jpg"],
+  },
+  alternates: {
+    canonical: BASE_URL,
+    languages: {
+      fr: BASE_URL,
+      en: BASE_URL,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
       <body className="flex flex-col min-h-screen relative bg-slate-50 text-slate-800">
-        <LanguageProvider> {/* <-- enveloppe tout le site */}
-
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              success: {
-                style: {
-                  background: "#16a34a",
-                  color: "#ffffff",
-                },
-                iconTheme: {
-                  primary: "#ffffff",
-                  secondary: "#16a34a",
-                },
-              },
-              error: {
-                style: {
-                  background: "#dc2626",
-                  color: "#ffffff",
-                },
-                iconTheme: {
-                  primary: "#ffffff",
-                  secondary: "#dc2626",
-                },
-              },
-            }}
-          />
-
-          {/* Navbar */}
-          {isAppSite && <Navbar />}
-
-          {/* Contenu principal */}
-          <main className="flex-1">{children}</main>
-
-          {/* Footer */}
-          {isAppSite && <Footer />}
-
-          {/* BottomNav fixe mobile */}
-          {isAppSite && (
-            <div className="fixed bottom-0 left-0 right-0 lg:hidden">
-              <BottomNav />
-            </div>
-          )}
-
-        </LanguageProvider>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
 }
-
-
-
-

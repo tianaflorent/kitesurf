@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { CreateReviewPayload } from "@/lib/types";
+import { handleDbError } from "@/lib/db-error";
 
 /**
  * POST /api/reviews
@@ -41,38 +42,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(review, { status: 201 });
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    const isDbUnavailable =
-      message.includes("Server selection timeout") ||
-      message.includes("No available servers") ||
-      message.includes("ReplicaSetNoPrimary") ||
-      message.includes("received fatal alert") ||
-      message.includes("ECONN") ||
-      message.includes("timed out");
-
-    const isTransactionsUnsupported = message.includes(
-      "Transactions are not supported by this deployment"
-    );
-
-    console.error("[POST /api/reviews] Erreur :", message);
-
-    if (isDbUnavailable) {
-      return NextResponse.json(
-        { error: "Base de données indisponible." },
-        { status: 503 }
-      );
-    }
-
-    if (isTransactionsUnsupported) {
-      return NextResponse.json(
-        { error: "La base de données ne supporte pas les transactions." },
-        { status: 503 }
-      );
-    }
-
-    return NextResponse.json(
-      { error: "Erreur serveur lors de la création de l'avis." },
-      { status: 500 }
-    );
+    return handleDbError(error, "[POST /api/reviews]", "Erreur serveur lors de la création de l'avis.");
   }
 }

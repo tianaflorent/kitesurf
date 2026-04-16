@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import useSWR from "swr";
 
 export type StaffUser = {
   email: string;
@@ -10,35 +11,23 @@ export type StaffUser = {
   lastName?: string;
 };
 
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  const data = await res.json();
+  return data?.user as StaffUser | null;
+};
+
 export default function useStaffUser(pathname: string) {
   const router = useRouter();
 
-  const [user, setUser] = useState<StaffUser | null>(null);
+  const { data: user = null, mutate } = useSWR<StaffUser | null>("/api/admin/me", fetcher, {
+    revalidateOnFocus: true,
+    shouldRetryOnError: false,
+  });
+
   const [profileOpen, setProfileOpen] = useState(false);
   const profileRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      try {
-        const res = await fetch("/api/admin/me", { cache: "no-store" });
-        if (!res.ok) {
-          if (!cancelled) setUser(null);
-          return;
-        }
-        const data = await res.json();
-        if (!cancelled) setUser(data?.user ?? null);
-      } catch {
-        if (!cancelled) setUser(null);
-      }
-    };
-
-    load();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [pathname]);
 
   useEffect(() => {
     setProfileOpen(false);
@@ -86,10 +75,11 @@ export default function useStaffUser(pathname: string) {
   const onLogout = async () => {
     try {
       await fetch("/api/admin/logout", { method: "POST" });
+      await mutate(null, false);
     } finally {
       setProfileOpen(false);
-      setUser(null);
       router.refresh();
+      router.push("/admin/login");
     }
   };
 

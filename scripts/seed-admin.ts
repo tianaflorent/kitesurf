@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   const adminEmail = "admin@kitesurf.com";
-  const adminPassword = "password123!"; // À changer en production !!!
+  const adminPassword = "password123!";
 
   const existingAdmin = await prisma.user.findUnique({
     where: { email: adminEmail },

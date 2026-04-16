@@ -10,7 +10,7 @@ import PrimaryButton from "@/components/reusable/PrimaryButton";
 import LoadingSpinner from "@/components/reusable/LoadingSpinner";
 import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { translations } from "@/context/translations";
+import { dictionaries } from "@/context/translations";
 
 type Values = {
   email: string;
@@ -23,7 +23,7 @@ export default function AdminLoginPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const { lang } = useLanguage();
-  const t = translations[lang];
+  const t = dictionaries[lang].home;
 
   const {
     register,
