@@ -142,4 +142,6 @@ export const translations = {
 
 export type TranslationType = typeof translations.FR;
 
+export { dictionaries, type Dictionary } from "./translations/index";
+
 
