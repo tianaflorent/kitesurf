@@ -162,6 +162,37 @@ const galerieFr = {
   tarif: "Tarif",
 };
 
+const aproposFr = {
+  aboutTitle: "À propos de Pure Wind Kite School Madagascar",
+  aboutImageAlt: "École de kitesurf Pure Wind à Diego Suarez, Madagascar – photo {index}",
+  ourStoryTitle: "Notre histoire",
+  ourStoryText: "Pure Wind Mada Kiteschool est née de la passion pour le kitesurf et le désir de partager cette expérience unique à Madagascar. Notre objectif est de rendre le kitesurf accessible à tous dans un environnement sûr et professionnel.",
+  ourStoryImageAlt: "L'histoire de Pure Wind Kite School – école de kitesurf à la Baie de Sakalava, Madagascar",
+  ourValuesTitle: "Nos valeurs",
+  passionTitle: "Passion",
+  passionDesc: "Nous aimons ce que nous faisons et transmettons notre passion à tous nos élèves.",
+  environmentTitle: "Respect de l'environnement",
+  environmentDesc: "Nous pratiquons le kitesurf de manière responsable en respectant nos plages et notre écosystème.",
+  aboutSafetyTitle: "Sécurité",
+  aboutSafetyDesc: "La sécurité est notre priorité. Nos cours et équipements garantissent une expérience sûre pour tous.",
+  ourTeamTitle: "Notre équipe",
+  teamMemberAlt: "{name} – {role} à Pure Wind Kite School, Diego Suarez",
+  philosophyTitle: "Notre Philosophie",
+  philosophyText1: "À la Pure Wind Kite School Madagascar, nous pensons que le kitesurf doit être accessible à tous. Chaque élève progresse à son rythme, accompagné par des instructeurs expérimentés et attentifs.",
+  philosophyText2: "Nous mettons l'accent sur une expérience complète où l'apprentissage se fait dans un environnement sécurisé, motivant et agréable.",
+  faqTitle: "Foire aux questions (FAQ)",
+  faqSeeAnswer: "voir la réponse",
+  faqMoreQuestions: "Voir plus de questions",
+  faqQ1: "Faut-il savoir nager pour commencer le kitesurf ?",
+  faqA1: "Non, nos instructeurs encadrent les débutants et fournissent toutes les instructions pour évoluer en toute sécurité, même si vous ne savez pas nager parfaitement.",
+  faqQ2: "À partir de quel âge peut-on suivre les cours ?",
+  faqA2: "Nos cours sont adaptés aux enfants dès 10 ans et aux adultes. Chaque session est personnalisée selon le niveau et l'âge de l'élève.",
+  faqQ3: "Le matériel est-il fourni ?",
+  faqA3: "Oui, tout le matériel nécessaire (kite, planche, harnais, gilet, combinaison) est fourni et adapté à chaque niveau pour votre confort et sécurité.",
+  faqQ4: "Que se passe-t-il en cas de mauvais temps ?",
+  faqA4: "La sécurité est notre priorité. Si les conditions météorologiques ne sont pas favorables, nous reportons la session ou proposons une alternative adaptée.",
+};
+
 const reservationFr = {
   title: "Réservation de cours",
   name: "Nom",
@@ -186,9 +217,7 @@ const reservationFr = {
   whatsappMessage: `Bonjour, je souhaite réserver un cours de kitesurf :`,
 };
 
-// --------------------------------------------------------------------------------------
-// Définitions EN (Typesafety assuré, toute clé maquante déclenchera une erreur)
-// --------------------------------------------------------------------------------------
+// Définition EN avec vérification de type 
 
 const navEn: typeof navFr = {
   home: "Home",
@@ -351,6 +380,37 @@ const galerieEn: typeof galerieFr = {
   tarif: "Tariff",
 };
 
+const aproposEn: typeof aproposFr = {
+  aboutTitle: "About Pure Wind Kite School Madagascar",
+  aboutImageAlt: "Pure Wind kitesurf school in Diego Suarez, Madagascar – photo {index}",
+  ourStoryTitle: "Our Story",
+  ourStoryText: "Pure Wind Mada Kiteschool was born from a passion for kitesurfing and the desire to share this unique experience in Madagascar. Our goal is to make kitesurfing accessible to everyone in a safe and professional environment.",
+  ourStoryImageAlt: "The story of Pure Wind Kite School – kitesurf school at Sakalava Bay, Madagascar",
+  ourValuesTitle: "Our Values",
+  passionTitle: "Passion",
+  passionDesc: "We love what we do and share our passion with all our students.",
+  environmentTitle: "Environmental Respect",
+  environmentDesc: "We practice kitesurfing responsibly, respecting our beaches and ecosystem.",
+  aboutSafetyTitle: "Safety",
+  aboutSafetyDesc: "Safety is our priority. Our lessons and equipment ensure a safe experience for everyone.",
+  ourTeamTitle: "Our Team",
+  teamMemberAlt: "{name} – {role} at Pure Wind Kite School, Diego Suarez",
+  philosophyTitle: "Our Philosophy",
+  philosophyText1: "At Pure Wind Kite School Madagascar, we believe kitesurfing should be accessible to everyone. Each student progresses at their own pace, guided by experienced and attentive instructors.",
+  philosophyText2: "We focus on a complete experience where learning happens in a safe, motivating, and enjoyable environment.",
+  faqTitle: "Frequently Asked Questions (FAQ)",
+  faqSeeAnswer: "see answer",
+  faqMoreQuestions: "See more questions",
+  faqQ1: "Do you need to know how to swim to start kitesurfing?",
+  faqA1: "No, our instructors supervise beginners and provide all instructions for safe progression, even if you don't swim perfectly.",
+  faqQ2: "From what age can you take lessons?",
+  faqA2: "Our lessons are adapted for children from 10 years old and adults. Each session is personalized according to the student's level and age.",
+  faqQ3: "Is equipment provided?",
+  faqA3: "Yes, all necessary equipment (kite, board, harness, vest, wetsuit) is provided and adapted to each level for your comfort and safety.",
+  faqQ4: "What happens in case of bad weather?",
+  faqA4: "Safety is our priority. If weather conditions are not favorable, we postpone the session or offer a suitable alternative.",
+};
+
 const reservationEn: typeof reservationFr = {
   title: "Course Booking",
   name: "Name",
@@ -375,9 +435,7 @@ const reservationEn: typeof reservationFr = {
   whatsappMessage: `Hello, I would like to book a kitesurf lesson:`,
 };
 
-// --------------------------------------------------------------------------------------
-// Export Object
-// --------------------------------------------------------------------------------------
+// Export des objets
 
 export const dictionaries = {
   FR: {
@@ -386,6 +444,7 @@ export const dictionaries = {
     contact: contactFr,
     cours: coursFr,
     galerie: galerieFr,
+    apropos: aproposFr,
     reservation: reservationFr,
   },
   EN: {
@@ -394,12 +453,9 @@ export const dictionaries = {
     contact: contactEn,
     cours: coursEn,
     galerie: galerieEn,
+    apropos: aproposEn,
     reservation: reservationEn,
   },
 } as const;
 
 export type Dictionary = typeof dictionaries.FR;
-
-/**
- * Helper component logic — you can use `dictionaries[lang]` directly where needed.
- */
