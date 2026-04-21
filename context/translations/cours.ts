@@ -1,4 +1,4 @@
-// Courses page translations
+// Traduction page cours
 export const coursTranslations = {
   FR: {
     heroTitle: "Nos cours",

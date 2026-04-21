@@ -1,4 +1,4 @@
-// About page translations
+// Traduction page à propos
 export const aproposTranslations = {
   FR: {
     aboutTitle: "À propos de Pure Wind Kite School Madagascar",

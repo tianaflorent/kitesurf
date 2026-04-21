@@ -1,4 +1,4 @@
-// Contact page translations
+// Traduction page contact
 export const contactTranslations = {
   FR: {
     heroTitle: "Contactez-nous",

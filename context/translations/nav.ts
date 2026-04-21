@@ -1,4 +1,4 @@
-// Navigation translations
+// Traduction du menu de navigation
 export const navTranslations = {
   FR: {
     home: "Accueil",

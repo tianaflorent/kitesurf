@@ -8,7 +8,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import Image from "next/image";
 export default function HomeContent() {
   const { lang } = useLanguage();
-  const t = dictionaries[lang].home;
+  const t: Dictionary["home"] = dictionaries[lang].home;
 
   return (
     <main className="pb-20">

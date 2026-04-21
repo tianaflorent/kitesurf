@@ -1,4 +1,4 @@
-// Home page translations
+// Traduction page accueil
 export const homeTranslations = {
   FR: {
     heroTitle: "Bienvenue chez Purewind kite school Madagascar",

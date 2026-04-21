@@ -1,4 +1,4 @@
-// Gallery page translations
+// Traduction page galerie
 export const galerieTranslations = {
   FR: {
     heroTitle: "Galerie Kitesurf",

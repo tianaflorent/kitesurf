@@ -1,4 +1,4 @@
-// Reservation page translations
+// Traduction page réservation
 export const reservationTranslations = {
   FR: {
     title: "Réservation de cours",

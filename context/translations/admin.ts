@@ -1,4 +1,3 @@
-// Admin / shared translations extracted from previous home dictionary (login + common labels)
 export const adminTranslations = {
   FR: {
     adminLoginTitle: "Connexion admin",

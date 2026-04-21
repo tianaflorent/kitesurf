@@ -1,4 +1,4 @@
-// FAQ page translations
+// TRaduction page FAQ
 export const faqTranslations = {
   FR: {
     pageTitle: "Foire aux questions – Kitesurf Diego Suarez Madagascar",

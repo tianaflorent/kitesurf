@@ -1,4 +1,4 @@
-// Reviews / testimonials translations extracted from previous home dictionary
+// Traduction témoignages 
 export const reviewsTranslations = {
   FR: {
     allReviewsTitle: "Tous les témoignages",

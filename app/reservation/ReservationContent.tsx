@@ -13,7 +13,7 @@ export default function ReservationContent() {
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
-  const [niveau, setNiveau] = useState(t.beginner);
+  const [niveau, setNiveau] = useState<string>(t.beginner);
   const [date, setDate] = useState("");
   const [nombre, setNombre] = useState(1);
 

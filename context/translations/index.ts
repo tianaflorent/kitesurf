@@ -30,4 +30,4 @@ export const dictionaries = {
   },
 } as const;
 
-export type Dictionary = typeof dictionaries.FR;
+export type Dictionary = (typeof dictionaries)[keyof typeof dictionaries];
