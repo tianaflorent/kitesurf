@@ -102,12 +102,7 @@ export default function AproposContent() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-12">{t.ourTeamTitle}</h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            {[
-              { nom: "Jean Rakoto", role: "Instructeur principal", description: "Passionné de kitesurf depuis 10 ans, Jean guide les débutants et avancés avec patience et expertise.", image: "/images/IMG-20260304-WA0022.jpg" },
-              { nom: "Lina Andriam", role: "Instructrice", description: "Experte en sécurité aquatique, Lina assure le bon déroulement des cours et la sécurité des élèves.", image: "/images/IMG-20260304-WA0020.jpg" },
-              { nom: "Hery Rabe", role: "Coordinateur", description: "Hery organise les sessions, le matériel et les excursions locales pour une expérience optimale.", image: "/images/IMG-20260304-WA0016.jpg" },
-              { nom: "Miora Fidy", role: "Support", description: "Disponible pour répondre à toutes vos questions et assister l'équipe pendant les cours.", image: "/images/IMG-20260304-WA0013.jpg" },
-            ].map((membre, index) => (
+            {t.teamMembers.map((membre, index) => (
               <div key={index} className="bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col items-center p-6">
                 <div className="relative w-36 h-36 overflow-hidden rounded-full mb-4">
                   <Image

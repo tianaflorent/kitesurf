@@ -177,6 +177,32 @@ const aproposFr = {
   aboutSafetyDesc: "La sécurité est notre priorité. Nos cours et équipements garantissent une expérience sûre pour tous.",
   ourTeamTitle: "Notre équipe",
   teamMemberAlt: "{name} – {role} à Pure Wind Kite School, Diego Suarez",
+  teamMembers: [
+    {
+      nom: "Jean Rakoto",
+      role: "Instructeur principal",
+      description: "Passionné de kitesurf depuis 10 ans, Jean guide les débutants et avancés avec patience et expertise.",
+      image: "/images/IMG-20260304-WA0022.jpg"
+    },
+    {
+      nom: "Lina Andriam",
+      role: "Instructrice",
+      description: "Experte en sécurité aquatique, Lina assure le bon déroulement des cours et la sécurité des élèves.",
+      image: "/images/IMG-20260304-WA0020.jpg"
+    },
+    {
+      nom: "Hery Rabe",
+      role: "Coordinateur",
+      description: "Hery organise les sessions, le matériel et les excursions locales pour une expérience optimale.",
+      image: "/images/IMG-20260304-WA0016.jpg"
+    },
+    {
+      nom: "Miora Fidy",
+      role: "Support",
+      description: "Disponible pour répondre à toutes vos questions et assister l'équipe pendant les cours.",
+      image: "/images/IMG-20260304-WA0013.jpg"
+    }
+  ],
   philosophyTitle: "Notre Philosophie",
   philosophyText1: "À la Pure Wind Kite School Madagascar, nous pensons que le kitesurf doit être accessible à tous. Chaque élève progresse à son rythme, accompagné par des instructeurs expérimentés et attentifs.",
   philosophyText2: "Nous mettons l'accent sur une expérience complète où l'apprentissage se fait dans un environnement sécurisé, motivant et agréable.",
@@ -395,6 +421,32 @@ const aproposEn: typeof aproposFr = {
   aboutSafetyDesc: "Safety is our priority. Our lessons and equipment ensure a safe experience for everyone.",
   ourTeamTitle: "Our Team",
   teamMemberAlt: "{name} – {role} at Pure Wind Kite School, Diego Suarez",
+  teamMembers: [
+    {
+      nom: "Jean Rakoto",
+      role: "Head Instructor",
+      description: "Passionate kitesurfer for 10 years, Jean guides beginners and advanced riders with patience and expertise.",
+      image: "/images/IMG-20260304-WA0022.jpg"
+    },
+    {
+      nom: "Lina Andriam",
+      role: "Instructor",
+      description: "Expert in water safety, Lina ensures smooth course progression and student safety.",
+      image: "/images/IMG-20260304-WA0020.jpg"
+    },
+    {
+      nom: "Hery Rabe",
+      role: "Coordinator",
+      description: "Hery organizes sessions, equipment, and local excursions for an optimal experience.",
+      image: "/images/IMG-20260304-WA0016.jpg"
+    },
+    {
+      nom: "Miora Fidy",
+      role: "Support",
+      description: "Available to answer all your questions and assist the team during lessons.",
+      image: "/images/IMG-20260304-WA0013.jpg"
+    }
+  ],
   philosophyTitle: "Our Philosophy",
   philosophyText1: "At Pure Wind Kite School Madagascar, we believe kitesurfing should be accessible to everyone. Each student progresses at their own pace, guided by experienced and attentive instructors.",
   philosophyText2: "We focus on a complete experience where learning happens in a safe, motivating, and enjoyable environment.",
