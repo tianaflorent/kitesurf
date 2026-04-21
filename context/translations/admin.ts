@@ -1,0 +1,31 @@
+// Admin / shared translations extracted from previous home dictionary (login + common labels)
+export const adminTranslations = {
+  FR: {
+    adminLoginTitle: "Connexion admin",
+    adminLoginDesc: "Accès réservé à l'administration.",
+    emailLabel: "Email",
+    passwordLabel: "Mot de passe",
+    loginButton: "Se connecter",
+    emailRequired: "L'email est requis",
+    invalidEmail: "Email invalide",
+    passwordRequired: "Le mot de passe est requis",
+    invalidCredentials: "Identifiants invalides",
+    loginError: "Erreur de connexion",
+    dashboard: "Dashboard",
+    logout: "Déconnexion",
+  },
+  EN: {
+    adminLoginTitle: "Admin Login",
+    adminLoginDesc: "Restricted access for administration.",
+    emailLabel: "Email",
+    passwordLabel: "Password",
+    loginButton: "Login",
+    emailRequired: "Email is required",
+    invalidEmail: "Invalid email",
+    passwordRequired: "Password is required",
+    invalidCredentials: "Invalid credentials",
+    loginError: "Login error",
+    dashboard: "Dashboard",
+    logout: "Logout",
+  },
+} as const;

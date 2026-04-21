@@ -102,7 +102,7 @@ export default function AproposContent() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-12">{t.ourTeamTitle}</h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            {t.teamMembers.map((membre, index) => (
+            {t.teamMembers.map((membre: { nom: string; role: string; description: string; image: string }, index: number) => (
               <div key={index} className="bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col items-center p-6">
                 <div className="relative w-36 h-36 overflow-hidden rounded-full mb-4">
                   <Image
