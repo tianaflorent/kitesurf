@@ -139,36 +139,6 @@ export default function AproposContent() {
         </div>
       </section>
 
-      {/* FAQ rapide */}
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{t.faqTitle}</h2>
-          <div className="space-y-6">
-            {[
-              { q: t.faqQ1, a: t.faqA1 },
-              { q: t.faqQ2, a: t.faqA2 },
-              { q: t.faqQ3, a: t.faqA3 },
-              { q: t.faqQ4, a: t.faqA4 },
-            ].map((item, i) => (
-              <details key={i} className="bg-white rounded-xl shadow p-6 cursor-pointer group">
-                <summary className="flex flex-col items-start font-semibold text-lg cursor-pointer">
-                  <div className="flex justify-between w-full items-center">
-                    <span>{item.q}</span>
-                    <span className="transition-transform group-open:rotate-45 text-cyan-600">+</span>
-                  </div>
-                  <span className="text-cyan-600 text-sm mt-1">{t.faqSeeAnswer}</span>
-                </summary>
-                <p className="mt-3 text-gray-600">{item.a}</p>
-              </details>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <a href="/faq" className="inline-block bg-cyan-600 text-white font-semibold px-6 py-3 rounded-xl shadow hover:bg-cyan-500 transition">
-              {t.faqMoreQuestions}
-            </a>
-          </div>
-        </div>
-      </section>
 
     </main>
   );

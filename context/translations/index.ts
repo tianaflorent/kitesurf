@@ -206,17 +206,47 @@ const aproposFr = {
   philosophyTitle: "Notre Philosophie",
   philosophyText1: "À la Pure Wind Kite School Madagascar, nous pensons que le kitesurf doit être accessible à tous. Chaque élève progresse à son rythme, accompagné par des instructeurs expérimentés et attentifs.",
   philosophyText2: "Nous mettons l'accent sur une expérience complète où l'apprentissage se fait dans un environnement sécurisé, motivant et agréable.",
-  faqTitle: "Foire aux questions (FAQ)",
-  faqSeeAnswer: "voir la réponse",
-  faqMoreQuestions: "Voir plus de questions",
-  faqQ1: "Faut-il savoir nager pour commencer le kitesurf ?",
-  faqA1: "Non, nos instructeurs encadrent les débutants et fournissent toutes les instructions pour évoluer en toute sécurité, même si vous ne savez pas nager parfaitement.",
-  faqQ2: "À partir de quel âge peut-on suivre les cours ?",
-  faqA2: "Nos cours sont adaptés aux enfants dès 10 ans et aux adultes. Chaque session est personnalisée selon le niveau et l'âge de l'élève.",
-  faqQ3: "Le matériel est-il fourni ?",
-  faqA3: "Oui, tout le matériel nécessaire (kite, planche, harnais, gilet, combinaison) est fourni et adapté à chaque niveau pour votre confort et sécurité.",
-  faqQ4: "Que se passe-t-il en cas de mauvais temps ?",
-  faqA4: "La sécurité est notre priorité. Si les conditions météorologiques ne sont pas favorables, nous reportons la session ou proposons une alternative adaptée.",
+};
+
+const faqFr = {
+  pageTitle: "Foire aux questions – Kitesurf Diego Suarez Madagascar",
+  pageDescription: "Toutes les réponses à vos questions sur les cours de kitesurf à la Baie de Sakalava, Diego Suarez, Madagascar.",
+  seeAnswer: "voir la réponse",
+  backButton: "Retour",
+  faqItems: [
+    {
+      question: "Comment réserver un cours de kitesurf ?",
+      answer: "Vous pouvez réserver directement sur notre site via le formulaire de réservation ou nous contacter par téléphone ou email.",
+    },
+    {
+      question: "Quels équipements dois-je apporter ?",
+      answer: "Vous devez apporter un maillot de bain, des chaussures d'eau si souhaité, et une serviette. Tout le reste est fourni.",
+    },
+    {
+      question: "Faut-il avoir une assurance ?",
+      answer: "Il est recommandé d'avoir une assurance responsabilité civile ou sportive, mais ce n'est pas obligatoire pour débuter.",
+    },
+    {
+      question: "Proposez-vous des cours pour enfants ?",
+      answer: "Oui, nous avons des cours adaptés dès 10 ans, avec des instructeurs formés pour encadrer les enfants.",
+    },
+    {
+      question: "Quels sont les moyens de paiement acceptés ?",
+      answer: "Nous acceptons les paiements en espèces, par carte bancaire.",
+    },
+    {
+      question: "Faut-il savoir nager pour commencer le kitesurf ?",
+      answer: "Non, nos instructeurs encadrent les débutants et fournissent toutes les instructions pour évoluer en toute sécurité.",
+    },
+    {
+      question: "Quelle est la saison idéale pour le kitesurf à Madagascar ?",
+      answer: "La Baie de Sakalava bénéficie de vents constants quasi toute l'année. La saison principale est de mai à décembre avec des vents réguliers et forts.",
+    },
+    {
+      question: "Combien coûte un cours de kitesurf ?",
+      answer: "Contactez-nous directement pour obtenir nos tarifs actuels. Des forfaits dégressifs sont disponibles pour plusieurs sessions.",
+    },
+  ],
 };
 
 const reservationFr = {
@@ -450,17 +480,47 @@ const aproposEn: typeof aproposFr = {
   philosophyTitle: "Our Philosophy",
   philosophyText1: "At Pure Wind Kite School Madagascar, we believe kitesurfing should be accessible to everyone. Each student progresses at their own pace, guided by experienced and attentive instructors.",
   philosophyText2: "We focus on a complete experience where learning happens in a safe, motivating, and enjoyable environment.",
-  faqTitle: "Frequently Asked Questions (FAQ)",
-  faqSeeAnswer: "see answer",
-  faqMoreQuestions: "See more questions",
-  faqQ1: "Do you need to know how to swim to start kitesurfing?",
-  faqA1: "No, our instructors supervise beginners and provide all instructions for safe progression, even if you don't swim perfectly.",
-  faqQ2: "From what age can you take lessons?",
-  faqA2: "Our lessons are adapted for children from 10 years old and adults. Each session is personalized according to the student's level and age.",
-  faqQ3: "Is equipment provided?",
-  faqA3: "Yes, all necessary equipment (kite, board, harness, vest, wetsuit) is provided and adapted to each level for your comfort and safety.",
-  faqQ4: "What happens in case of bad weather?",
-  faqA4: "Safety is our priority. If weather conditions are not favorable, we postpone the session or offer a suitable alternative.",
+};
+
+const faqEn: typeof faqFr = {
+  pageTitle: "FAQ – Kitesurf Diego Suarez Madagascar",
+  pageDescription: "All answers to your questions about kitesurf lessons at Sakalava Bay, Diego Suarez, Madagascar.",
+  seeAnswer: "see answer",
+  backButton: "Back",
+  faqItems: [
+    {
+      question: "How to book a kitesurf lesson?",
+      answer: "You can book directly on our website through the reservation form or contact us by phone or email.",
+    },
+    {
+      question: "What equipment should I bring?",
+      answer: "You should bring swimwear, water shoes if desired, and a towel. Everything else is provided.",
+    },
+    {
+      question: "Do I need insurance?",
+      answer: "It's recommended to have civil liability or sports insurance, but it's not mandatory to start.",
+    },
+    {
+      question: "Do you offer lessons for children?",
+      answer: "Yes, we have adapted lessons from 10 years old, with instructors trained to supervise children.",
+    },
+    {
+      question: "What payment methods are accepted?",
+      answer: "We accept cash payments and credit card payments.",
+    },
+    {
+      question: "Do I need to know how to swim to start kitesurfing?",
+      answer: "No, our instructors supervise beginners and provide all instructions for safe progression.",
+    },
+    {
+      question: "What is the ideal season for kitesurfing in Madagascar?",
+      answer: "Sakalava Bay benefits from constant winds almost year-round. The main season is from May to December with regular and strong winds.",
+    },
+    {
+      question: "How much does a kitesurf lesson cost?",
+      answer: "Contact us directly for current rates. Discounted packages are available for multiple sessions.",
+    },
+  ],
 };
 
 const reservationEn: typeof reservationFr = {
@@ -497,6 +557,7 @@ export const dictionaries = {
     cours: coursFr,
     galerie: galerieFr,
     apropos: aproposFr,
+    faq: faqFr,
     reservation: reservationFr,
   },
   EN: {
@@ -506,6 +567,7 @@ export const dictionaries = {
     cours: coursEn,
     galerie: galerieEn,
     apropos: aproposEn,
+    faq: faqEn,
     reservation: reservationEn,
   },
 } as const;
