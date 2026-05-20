@@ -19,7 +19,7 @@ export const aproposTranslations = {
       {
         nom: "Bien Aimé",
         role: "Instructeur principal",
-        description: "Passionné de kitesurf depuis 10 ans, Jean guide les débutants et avancés avec patience et expertise.",
+        description: "Passionné de kitesurf depuis 10 ans, Bien Aimé guide les débutants et avancés avec patience et expertise.",
         image: "/images/IMG-20260304-WA0022.jpg",
       },
       // {
