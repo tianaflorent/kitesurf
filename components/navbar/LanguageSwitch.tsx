@@ -7,19 +7,22 @@ type Props = {
 
 export default function LanguageSwitch({ lang, setLang }: Props) {
   return (
-    <div className="flex items-center gap-1 bg-gray-100 rounded-full p-1">
+    <div className="flex items-center gap-2 text-xs font-light tracking-widest text-muted-foreground">
       <button
         onClick={() => setLang("FR")}
-        className={`px-3 py-1 text-sm rounded-full transition cursor-pointer ${
-          lang === "FR" ? "bg-blue-700 text-white" : "text-gray-600 hover:text-blue-700"
+        className={`p-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:text-primary ${
+          lang === "FR" ? "text-foreground font-medium" : "hover:text-foreground"
         }`}
       >
         FR
       </button>
+      
+      <span className="w-[1px] h-3 bg-border" aria-hidden="true" />
+      
       <button
         onClick={() => setLang("EN")}
-        className={`px-3 py-1 text-sm rounded-full transition cursor-pointer ${
-          lang === "EN" ? "bg-blue-700 text-white" : "text-gray-600 hover:text-blue-700"
+        className={`p-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:text-primary ${
+          lang === "EN" ? "text-foreground font-medium" : "hover:text-foreground"
         }`}
       >
         EN

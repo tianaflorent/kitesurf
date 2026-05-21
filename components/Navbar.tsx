@@ -39,23 +39,22 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ================= NAVBAR TOP (TOUS ÉCRANS) ================= */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md shadow-sm">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center px-5 lg:px-1 py-1 lg:py-3">
+      {/* ================= NAVBAR TOP ================= */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/40 transition-all duration-300">
+        <div className="max-w-7xl mx-auto w-full flex justify-between items-center px-6 lg:px-8 py-3 lg:py-4">
 
           {/* LOGO */}
-          <Link href="/">
+          <Link href="/" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
             <AnimatedLogo />
           </Link>
 
-          {/* ---------------- DESKTOP MENU (lg et +) ---------------- */}
+          {/* ---------------- DESKTOP MENU ---------------- */}
           <DesktopMenu items={menus} pathname={pathname} />
 
           {/* ---------------- ACTIONS ---------------- */}
-          <div className="flex items-center gap-4 lg:gap-6">
+          <div className="flex items-center gap-6 lg:gap-8">
             <LanguageSwitch lang={lang} setLang={setLang} />
 
-            {/* Bouton visible seulement desktop */}
             {isStaff ? (
               <div ref={profileRef} className="hidden lg:relative lg:block">
                 <StaffProfileMenu
@@ -69,7 +68,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/reservation"
-                className="hidden lg:block bg-blue-700 hover:bg-blue-600 transition px-6 py-2 rounded-xl text-white font-semibold shadow-md"
+                className="hidden lg:flex h-12 items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 transition-colors px-8 text-xs font-medium tracking-[0.2em] uppercase rounded-none shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 {lang === "FR" ? "Réserver" : "Book"}
               </Link>
@@ -79,8 +78,8 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Spacer top pour éviter overlap */}
-      <div className="h-18.75 lg:h-22.5" />
+      {/* Spacer calibré sur la nouvelle hauteur */}
+      <div className="h-[72px] lg:h-[84px]" />
     </>
   );
 }
