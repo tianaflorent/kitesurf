@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientLayout from "./components/ClientLayout";
+import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const BASE_URL = "https://purewindkiteschool.vercel.app";
 
@@ -80,7 +84,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={cn("font-sans", inter.variable)}>
       <body className="flex flex-col min-h-screen relative bg-slate-50 text-slate-800">
         <ClientLayout>{children}</ClientLayout>
       </body>
