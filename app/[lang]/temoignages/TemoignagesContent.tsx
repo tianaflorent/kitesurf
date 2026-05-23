@@ -2,15 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
-import { dictionaries } from "@/context/translations";
+import { type Dictionary } from "@/context/translations";
 import ReviewCard from "@/components/reusable/ReviewCard";
 import StarRating from "@/components/reusable/StarRating";
 import { Review } from "@/lib/types";
 
-export default function TemoignagesContent() {
-  const { lang } = useLanguage();
-  const t = dictionaries[lang].home;
+export default function TemoignagesContent({ dictionary, lang }: { dictionary: Dictionary["home"], lang: string }) {
+  const t = dictionary;
 
   const [reviews, setReviews] = useState<Review[]>([]);
   const [average, setAverage] = useState(0);
@@ -71,7 +69,7 @@ export default function TemoignagesContent() {
 
         {/* BOUTON RETOUR */}
         <div className="text-center mt-20">
-          <Link href="/" className="inline-block bg-linear-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:scale-105 transition">
+          <Link href={`/${lang}`} className="inline-block bg-linear-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:scale-105 transition">
             {t.backHome}
           </Link>
         </div>

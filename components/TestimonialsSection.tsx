@@ -8,7 +8,7 @@ import { Review } from "@/lib/types";
 import { Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function TestimonialsSection({ t }: { t: Dictionary['home'] }) {
+export default function TestimonialsSection({ t, lang }: { t: Dictionary['home'], lang: string }) {
   const [reviews, setReviews] = useState<Review[]>([]);
 
   const loadReviews = async () => {
@@ -62,7 +62,7 @@ export default function TestimonialsSection({ t }: { t: Dictionary['home'] }) {
                 </div>
                 
                 <p className="text-foreground/80 font-light leading-relaxed mb-8 grow text-lg italic">
-                  "{review.comment}"
+                  &quot;{review.comment}&quot;
                 </p>
                 
                 <div className="mt-auto border-t border-border pt-4">
@@ -79,14 +79,14 @@ export default function TestimonialsSection({ t }: { t: Dictionary['home'] }) {
       {/* Bouton Voir plus */}
       <div className="text-center mb-32">
         <Button asChild variant="outline" size="lg" className="px-12">
-          <Link href="/temoignages">{t.seeMore}</Link>
+          <Link href={`/${lang}/temoignages`}>{t.seeMore}</Link>
         </Button>
       </div>
 
       {/* Zone de formulaire distinguée avec un fond subtil */}
       <div className="max-w-3xl mx-auto bg-background border border-border p-8 md:p-14 shadow-2xl relative overflow-hidden">
         {/* Accent visuel discret */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-primary via-secondary to-primary" />
         <ReviewForm t={t} onSuccess={loadReviews} />
       </div>
     </div>

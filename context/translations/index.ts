@@ -8,7 +8,7 @@ import { faqTranslations } from "./faq";
 import { reservationTranslations } from "./reservation";
 
 export const dictionaries = {
-  FR: {
+  fr: {
     nav: navTranslations.FR,
     home: homeTranslations.FR,
     contact: contactTranslations.FR,
@@ -18,7 +18,7 @@ export const dictionaries = {
     faq: faqTranslations.FR,
     reservation: reservationTranslations.FR,
   },
-  EN: {
+  en: {
     nav: navTranslations.EN,
     home: homeTranslations.EN,
     contact: contactTranslations.EN,
@@ -28,6 +28,6 @@ export const dictionaries = {
     faq: faqTranslations.EN,
     reservation: reservationTranslations.EN,
   },
-} as const;
+};
 
-export type Dictionary = (typeof dictionaries)[keyof typeof dictionaries];
+export type Dictionary = typeof dictionaries.fr;

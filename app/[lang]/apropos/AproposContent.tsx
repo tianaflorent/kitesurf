@@ -3,12 +3,10 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FiHeart, FiGlobe, FiShield } from "react-icons/fi";
-import { useLanguage } from "@/context/LanguageContext";
-import { dictionaries } from "@/context/translations";
+import { type Dictionary } from "@/context/translations";
 
-export default function AproposContent() {
-  const { lang } = useLanguage();
-  const t = dictionaries[lang].apropos;
+export default function AproposContent({ dictionary }: { dictionary: Dictionary["apropos"] }) {
+  const t = dictionary;
   const images = [
     "/images/IMG-20260304-WA0033.jpg",
     "/images/IMG-20260304-WA0025.jpg",

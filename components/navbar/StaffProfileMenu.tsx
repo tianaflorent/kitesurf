@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { LayoutDashboard, LogOut } from "lucide-react";
 import { StaffUser } from "@/app/hooks/useStaffUser";
-import { useLanguage } from "@/context/LanguageContext";
+import { usePathname } from "next/navigation";
 import { dictionaries } from "@/context/translations";
 
 type Props = {
@@ -23,8 +23,10 @@ export default function StaffProfileMenu({
   onLogout,
   variant = "navbar",
 }: Props) {
-  const { lang } = useLanguage();
-  const t = dictionaries[lang].home;
+  const pathname = usePathname() || "";
+  const langSegment = pathname.split('/')[1];
+  const lang = (langSegment === 'fr' || langSegment === 'en') ? langSegment : 'fr';
+  const t = { dashboard: "Tableau de bord", logout: "Déconnexion" }; // Hardcoded since it's admin
 
   const menuPosition = variant === "navbar" 
     ? "absolute right-0 mt-4" 

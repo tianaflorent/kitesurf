@@ -3,12 +3,10 @@
 import { CheckCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useLanguage } from "@/context/LanguageContext";
-import { dictionaries } from "@/context/translations";
+import { type Dictionary } from "@/context/translations";
 
-export default function CoursContent() {
-  const { lang } = useLanguage();
-  const t = dictionaries[lang].cours;
+export default function CoursContent({ dictionary, lang }: { dictionary: Dictionary["cours"], lang: string }) {
+  const t = dictionary;
 
   const equipments = [
     { title: t.kite, desc: t.kiteDesc, img: "/images/best-ts-2016-8m.jpg", alt: "Cerf-volant (kite) de kitesurf – matériel fourni par Pure Wind Kite School Madagascar" },
@@ -49,7 +47,7 @@ export default function CoursContent() {
             <li className="flex gap-2"><CheckCircle className="text-cyan-600" />{t.beginner2}</li>
             <li className="flex gap-2"><CheckCircle className="text-cyan-600" />{t.beginner3}</li>
           </ul>
-          <Link href="/reservation" className="w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 transition inline-block text-center font-semibold">{t.reserve}</Link>
+          <Link href={`/${lang}/reservation`} className="w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 transition inline-block text-center font-semibold">{t.reserve}</Link>
         </div>
 
         {/* Intermédiaire */}
@@ -62,7 +60,7 @@ export default function CoursContent() {
             <li className="flex gap-2"><CheckCircle className="text-cyan-600" />{t.intermediate3}</li>
             <li className="flex gap-2"><CheckCircle className="text-cyan-600" />{t.intermediate4}</li>
           </ul>
-          <Link href="/reservation" className="w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 transition inline-block text-center font-semibold">{t.reserve}</Link>
+          <Link href={`/${lang}/reservation`} className="w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 transition inline-block text-center font-semibold">{t.reserve}</Link>
         </div>
 
         {/* Avancé */}
@@ -75,7 +73,7 @@ export default function CoursContent() {
             <li className="flex gap-2"><CheckCircle className="text-cyan-600" />{t.advanced3}</li>
             <li className="flex gap-2"><CheckCircle className="text-cyan-600" />{t.advanced4}</li>
           </ul>
-          <Link href="/reservation" className="w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 transition inline-block text-center font-semibold">{t.reserve}</Link>
+          <Link href={`/${lang}/reservation`} className="w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 transition inline-block text-center font-semibold">{t.reserve}</Link>
         </div>
 
       </section>

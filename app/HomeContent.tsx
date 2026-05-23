@@ -2,15 +2,13 @@
 
 import { ShieldCheck, Smile, Wind, MapPin, ArrowRight, Play, Star } from "lucide-react";
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
-import { dictionaries, type Dictionary } from "@/context/translations";
+import { type Dictionary } from "@/context/translations";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
-export default function HomeContent() {
-  const { lang } = useLanguage();
-  const t: Dictionary["home"] = dictionaries[lang].home;
+export default function HomeContent({ dictionary, lang }: { dictionary: Dictionary["home"], lang: string }) {
+  const t = dictionary;
 
   return (
     <main className="pb-0 bg-background selection:bg-primary/30">
@@ -21,7 +19,7 @@ export default function HomeContent() {
             <source src="/videos/VID-20260304-WA0046~2.mp4" type="video/mp4" />
           </video>
           {/* Overlay dégradé plus sophistiqué pour le luxe */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-background" />
+          <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/30 to-background" />
         </div>
         
         <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl mx-auto mt-16">
@@ -29,7 +27,7 @@ export default function HomeContent() {
             Sakalava Bay, Madagascar
           </span>
           <h1 className="text-5xl md:text-8xl font-light text-white tracking-tighter leading-[1.1] animate-slide-in-left font-heading drop-shadow-2xl">
-            L'Élégance du <br/><span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">Kitesurf</span>
+            L&apos;Élégance du <br/><span className="font-bold text-transparent bg-clip-text bg-linear-to-r from-white to-white/70">Kitesurf</span>
           </h1>
           <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl font-light tracking-wide drop-shadow-md">
             {t.heroSubtitle}
@@ -37,12 +35,12 @@ export default function HomeContent() {
           
           <div className="mt-14 flex flex-col sm:flex-row gap-6 w-full sm:w-auto items-center">
             <Button asChild size="lg" className="rounded-none bg-white text-black hover:bg-secondary hover:text-black transition-all duration-300 px-10 py-7 text-lg font-medium tracking-wide">
-              <Link href="/reservation">
+              <Link href={`/${lang}/reservation`}>
                 {t.bookButton} <ArrowRight className="ml-3 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-none border-white/40 text-white backdrop-blur-md bg-white/5 hover:bg-white/10 hover:border-white px-10 py-7 text-lg font-light transition-all duration-300">
-              <Link href="/cours">
+              <Link href={`/${lang}/cours`}>
                 <Play className="mr-3 h-4 w-4 fill-current" /> {t.coursesButton}
               </Link>
             </Button>
@@ -51,7 +49,7 @@ export default function HomeContent() {
 
         {/* Indicateur de scroll (Souris) */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-70">
-          <div className="w-[1px] h-16 bg-gradient-to-b from-white/0 via-white to-white/0 animate-pulse" />
+          <div className="w-px h-16 bg-linear-to-b from-white/0 via-white to-white/0 animate-pulse" />
         </div>
       </section>
 
@@ -107,7 +105,7 @@ export default function HomeContent() {
             </p>
             <div className="flex items-center gap-6">
               <Button asChild size="lg" className="rounded-none bg-foreground text-background hover:bg-primary transition-colors px-8 py-6 text-md font-medium">
-                 <Link href="/contact">Découvrir le spot</Link>
+                 <Link href={`/${lang}/contact`}>Découvrir le spot</Link>
               </Button>
               <div className="flex items-center gap-2 text-sm text-muted-foreground font-medium uppercase tracking-wider">
                 <MapPin size={16} className="text-primary" /> Diego Suarez
@@ -118,7 +116,7 @@ export default function HomeContent() {
           <div className="lg:col-span-7 order-1 lg:order-2 relative group">
             {/* Effet d'ombre décalée pour le côté premium */}
             <div className="absolute -inset-4 bg-primary/5 translate-x-8 translate-y-8 -z-10 transition-transform duration-500 group-hover:translate-x-12 group-hover:translate-y-12" />
-            <div className="relative aspect-[4/3] overflow-hidden shadow-2xl">
+            <div className="relative aspect-4/3 overflow-hidden shadow-2xl">
               <Image
                 src="/images/IMG-20260304-WA0043.jpg"
                 alt="Baie de Sakalava vue du ciel"
@@ -138,7 +136,7 @@ export default function HomeContent() {
             <span className="text-primary font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-4 block">Portfolio</span>
             <h2 className="text-4xl md:text-5xl font-light text-foreground font-heading tracking-tighter">{t.galleryTitle}</h2>
           </div>
-          <GallerySlider t={t} />
+          <GallerySlider t={t} lang={lang} />
         </div>
       </section>
 
@@ -162,7 +160,7 @@ export default function HomeContent() {
               {t.communityDesc}
             </p>
             <Button asChild size="lg" className="rounded-none bg-secondary text-foreground hover:bg-white transition-colors px-12 py-7 text-lg font-medium tracking-wide">
-              <Link href="/contact">
+              <Link href={`/${lang}/contact`}>
                 {t.bookNow}
               </Link>
             </Button>
@@ -173,7 +171,7 @@ export default function HomeContent() {
       {/* ================= TÉMOIGNAGES ================= */}
       <section className="py-32 px-6 bg-muted/10">
         <div className="max-w-7xl mx-auto">
-          <TestimonialsSection t={t} />
+          <TestimonialsSection t={t} lang={lang} />
         </div>
       </section>
     </main>
@@ -203,7 +201,7 @@ function ValueCard({ Icon, title, desc, number }: ValueCardProps) {
   );
 }
 
-function GallerySlider({ t }: { t: Dictionary['home'] }) {
+function GallerySlider({ t, lang }: { t: Dictionary['home'], lang: string }) {
   const images = [
     { img: "IMG-20260304-WA0042.jpg", alt: "Session de kitesurf à la Baie de Sakalava" },
     { img: "IMG-20260304-WA0029.jpg", alt: "Kiters en action à Diego Suarez, Madagascar" },
@@ -214,7 +212,7 @@ function GallerySlider({ t }: { t: Dictionary['home'] }) {
     <div className="relative">
       <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-12 scrollbar-hide px-4 md:px-0">
         {images.map(({ img, alt }, i) => (
-          <div key={i} className="snap-center shrink-0 w-[85%] sm:w-[60%] lg:w-[450px] aspect-[4/5] relative group overflow-hidden bg-muted">
+          <div key={i} className="snap-center shrink-0 w-[85%] sm:w-[60%] lg:w-[450px] aspect-4/5 relative group overflow-hidden bg-muted">
             <Image 
               src={`/images/${img}`} 
               alt={alt} 
@@ -224,7 +222,7 @@ function GallerySlider({ t }: { t: Dictionary['home'] }) {
           </div>
         ))}
         
-        <div className="snap-center shrink-0 w-[85%] sm:w-[60%] lg:w-[450px] aspect-[4/5] relative group cursor-pointer overflow-hidden bg-foreground flex items-center justify-center">
+        <div className="snap-center shrink-0 w-[85%] sm:w-[60%] lg:w-[450px] aspect-4/5 relative group cursor-pointer overflow-hidden bg-foreground flex items-center justify-center">
           <Image 
             src="/images/IMG-20260304-WA0038.jpg" 
             alt="Galerie photos kitesurf" 
@@ -233,7 +231,7 @@ function GallerySlider({ t }: { t: Dictionary['home'] }) {
           />
           <div className="relative z-10 text-center">
             <Button asChild variant="link" className="text-white hover:text-secondary text-2xl font-light tracking-wide">
-               <Link href="/galerie">{t.morephoto} <ArrowRight className="ml-2 inline" /></Link>
+               <Link href={`/${lang}/galerie`}>{t.morephoto} <ArrowRight className="ml-2 inline" /></Link>
             </Button>
           </div>
         </div>

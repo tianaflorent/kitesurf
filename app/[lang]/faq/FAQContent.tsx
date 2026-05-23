@@ -1,16 +1,14 @@
 "use client";
 
-import { useLanguage } from "@/context/LanguageContext";
-import { dictionaries } from "@/context/translations";
+import { type Dictionary } from "@/context/translations";
 
 interface FAQItem {
   question: string;
   answer: string;
 }
 
-export default function FAQContent() {
-  const { lang } = useLanguage();
-  const t = dictionaries[lang].faq;
+export default function FAQContent({ dictionary, lang }: { dictionary: Dictionary["faq"], lang: string }) {
+  const t = dictionary;
 
   return (
     <section className="bg-gray-50 py-20 min-h-screen">
@@ -38,7 +36,7 @@ export default function FAQContent() {
         </div>
 
         <div className="mt-10 text-center">
-          <a href="/apropos" className="inline-block bg-cyan-600 text-white font-semibold px-6 py-3 rounded-xl shadow hover:bg-cyan-500 transition">
+          <a href={`/${lang}/apropos`} className="inline-block bg-cyan-600 text-white font-semibold px-6 py-3 rounded-xl shadow hover:bg-cyan-500 transition">
             {t.backButton}
           </a>
         </div>

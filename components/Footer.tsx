@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
-import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
-  const { lang } = useLanguage();
+  const pathname = usePathname() || "";
+  const langSegment = pathname.split('/')[1];
+  const lang = (langSegment === 'fr' || langSegment === 'en') ? langSegment : 'fr';
   const router = useRouter();
 
   const [clickCount, setClickCount] = useState(0);
@@ -36,7 +37,7 @@ export default function Footer() {
                 className="text-white text-2xl font-semibold mb-4 cursor-pointer select-none"
                 onClick={handleContactClick}
               >
-                {lang === "FR" ? "Contact" : "Contact"}
+                {lang === "fr" ? "Contact" : "Contact"}
               </h3>
 
               <ul className="space-y-3 text-sm text-gray-200">
@@ -53,7 +54,7 @@ export default function Footer() {
                 <li className="flex items-center justify-center gap-3">
                   <MapPin size={20} />
                   <span>
-                    {lang === "FR" ? "Baie de Sakalava" : "Sakalava Bay"}
+                    {lang === "fr" ? "Baie de Sakalava" : "Sakalava Bay"}
                   </span>
                 </li>
               </ul>
@@ -62,7 +63,7 @@ export default function Footer() {
             {/* RESEAUX SOCIAUX */}
             <div className="mb-8">
               <h3 className="text-white text-2xl font-semibold mb-4">
-                {lang === "FR" ? "Suivez-nous" : "Follow us"}
+                {lang === "fr" ? "Suivez-nous" : "Follow us"}
               </h3>
 
               <div className="flex justify-center items-center gap-8 text-3xl">
@@ -82,7 +83,7 @@ export default function Footer() {
             <div className="border-t border-gray-500 pt-6 flex flex-col md:flex-row items-center justify-center gap-3 text-sm text-gray-300">
               <span>
                 © 2026 Purewindkiteschoolmadagascar <br />
-                {lang === "FR" ? "Tous droits réservés." : "All rights reserved."}
+                {lang === "fr" ? "Tous droits réservés." : "All rights reserved."}
               </span>
 
               <a
@@ -99,7 +100,7 @@ export default function Footer() {
                   className="rounded-full object-cover"
                 />
                 <span>
-                  {lang === "FR" ? "Développé par" : "Developed by"}{" "}
+                  {lang === "fr" ? "Développé par" : "Developed by"}{" "}
                   <span className="text-white font-semibold">TIANA Florent</span>
                 </span>
               </a>

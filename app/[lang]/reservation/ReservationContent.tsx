@@ -2,13 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
-import { dictionaries } from "@/context/translations";
+import { type Dictionary } from "@/context/translations";
 
-
-export default function ReservationContent() {
-  const { lang } = useLanguage();
-  const t = dictionaries[lang].reservation;
+export default function ReservationContent({ dictionary, lang }: { dictionary: Dictionary["reservation"], lang: string }) {
+  const t = dictionary;
 
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
@@ -84,7 +81,7 @@ export default function ReservationContent() {
       </div>
 
       <div className="mb-20">
-        <Link href="/cours" className="inline-block mt-12 bg-cyan-600 text-white py-3 px-6 rounded-lg hover:bg-cyan-700 transition font-semibold text-center">
+        <Link href={`/${lang}/cours`} className="inline-block mt-12 bg-cyan-600 text-white py-3 px-6 rounded-lg hover:bg-cyan-700 transition font-semibold text-center">
           {t.back}
         </Link>
       </div>

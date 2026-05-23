@@ -3,12 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
-import { dictionaries } from "@/context/translations";
-import { useLanguage } from "@/context/LanguageContext";
+import { type Dictionary } from "@/context/translations";
 
-export default function ContactContent() {
-  const { lang } = useLanguage();
-  const t = dictionaries[lang].contact;
+export default function ContactContent({ dictionary }: { dictionary: Dictionary["contact"] }) {
+  const t = dictionary;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
