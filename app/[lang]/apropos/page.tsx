@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Notre histoire, notre équipe et nos valeurs. École de kitesurf à la Baie de Sakalava, Madagascar."
         : "Our history, our team and our values. Kitesurfing school in Sakalava Bay, Madagascar.",
-      url: `https://purewindkiteschool.vercel.app/${lang}/apropos`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/apropos`,
       images: [
         {
           url: "/images/IMG-20260304-WA0037.jpg",
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `https://purewindkiteschool.vercel.app/${lang}/apropos`,
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/apropos`,
     },
   };
 }

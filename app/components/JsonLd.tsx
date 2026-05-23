@@ -3,7 +3,7 @@
  * Server Components — rendered at build time, injected in <head>
  */
 
-const BASE_URL = "https://purewindkiteschool.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
 
 /** LocalBusiness + SportsActivityLocation — for homepage */
 export function LocalBusinessJsonLd() {

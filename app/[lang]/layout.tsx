@@ -8,7 +8,7 @@ import { i18n, type Locale } from "@/i18n-config";
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-heading' });
 const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans' });
 
-const BASE_URL = "https://purewindkiteschool.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));

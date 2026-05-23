@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Par téléphone, email ou WhatsApp – contactez-nous pour réserver votre cours de kitesurf à la Baie de Sakalava."
         : "By phone, email or WhatsApp - contact us to book your kitesurfing course in Sakalava Bay.",
-      url: `https://purewindkiteschool.vercel.app/${lang}/contact`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/contact`,
       images: [
         {
           url: "/images/IMG-20260304-WA0028.jpg",
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `https://purewindkiteschool.vercel.app/${lang}/contact`,
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/contact`,
     },
   };
 }

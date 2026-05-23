@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr 
         ? "Découvrez le kitesurf dans les eaux cristallines de la Baie de Sakalava, Diego Suarez. Cours pour tous niveaux, matériel certifié fourni."
         : "Discover kitesurfing in the crystal clear waters of Sakalava Bay, Diego Suarez. Courses for all levels, certified equipment provided.",
-      url: `https://purewindkiteschool.vercel.app/${lang}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}`,
       images: [
         {
           url: "/images/IMG-20260304-WA0043.jpg",
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `https://purewindkiteschool.vercel.app/${lang}`,
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}`,
     },
   };
 }

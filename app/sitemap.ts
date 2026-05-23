@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://purewindkiteschool.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
 const locales = ["fr", "en"];
 const routes = [
   { path: "", priority: 1.0, changeFrequency: "weekly" as const },

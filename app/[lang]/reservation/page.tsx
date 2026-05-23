@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Réservez rapidement votre session de kitesurf à la Baie de Sakalava, Diego Suarez. Débutants et avancés bienvenus."
         : "Quickly book your kitesurfing session in Sakalava Bay, Diego Suarez. Beginners and advanced welcome.",
-      url: `https://purewindkiteschool.vercel.app/${lang}/reservation`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/reservation`,
       images: [
         {
           url: "/images/IMG-20260304-WA0043.jpg",
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `https://purewindkiteschool.vercel.app/${lang}/reservation`,
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/reservation`,
     },
   };
 }

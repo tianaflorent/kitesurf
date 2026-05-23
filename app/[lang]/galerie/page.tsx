@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Découvrez nos photos de kitesurf dans les eaux cristallines de la Baie de Sakalava, Diego Suarez."
         : "Discover our kitesurfing photos in the crystal clear waters of Sakalava Bay, Diego Suarez.",
-      url: `https://purewindkiteschool.vercel.app/${lang}/galerie`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/galerie`,
       images: [
         {
           url: "/images/IMG-20260305-WA0137.jpg",
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `https://purewindkiteschool.vercel.app/${lang}/galerie`,
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/galerie`,
     },
   };
 }

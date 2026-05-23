@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Découvrez les expériences de nos élèves à la Baie de Sakalava. Plus de 50 formés, avis 5 étoiles."
         : "Discover the experiences of our students in Sakalava Bay. Over 50 trained, 5 star reviews.",
-      url: `https://purewindkiteschool.vercel.app/${lang}/temoignages`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/temoignages`,
       images: [
         {
           url: "/images/IMG-20260304-WA0043.jpg",
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `https://purewindkiteschool.vercel.app/${lang}/temoignages`,
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/temoignages`,
     },
   };
 }
