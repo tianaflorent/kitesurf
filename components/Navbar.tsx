@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 import {
   Navbar as ResizableNavbar,
   NavBody,
@@ -52,7 +53,7 @@ export default function Navbar() {
             <AnimatedLogo />
           </Link>
           
-          <NavItems items={navItems} />
+          <NavItems items={navItems} pathname={pathname} />
           
           <div className="flex items-center gap-6 shrink-0">
             <LanguageSwitch />
@@ -95,16 +96,22 @@ export default function Navbar() {
             isOpen={isMobileMenuOpen}
             onClose={() => setIsMobileMenuOpen(false)}
           >
-            {navItems.map((item, idx) => (
-              <Link
-                key={`mobile-link-${idx}`}
-                href={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-foreground uppercase tracking-widest text-sm font-light hover:text-secondary transition-colors"
-              >
-                <span className="block">{item.name}</span>
-              </Link>
-            ))}
+            {navItems.map((item, idx) => {
+              const isActive = pathname === item.link;
+              return (
+                <Link
+                  key={`mobile-link-${idx}`}
+                  href={item.link}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "relative uppercase tracking-widest text-sm transition-colors",
+                    isActive ? "text-secondary font-medium" : "text-foreground font-light hover:text-secondary"
+                  )}
+                >
+                  <span className="block">{item.name}</span>
+                </Link>
+              );
+            })}
             <div className="flex w-full flex-col gap-6 mt-8">
               <div className="self-start">
                 <LanguageSwitch />

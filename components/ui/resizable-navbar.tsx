@@ -28,6 +28,7 @@ interface NavItemsProps {
     name: string;
     link: string;
   }[];
+  pathname?: string;
   className?: string;
   onItemClick?: () => void;
 }
@@ -112,7 +113,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   );
 };
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+export const NavItems = ({ items, pathname, className, onItemClick }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
@@ -123,26 +124,35 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         className,
       )}
     >
-      {items.map((item, idx) => (
-        <Link
-          onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
-          className="relative px-2 py-2 transition-colors duration-300 hover:text-secondary"
-          key={`link-${idx}`}
-          href={item.link}
-        >
-          {hovered === idx && (
-            <motion.div
-              layoutId="hovered-nav-link"
-              className="absolute -bottom-1 left-0 right-0 h-[1px] bg-secondary"
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: "100%" }}
-              exit={{ opacity: 0, width: 0 }}
-            />
-          )}
-          <span className="relative z-20">{item.name}</span>
-        </Link>
-      ))}
+      {items.map((item, idx) => {
+        const isActive = pathname === item.link;
+        const showUnderline = hovered !== null ? hovered === idx : isActive;
+
+        return (
+          <Link
+            onMouseEnter={() => setHovered(idx)}
+            onClick={onItemClick}
+            className={cn(
+              "relative px-2 py-2 transition-colors duration-300",
+              isActive ? "text-secondary font-medium" : "hover:text-secondary"
+            )}
+            key={`link-${idx}`}
+            href={item.link}
+          >
+            {showUnderline && (
+              <motion.div
+                layoutId="active-nav-link"
+                className="absolute -bottom-1 left-0 right-0 h-[1px] bg-secondary"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+            <span className="relative z-20">{item.name}</span>
+          </Link>
+        );
+      })}
     </motion.div>
   );
 };
