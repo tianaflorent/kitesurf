@@ -40,7 +40,8 @@ export default function Navbar() {
     pathname === "/" ||
     pathname.startsWith(`/${lang}/cours`) ||
     pathname.startsWith(`/${lang}/galerie`) ||
-    pathname.startsWith(`/${lang}/apropos`);
+    pathname.startsWith(`/${lang}/apropos`) ||
+    pathname.startsWith(`/${lang}/contact`);
 
   const navItems = [
     { name: lang === "fr" ? "Accueil" : "Home", link: `/${lang}` },
