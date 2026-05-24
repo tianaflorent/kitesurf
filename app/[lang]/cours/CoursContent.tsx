@@ -75,7 +75,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
             {/* Débutant */}
             <div className="relative group flex flex-col">
               <div className="mb-8 relative aspect-[4/3] overflow-hidden">
-                <Image src="/images/IMG-20260304-WA0024.jpg" fill alt="Débutant" className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+                <Image src="/images/IMG-20260304-WA0024.jpg" fill alt="Débutant" className="object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
               </div>
               <div className="flex-1 flex flex-col">
                 <span className="text-secondary font-script text-4xl mb-4">01</span>
@@ -95,7 +95,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
             {/* Intermédiaire */}
             <div className="relative group flex flex-col lg:mt-16">
               <div className="mb-8 relative aspect-[4/3] overflow-hidden">
-                <Image src="/images/IMG-20260304-WA0042.jpg" fill alt="Intermédiaire" className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+                <Image src="/images/IMG-20260304-WA0042.jpg" fill alt="Intermédiaire" className="object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
               </div>
               <div className="flex-1 flex flex-col">
                 <span className="text-secondary font-script text-4xl mb-4">02</span>
@@ -116,7 +116,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
             {/* Avancé */}
             <div className="relative group flex flex-col lg:mt-32">
               <div className="mb-8 relative aspect-[4/3] overflow-hidden">
-                <Image src="/images/IMG-20260304-WA0029.jpg" fill alt="Avancé" className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+                <Image src="/images/IMG-20260304-WA0029.jpg" fill alt="Avancé" className="object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
               </div>
               <div className="flex-1 flex flex-col">
                 <span className="text-secondary font-script text-4xl mb-4">03</span>
@@ -152,7 +152,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-border">
-            {equipments.map((item, i) => (
+            {equipments.map((item) => (
               <div key={item.title} className="bg-background group relative aspect-[3/4] overflow-hidden flex flex-col justify-end p-6">
                 <Image
                   src={item.img}
