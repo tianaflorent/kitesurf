@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { FiHeart, FiGlobe, FiShield } from "react-icons/fi";
 import { type Dictionary } from "@/context/translations";
 
 export default function AproposContent({ dictionary }: { dictionary: Dictionary["apropos"] }) {
@@ -16,127 +15,171 @@ export default function AproposContent({ dictionary }: { dictionary: Dictionary[
 
   const [currentImage, setCurrentImage] = useState(0);
 
-  const imagesCount = images.length;
-
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % imagesCount);
-    }, 3000);
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000); // slightly slower for a more cinematic feel
     return () => clearInterval(interval);
-  }, [imagesCount]);
+  }, [images.length]);
 
   return (
-    <main className="bg-gray-50 min-h-screen">
+    <main className="bg-background overflow-hidden pb-0">
 
-      {/* Entête avec images défilantes */}
-      <section className="relative h-96 w-full overflow-hidden">
-        {images.map((img, index) => (
-          <Image
-            key={index}
-            src={img}
-            alt={t.aboutImageAlt.replace('{index}', String(index + 1))}
-            fill
-            className={`object-cover transition-opacity duration-1000 ${index === currentImage ? "opacity-100" : "opacity-0"}`}
-          />
-        ))}
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl text-white font-bold text-center">
-            {t.aboutTitle}
-          </h1>
+      {/* 1. HERO INVITATION */}
+      <section className="relative min-h-[80vh] flex items-end pb-32">
+        <div className="absolute inset-0 z-0">
+          {images.map((img, index) => (
+            <Image
+              key={index}
+              src={img}
+              alt={t.aboutImageAlt.replace('{index}', String(index + 1))}
+              fill
+              priority={index === 0}
+              className={`object-cover transition-opacity duration-[2000ms] ease-in-out ${index === currentImage ? "opacity-100" : "opacity-0"}`}
+            />
+          ))}
+          <div className="absolute inset-0 bg-black/40 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-12 pt-32">
+          <div className="max-w-4xl">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground font-light tracking-tighter leading-[0.9] mb-8">
+              {t.aboutTitle}
+            </h1>
+          </div>
+          <div className="hidden md:flex items-center gap-6 pb-4">
+            <span className="w-16 h-px bg-secondary"></span>
+            <span className="text-secondary font-script text-3xl">Notre Histoire</span>
+          </div>
         </div>
       </section>
 
-      {/* Notre histoire */}
-      <section className="max-w-6xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-10">
-        <div className="md:w-1/2">
-          <h2 className="text-3xl font-bold mb-4 text-center">{t.ourStoryTitle}</h2>
-          <p className="text-black mb-6">
-            {t.ourStoryText}
-          </p>
-        </div>
-        <div className="md:w-1/2">
-          <Image
-            src="/images/IMG-20260304-WA0037.jpg"
-            alt={t.ourStoryImageAlt}
-            width={600}
-            height={400}
-            className="rounded-2xl shadow-lg w-full object-cover"
-          />
+      {/* 2. NOTRE HISTOIRE */}
+      <section className="py-24 md:py-32 px-6 bg-background">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+          <div className="w-full lg:w-1/2 relative">
+            <div className="relative aspect-[4/5] w-full">
+              <Image
+                src="/images/IMG-20260304-WA0037.jpg"
+                alt={t.ourStoryImageAlt}
+                fill
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+            {/* Decorative element */}
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 border-l border-b border-secondary hidden md:block"></div>
+          </div>
+          <div className="w-full lg:w-1/2">
+            <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
+              Origines
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter mb-10">
+              {t.ourStoryTitle}
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed mb-8">
+              {t.ourStoryText}
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Nos valeurs */}
-      <section className="bg-white py-20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">{t.ourValuesTitle}</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 p-8 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center">
-              <div className="bg-cyan-600 p-4 rounded-full mb-4">
-                <FiHeart className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-semibold text-lg mb-2">{t.passionTitle}</h3>
-              <p className="text-black text-sm">{t.passionDesc}</p>
+      {/* 3. NOS VALEURS */}
+      <section className="py-24 md:py-32 px-6 bg-muted/30 border-y border-border">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20 md:mb-24">
+            <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-4 block">
+              Engagement
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter">
+              {t.ourValuesTitle}
+            </h2>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
+            <div className="flex flex-col group">
+              <span className="text-5xl font-script text-secondary mb-6 opacity-80 group-hover:opacity-100 transition-opacity">01</span>
+              <h3 className="text-2xl font-serif text-foreground font-light mb-4">{t.passionTitle}</h3>
+              <div className="w-12 h-px bg-border mb-6 group-hover:bg-secondary transition-colors duration-500"></div>
+              <p className="text-muted-foreground font-light leading-relaxed flex-1">{t.passionDesc}</p>
             </div>
-            <div className="bg-gray-50 p-8 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center">
-              <div className="bg-green-600 p-4 rounded-full mb-4">
-                <FiGlobe className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-semibold text-lg mb-2">{t.environmentTitle}</h3>
-              <p className="text-black text-sm">{t.environmentDesc}</p>
+            
+            <div className="flex flex-col group">
+              <span className="text-5xl font-script text-secondary mb-6 opacity-80 group-hover:opacity-100 transition-opacity">02</span>
+              <h3 className="text-2xl font-serif text-foreground font-light mb-4">{t.environmentTitle}</h3>
+              <div className="w-12 h-px bg-border mb-6 group-hover:bg-secondary transition-colors duration-500"></div>
+              <p className="text-muted-foreground font-light leading-relaxed flex-1">{t.environmentDesc}</p>
             </div>
-            <div className="bg-gray-50 p-8 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center">
-              <div className="bg-red-600 p-4 rounded-full mb-4">
-                <FiShield className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-semibold text-lg mb-2">{t.aboutSafetyTitle}</h3>
-              <p className="text-black text-sm">{t.aboutSafetyDesc}</p>
+            
+            <div className="flex flex-col group">
+              <span className="text-5xl font-script text-secondary mb-6 opacity-80 group-hover:opacity-100 transition-opacity">03</span>
+              <h3 className="text-2xl font-serif text-foreground font-light mb-4">{t.aboutSafetyTitle}</h3>
+              <div className="w-12 h-px bg-border mb-6 group-hover:bg-secondary transition-colors duration-500"></div>
+              <p className="text-muted-foreground font-light leading-relaxed flex-1">{t.aboutSafetyDesc}</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Notre équipe */}
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">{t.ourTeamTitle}</h2>
-          <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
+      {/* 4. NOTRE ÉQUIPE */}
+      <section className="py-24 md:py-32 px-6 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 md:mb-24">
+            <div className="max-w-2xl">
+              <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
+                Expertise
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-foreground font-light tracking-tighter">
+                {t.ourTeamTitle}
+              </h2>
+            </div>
+            <div className="hidden md:block w-32 h-px bg-border"></div>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             {t.teamMembers.map((membre: { nom: string; role: string; description: string; image: string }, index: number) => (
-              <div key={index} className="bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col items-center p-6">
-                <div className="relative w-36 h-36 overflow-hidden rounded-full mb-4">
+              <div key={index} className="bg-background group relative flex flex-col p-8 md:p-10">
+                <div className="relative aspect-[3/4] w-full mb-8 overflow-hidden">
                   <Image
                     src={membre.image}
                     alt={t.teamMemberAlt.replace('{name}', membre.nom).replace('{role}', membre.role)}
                     fill
-                    className="object-cover"
+                    className="object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="font-semibold text-lg mb-1">{membre.nom}</h3>
-                <p className="text-cyan-600 font-medium mb-2">{membre.role}</p>
-                <p className="text-black text-sm text-center">{membre.description}</p>
+                <h3 className="font-serif text-2xl text-foreground font-light tracking-tight mb-2">{membre.nom}</h3>
+                <p className="font-sans uppercase tracking-widest text-[10px] text-secondary font-medium mb-6">{membre.role}</p>
+                <p className="text-muted-foreground font-light text-sm leading-relaxed hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-500 h-0 group-hover:h-auto overflow-hidden">
+                  {membre.description}
+                </p>
+                {/* On mobile, always show description */}
+                <p className="text-muted-foreground font-light text-sm leading-relaxed block md:hidden">
+                  {membre.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Philosophie */}
-      <section className="bg-white py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold">{t.philosophyTitle}</h2>
-            <div className="w-24 h-1 bg-cyan-600 mx-auto mt-4 rounded-full"></div>
+      {/* 5. PHILOSOPHIE */}
+      <section className="py-32 px-6 bg-muted border-t border-border">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="text-6xl font-serif text-secondary opacity-30 mb-8 block leading-none">"</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground font-light tracking-tighter leading-tight mb-12">
+            {t.philosophyTitle}
+          </h2>
+          <div className="space-y-8 text-lg md:text-xl text-muted-foreground font-light leading-relaxed">
+            <p>{t.philosophyText1}</p>
+            <p>{t.philosophyText2}</p>
           </div>
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
-              {t.philosophyText1}
-            </p>
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-              {t.philosophyText2}
-            </p>
+          <div className="mt-16 flex items-center justify-center gap-6">
+            <div className="w-16 h-px bg-border"></div>
+            <span className="font-script text-3xl text-foreground">Pure Wind</span>
+            <div className="w-16 h-px bg-border"></div>
           </div>
         </div>
       </section>
-
 
     </main>
   );
