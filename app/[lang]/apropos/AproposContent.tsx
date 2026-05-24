@@ -35,7 +35,7 @@ export default function AproposContent({ dictionary }: { dictionary: Dictionary[
               alt={t.aboutImageAlt.replace('{index}', String(index + 1))}
               fill
               priority={index === 0}
-              className={`object-cover transition-opacity duration-[2000ms] ease-in-out ${index === currentImage ? "opacity-100" : "opacity-0"}`}
+              className={`object-cover transition-opacity duration-2000 ease-in-out ${index === currentImage ? "opacity-100" : "opacity-0"}`}
             />
           ))}
           <div className="absolute inset-0 bg-black/40 mix-blend-overlay"></div>
@@ -59,7 +59,7 @@ export default function AproposContent({ dictionary }: { dictionary: Dictionary[
       <section className="py-24 md:py-32 px-6 bg-background">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           <div className="w-full lg:w-1/2 relative">
-            <div className="relative aspect-[4/5] w-full">
+            <div className="relative aspect-4/5 w-full">
               <Image
                 src="/images/IMG-20260304-WA0037.jpg"
                 alt={t.ourStoryImageAlt}
@@ -139,7 +139,7 @@ export default function AproposContent({ dictionary }: { dictionary: Dictionary[
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             {t.teamMembers.map((membre: { nom: string; role: string; description: string; image: string }, index: number) => (
               <div key={index} className="bg-background group relative flex flex-col p-8 md:p-10">
-                <div className="relative aspect-[3/4] w-full mb-8 overflow-hidden">
+                <div className="relative aspect-3/4 w-full mb-8 overflow-hidden">
                   <Image
                     src={membre.image}
                     alt={t.teamMemberAlt.replace('{name}', membre.nom).replace('{role}', membre.role)}
