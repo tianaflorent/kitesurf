@@ -21,7 +21,7 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
       <section className="relative h-screen min-h-[700px] flex items-center justify-center border-b border-border">
         <div className="absolute inset-0 z-0">
           <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-            <source src="/videos/VID-20260304-WA0046~2.mp4" type="video/mp4" />
+            <source src="/videos/video-hero.mp4" type="video/mp4" />
           </video>
           {/* Subtle elegant gradient overlay */}
           <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
