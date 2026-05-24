@@ -69,7 +69,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   return (
     <motion.div
       ref={ref}
-      className={cn("fixed inset-x-0 top-0 z-50 w-full transition-all duration-300", visible ? "pt-4" : "pt-0", className)}
+      className={cn("fixed inset-x-0 top-0 z-50 w-full transition-all duration-300", className)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -151,19 +151,19 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(12px)" : "none",
+        backdropFilter: visible ? "blur(20px)" : "none",
         boxShadow: visible
-          ? "0 4px 30px rgba(0, 0, 0, 0.05)"
+          ? "0 4px 30px rgba(0, 0, 0, 0.03)"
           : "none",
-        width: visible ? "95%" : "100%",
-        y: visible ? 10 : 0,
-        borderRadius: visible ? "0.25rem" : "0",
-        border: visible ? "1px solid var(--color-border)" : "1px solid transparent",
+        width: "100%",
+        y: 0,
+        borderRadius: "0",
+        borderBottom: visible ? "1px solid var(--color-border)" : "1px solid transparent",
       }}
       transition={{
-        type: "spring",
-        stiffness: 200,
-        damping: 50,
+        type: "tween",
+        duration: 0.5,
+        ease: "easeOut",
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full flex-col items-center justify-between px-4 py-3 lg:hidden transition-colors duration-500",
