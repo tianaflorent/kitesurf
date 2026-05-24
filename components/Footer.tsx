@@ -63,7 +63,9 @@ export default function Footer() {
               </li>
               <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
                 <MapPin size={18} className="text-secondary/70 shrink-0" />
-                <span>{lang === "fr" ? "Baie de Sakalava, Madagascar" : "Sakalava Bay, Madagascar"}</span>
+                <a href="https://www.google.com/maps/place/Baie+de+Sakalava/@-12.2275,49.3775,15z" target="_blank" rel="noopener noreferrer">
+                  {lang === "fr" ? "Baie de Sakalava, Madagascar" : "Sakalava Bay, Madagascar"}
+                </a>
               </li>
             </ul>
           </div>
