@@ -170,7 +170,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                 <div className="relative z-10">
                   <span className="text-secondary font-script text-2xl opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 absolute -top-8 -left-2 hidden md:inline">+</span>
                   <h3 className="font-sans text-xs uppercase tracking-widest text-foreground font-medium mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-[10px] md:text-xs font-light opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 h-auto md:h-0 md:group-hover:h-auto overflow-hidden">
+                  <p className="text-muted-foreground text-xs font-light hidden md:block md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 overflow-hidden">
                     {item.desc}
                   </p>
                 </div>
