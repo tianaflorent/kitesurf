@@ -5,6 +5,7 @@ import Image from "next/image";
 import { type Dictionary } from "@/context/translations";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import galerieHero from "@/public/images/galerie/galerieHero.jpg"
 
 export default function GalerieContent({ dictionary, lang }: { dictionary: Dictionary["galerie"], lang: string }) {
   const t = dictionary;
@@ -111,7 +112,7 @@ export default function GalerieContent({ dictionary, lang }: { dictionary: Dicti
       <section className="relative min-h-[80vh] flex items-end pb-32">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/IMG-20260305-WA0137.jpg"
+            src={galerieHero}
             alt="Galerie kitesurf – Pure Wind Kite School à la Baie de Sakalava, Diego Suarez, Madagascar"
             fill
             className="object-cover"
