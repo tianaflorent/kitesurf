@@ -11,16 +11,17 @@ import ImgCoursHero from "@/public/images/cours/courHero.jpg"
 export default function CoursContent({ dictionary, lang }: { dictionary: Dictionary["cours"], lang: string }) {
   const t = dictionary;
   const [selectedService, setSelectedService] = useState<'excursions' | 'accommodation' | null>(null);
+  const [selectedEquipment, setSelectedEquipment] = useState<{ title: string; desc: string; img: string; alt: string } | null>(null);
 
   // Empêcher le scroll quand la modale est ouverte
   useEffect(() => {
-    if (selectedService) {
+    if (selectedService || selectedEquipment) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
     return () => { document.body.style.overflow = "unset"; };
-  }, [selectedService]);
+  }, [selectedService, selectedEquipment]);
 
   const equipments = [
     { title: t.kite, desc: t.kiteDesc, img: "/images/best-ts-2016-8m.jpg", alt: "Cerf-volant (kite)" },
@@ -154,7 +155,11 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-border">
             {equipments.map((item) => (
-              <div key={item.title} className="bg-background group relative aspect-[3/4] overflow-hidden flex flex-col justify-end p-6">
+              <div 
+                key={item.title} 
+                onClick={() => setSelectedEquipment(item)}
+                className="bg-background group relative aspect-[3/4] overflow-hidden flex flex-col justify-end p-6 cursor-pointer"
+              >
                 <Image
                   src={item.img}
                   alt={item.alt}
@@ -297,6 +302,68 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                     {lang === 'fr' ? 'Nous contacter pour réserver' : 'Contact us to book'}
                   </Link>
                 </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* EQUIPMENT DETAILS MODAL */}
+      <AnimatePresence>
+        {selectedEquipment && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12"
+          >
+            <div className="absolute inset-0 bg-background/80 backdrop-blur-xl" onClick={() => setSelectedEquipment(null)} />
+            
+            <motion.div
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 40, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="relative w-full max-w-3xl bg-background border border-border shadow-2xl overflow-hidden flex flex-col md:flex-row h-auto max-h-[90vh] md:max-h-[500px]"
+            >
+              <button 
+                onClick={() => setSelectedEquipment(null)}
+                className="absolute top-6 right-6 z-20 w-10 h-10 bg-background/50 backdrop-blur-md flex items-center justify-center hover:bg-foreground hover:text-background transition-colors"
+              >
+                <X size={20} strokeWidth={1} />
+              </button>
+
+              <div className="w-full md:w-1/2 relative h-64 md:h-full bg-muted/10 flex items-center justify-center p-6">
+                <div className="relative w-full h-full min-h-[200px]">
+                  <Image
+                    src={selectedEquipment.img}
+                    alt={selectedEquipment.alt}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center overflow-y-auto">
+                <span className="text-secondary font-sans uppercase tracking-[0.2em] text-[10px] font-semibold mb-4 block">
+                  {lang === 'fr' ? 'Équipement Pure Wind' : 'Pure Wind Gear'}
+                </span>
+                <h2 className="text-3xl font-serif text-foreground font-light tracking-tighter mb-6">
+                  {selectedEquipment.title}
+                </h2>
+                
+                <div className="w-12 h-px bg-primary mb-6" />
+
+                <p className="text-muted-foreground font-light leading-relaxed mb-8 text-sm">
+                  {selectedEquipment.desc}
+                </p>
+
+                <button 
+                  onClick={() => setSelectedEquipment(null)}
+                  className="inline-block text-center w-full uppercase tracking-widest text-[10px] py-4 bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  {lang === 'fr' ? 'Fermer' : 'Close'}
+                </button>
               </div>
             </motion.div>
           </motion.div>
