@@ -10,7 +10,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(function TextArea(props,
     <textarea
       ref={ref}
       className={
-        "w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm transition-all focus:ring-4 focus:ring-slate-100 focus:border-slate-400 outline-none resize-none " +
+        "w-full px-5 py-4 bg-transparent border border-border rounded-none text-sm transition-all focus:border-primary outline-none placeholder:text-muted-foreground/50 resize-none font-light " +
         (className ?? "")
       }
       {...rest}
