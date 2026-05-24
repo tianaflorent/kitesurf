@@ -7,13 +7,13 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import type { Locale } from "@/i18n-config";
 import { type Dictionary } from "@/context/translations";
-
+const ImgSpot = "/images/accueil/spot.jpg"
 interface HomeContentProps {
   dictionary: Dictionary["home"];
   lang: Locale;
 }
 
-export default function HomeContent({ dictionary: t }: HomeContentProps) {
+export default function HomeContent({ dictionary: t, lang }: HomeContentProps) {
 
   return (
     <main className="pb-0 bg-background overflow-hidden">
@@ -33,7 +33,7 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
           <span className="font-script text-4xl md:text-6xl text-secondary/90 mb-6 font-light transform -rotate-2 drop-shadow-sm">
             L&apos;excellence du kitesurf
           </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white tracking-tight leading-[1.1] animate-slide-in-left drop-shadow-lg font-light uppercase max-w-3xl">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1] animate-slide-in-left drop-shadow-lg font-light uppercase max-w-3xl">
             {t.heroTitle}
           </h1>
           <p className="mt-8 text-lg md:text-xl text-white/80 max-w-xl font-sans font-light tracking-wide leading-relaxed">
@@ -41,12 +41,12 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
           </p>
           <div className="mt-12 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Button asChild size="lg" className="rounded-none text-xs md:text-sm px-8 py-6 uppercase tracking-widest bg-primary text-primary-foreground hover:bg-primary/90 transition-all border border-primary">
-              <Link href="/reservation">
+              <Link href={`/${lang}/reservation`}>
                 {t.bookButton}
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-none text-xs md:text-sm px-8 py-6 uppercase tracking-widest bg-transparent text-white border-white/40 hover:bg-white hover:text-black transition-all">
-              <Link href="/cours">{t.coursesButton}</Link>
+              <Link href={`/${lang}/cours`}>{t.coursesButton}</Link>
             </Button>
           </div>
         </div>
@@ -98,7 +98,7 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
               {t.locationDesc}
             </p>
             <Button asChild variant="outline" size="lg" className="rounded-none uppercase tracking-widest text-xs px-8 py-6 border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors">
-                 <Link href="/contact">Découvrir le sanctuaire</Link>
+                 <Link href={`/${lang}/contact`}>Découvrir le sanctuaire</Link>
             </Button>
           </div>
           
@@ -107,7 +107,7 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
             <div className="absolute -inset-4 border border-secondary/30 translate-x-4 translate-y-4 z-0 hidden md:block" />
             <div className="relative aspect-[4/3] w-full overflow-hidden z-10">
               <Image
-                src="/images/IMG-20260304-WA0043.jpg"
+                src={ImgSpot}
                 alt="Baie de Sakalava vue du ciel"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-1000 grayscale-[20%] hover:grayscale-0"
@@ -133,7 +133,7 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
               {t.galleryDesc}
             </p>
           </div>
-          <GalleryEditorial t={t} />
+          <GalleryEditorial t={t} lang={lang} />
         </div>
       </section>
 
@@ -151,7 +151,7 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
             {t.communityDesc}
           </p>
           <Button asChild size="lg" className="rounded-none bg-secondary text-secondary-foreground hover:bg-secondary/90 uppercase tracking-[0.2em] px-12 py-8 text-sm transition-all border-none">
-            <Link href="/contact">
+            <Link href={`/${lang}/contact`}>
               {t.bookNow}
             </Link>
           </Button>
@@ -161,11 +161,7 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
       {/* ================= TÉMOIGNAGES ================= */}
       <section className="py-32 px-6 bg-muted/20 border-t border-border">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-light tracking-tighter mb-4">Mots de nos élèves</h2>
-            <div className="w-16 h-px bg-secondary mx-auto" />
-          </div>
-          <TestimonialsSection t={t} />
+          <TestimonialsSection t={t} lang={lang} />
         </div>
       </section>
     </main>
@@ -193,7 +189,7 @@ function EditorialValueCard({ num, title, desc }: EditorialValueCardProps) {
   );
 }
 
-function GalleryEditorial({ t }: { t: Dictionary['home'] }) {
+function GalleryEditorial({ t, lang }: { t: Dictionary['home'], lang: string }) {
   const images = [
     { img: "IMG-20260304-WA0042.jpg", alt: "Session de kitesurf à la Baie de Sakalava" },
     { img: "IMG-20260304-WA0029.jpg", alt: "Kiters en action à Diego Suarez, Madagascar" },
@@ -213,7 +209,7 @@ function GalleryEditorial({ t }: { t: Dictionary['home'] }) {
         </div>
       ))}
       <div className="relative aspect-[3/4] group overflow-hidden bg-muted flex items-center justify-center p-8 text-center border border-border hover:border-secondary transition-colors md:mt-16 cursor-pointer">
-        <Link href="/galerie" className="absolute inset-0 z-10" />
+        <Link href={`/${lang}/galerie`} className="absolute inset-0 z-10" />
         <div>
           <span className="block font-script text-4xl text-secondary mb-4">+</span>
           <span className="block font-serif text-2xl font-light uppercase tracking-widest">{t.morephoto}</span>

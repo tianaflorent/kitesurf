@@ -33,7 +33,7 @@ export default function TestimonialsSection({ t, lang }: { t: Dictionary['home']
         <span className="text-primary font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-4 block">
           Livre d&apos;Or
         </span>
-        <h2 className="text-4xl md:text-6xl font-light text-foreground font-heading tracking-tighter">
+        <h2 className="text-4xl md:text-6xl font-light text-foreground font-serif tracking-tighter">
           {t.testimonialsTitle}
         </h2>
         <p className="mt-6 text-muted-foreground max-w-2xl mx-auto font-light text-lg">
@@ -66,7 +66,7 @@ export default function TestimonialsSection({ t, lang }: { t: Dictionary['home']
                 </p>
                 
                 <div className="mt-auto border-t border-border pt-4">
-                  <p className="font-heading font-medium tracking-wide text-foreground uppercase text-sm">
+                  <p className="font-sans font-medium tracking-wide text-foreground uppercase text-sm">
                     {review.name || review.firstName}
                   </p>
                 </div>
