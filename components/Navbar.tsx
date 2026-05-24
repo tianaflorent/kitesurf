@@ -34,7 +34,13 @@ export default function Navbar() {
   } = useStaffUser(pathname);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isHome = pathname === `/${lang}` || pathname === `/${lang}/` || pathname === "/";
+  const isImmersive = 
+    pathname === `/${lang}` || 
+    pathname === `/${lang}/` || 
+    pathname === "/" ||
+    pathname.startsWith(`/${lang}/cours`) ||
+    pathname.startsWith(`/${lang}/galerie`) ||
+    pathname.startsWith(`/${lang}/apropos`);
 
   const navItems = [
     { name: lang === "fr" ? "Accueil" : "Home", link: `/${lang}` },
@@ -132,8 +138,8 @@ export default function Navbar() {
         </MobileNav>
       </ResizableNavbar>
 
-      {/* Spacer calibré sur la hauteur (désactivé sur l'accueil pour le mode transparent) */}
-      {!isHome && <div className="h-[72px] lg:h-[84px]" />}
+      {/* Spacer calibré sur la hauteur (désactivé sur les pages immersives pour le mode transparent) */}
+      {!isImmersive && <div className="h-[72px] lg:h-[84px]" />}
     </>
   );
 }
