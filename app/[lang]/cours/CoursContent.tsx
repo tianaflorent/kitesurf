@@ -1,11 +1,25 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { type Dictionary } from "@/context/translations";
+import { motion, AnimatePresence } from "motion/react";
+import { X } from "lucide-react";
 
 export default function CoursContent({ dictionary, lang }: { dictionary: Dictionary["cours"], lang: string }) {
   const t = dictionary;
+  const [selectedService, setSelectedService] = useState<'excursions' | 'accommodation' | null>(null);
+
+  // Empêcher le scroll quand la modale est ouverte
+  useEffect(() => {
+    if (selectedService) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => { document.body.style.overflow = "unset"; };
+  }, [selectedService]);
 
   const equipments = [
     { title: t.kite, desc: t.kiteDesc, img: "/images/best-ts-2016-8m.jpg", alt: "Cerf-volant (kite)" },
@@ -176,7 +190,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
           <div className="grid md:grid-cols-2 gap-24 items-center">
             
             {/* Excursions */}
-            <div className="relative group cursor-pointer">
+            <div className="relative group cursor-pointer" onClick={() => setSelectedService('excursions')}>
               <div className="absolute -inset-4 border border-border translate-x-4 translate-y-4 z-0 hidden md:block transition-all duration-500 group-hover:translate-x-6 group-hover:translate-y-6" />
               <div className="relative aspect-square md:aspect-[4/5] overflow-hidden z-10">
                 <Image
@@ -186,15 +200,20 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                   className="object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
-                <div className="absolute bottom-8 left-8 right-8 bg-background/95 backdrop-blur-md p-8 border border-white/10">
-                  <h3 className="text-2xl font-serif mb-3 tracking-tight">{t.excursions}</h3>
-                  <p className="text-muted-foreground font-light text-sm leading-relaxed">{t.excursionsDesc}</p>
+                <div className="absolute bottom-8 left-8 right-8 bg-background/95 backdrop-blur-md p-8 border border-white/10 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-2xl font-serif mb-3 tracking-tight">{t.excursions}</h3>
+                    <p className="text-muted-foreground font-light text-sm leading-relaxed line-clamp-2">{t.excursionsDesc}</p>
+                  </div>
+                  <span className="text-secondary uppercase tracking-widest text-[10px] mt-6 group-hover:text-foreground transition-colors">
+                    {lang === 'fr' ? 'Voir les détails' : 'View details'} &rarr;
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Hébergement */}
-            <div className="relative group cursor-pointer md:mt-32">
+            <div className="relative group cursor-pointer md:mt-32" onClick={() => setSelectedService('accommodation')}>
               <div className="absolute -inset-4 border border-secondary/30 -translate-x-4 translate-y-4 z-0 hidden md:block transition-all duration-500 group-hover:-translate-x-6 group-hover:translate-y-6" />
               <div className="relative aspect-square md:aspect-[4/5] overflow-hidden z-10">
                 <Image
@@ -204,9 +223,14 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                   className="object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
-                <div className="absolute top-8 left-8 right-8 bg-background/95 backdrop-blur-md p-8 border border-white/10">
-                  <h3 className="text-2xl font-serif mb-3 tracking-tight">{t.accommodation}</h3>
-                  <p className="text-muted-foreground font-light text-sm leading-relaxed">{t.accommodationDesc}</p>
+                <div className="absolute top-8 left-8 right-8 bg-background/95 backdrop-blur-md p-8 border border-white/10 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-2xl font-serif mb-3 tracking-tight">{t.accommodation}</h3>
+                    <p className="text-muted-foreground font-light text-sm leading-relaxed line-clamp-2">{t.accommodationDesc}</p>
+                  </div>
+                  <span className="text-secondary uppercase tracking-widest text-[10px] mt-6 group-hover:text-foreground transition-colors">
+                    {lang === 'fr' ? 'Voir les détails' : 'View details'} &rarr;
+                  </span>
                 </div>
               </div>
             </div>
@@ -214,6 +238,69 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
           </div>
         </div>
       </section>
+
+      {/* SERVICE DETAILS MODAL */}
+      <AnimatePresence>
+        {selectedService && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12"
+          >
+            <div className="absolute inset-0 bg-background/80 backdrop-blur-xl" onClick={() => setSelectedService(null)} />
+            
+            <motion.div
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 40, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="relative w-full max-w-5xl bg-background border border-border shadow-2xl overflow-hidden flex flex-col md:flex-row h-full max-h-[800px]"
+            >
+              <button 
+                onClick={() => setSelectedService(null)}
+                className="absolute top-6 right-6 z-20 w-10 h-10 bg-background/50 backdrop-blur-md flex items-center justify-center hover:bg-foreground hover:text-background transition-colors"
+              >
+                <X size={20} strokeWidth={1} />
+              </button>
+
+              <div className="w-full md:w-1/2 relative h-64 md:h-full">
+                <Image
+                  src={selectedService === 'excursions' ? "/images/IMG-20260305-WA0006.jpg" : "/images/IMG-20260305-WA0005.jpg"}
+                  alt={selectedService === 'excursions' ? "Excursions" : "Hébergement"}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center overflow-y-auto">
+                <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
+                  {lang === 'fr' ? 'Détails du service' : 'Service Details'}
+                </span>
+                <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter mb-8">
+                  {selectedService === 'excursions' ? t.excursions : t.accommodation}
+                </h2>
+                
+                <div className="w-12 h-px bg-primary mb-8" />
+
+                <p className="text-muted-foreground font-light leading-loose mb-12 text-lg">
+                  {selectedService === 'excursions' ? t.excursionsDesc : t.accommodationDesc}
+                </p>
+
+                <div className="mt-auto">
+                  <Link 
+                    href={`/${lang}/contact`} 
+                    onClick={() => setSelectedService(null)}
+                    className="inline-block text-center w-full uppercase tracking-widest text-xs px-8 py-5 bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-colors"
+                  >
+                    {lang === 'fr' ? 'Nous contacter pour réserver' : 'Contact us to book'}
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </main>
   );
