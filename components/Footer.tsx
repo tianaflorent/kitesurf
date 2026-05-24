@@ -23,91 +23,96 @@ export default function Footer() {
   };
 
   return (
-    <footer className="text-gray-300 md:mt-0 mt-0">
-      <div
-        className="relative bg-cover bg-center"
+    <footer className="relative bg-[#050505] text-white pt-24 pb-12 overflow-hidden border-t border-white/10">
+      {/* Arrière-plan subtil */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center opacity-[0.07] mix-blend-luminosity grayscale"
         style={{ backgroundImage: `url('/images/IMG-20260304-WA0021.jpg')` }}
-      >
-        <div className="bg-black/70">
-          <div className="px-6 py-20 md:py-32 max-w-6xl mx-auto text-center">
-
-            {/* CONTACT */}
-            <div className="mb-10">
-              <h3
-                className="text-white text-2xl font-semibold mb-4 cursor-pointer select-none"
-                onClick={handleContactClick}
-              >
-                {lang === "fr" ? "Contact" : "Contact"}
-              </h3>
-
-              <ul className="space-y-3 text-sm text-gray-200">
-                <li className="flex items-center justify-center gap-3">
-                  <Phone size={20} />
-                  <span>+261 37 71 473 00</span>
-                </li>
-
-                <li className="flex items-center justify-center gap-3">
-                  <Mail size={20} />
-                  <span>purewindmadakiteschool@gmail.com</span>
-                </li>
-
-                <li className="flex items-center justify-center gap-3">
-                  <MapPin size={20} />
-                  <span>
-                    {lang === "fr" ? "Baie de Sakalava" : "Sakalava Bay"}
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* RESEAUX SOCIAUX */}
-            <div className="mb-8">
-              <h3 className="text-white text-2xl font-semibold mb-4">
-                {lang === "fr" ? "Suivez-nous" : "Follow us"}
-              </h3>
-
-              <div className="flex justify-center items-center gap-8 text-3xl">
-                <a href="https://www.facebook.com/share/14eXeJeRUyd/" target="_blank" rel="noopener noreferrer" className="transition transform hover:scale-110">
-                  <FaFacebookF className="text-blue-600 hover:text-blue-400" />
-                </a>
-                <a href="https://www.instagram.com/flo_tour_guide/" target="_blank" rel="noopener noreferrer" className="transition transform hover:scale-110">
-                  <FaInstagram className="text-pink-500 hover:text-pink-400" />
-                </a>
-                <a href="https://wa.me/261377147300" target="_blank" rel="noopener noreferrer" className="transition transform hover:scale-110">
-                  <FaWhatsapp className="text-green-500 hover:text-green-400" />
-                </a>
-              </div>
-            </div>
-
-            {/* COPYRIGHT + DEVELOPPEUR */}
-            <div className="border-t border-gray-500 pt-6 flex flex-col md:flex-row items-center justify-center gap-3 text-sm text-gray-300">
-              <span>
-                © 2026 Purewindkiteschoolmadagascar <br />
-                {lang === "fr" ? "Tous droits réservés." : "All rights reserved."}
-              </span>
-
-              <a
-                href="https://wa.me/261328422916"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-white transition"
-              >
-                <Image
-                  src="/images/10.jpg"
-                  alt="Florent"
-                  width={48}
-                  height={48}
-                  className="rounded-full object-cover"
-                />
-                <span>
-                  {lang === "fr" ? "Développé par" : "Developed by"}{" "}
-                  <span className="text-white font-semibold">TIANA Florent</span>
-                </span>
-              </a>
-
-            </div>
-
+      />
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 mb-24">
+          
+          {/* BRANDING */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h2 className="font-serif text-3xl font-light tracking-widest mb-6">PURE WIND KITE</h2>
+            <p className="text-white/50 font-light leading-relaxed max-w-sm">
+              {lang === 'fr' 
+                ? "L'excellence du kitesurf dans le sanctuaire de la Baie de Sakalava, Madagascar." 
+                : "The excellence of kitesurfing in the sanctuary of Sakalava Bay, Madagascar."}
+            </p>
           </div>
+
+          {/* CONTACT */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h3 
+              className="font-sans uppercase tracking-[0.2em] text-sm text-secondary font-medium mb-8 cursor-pointer select-none"
+              onClick={handleContactClick}
+              title={lang === "fr" ? "Cliquez 5 fois pour accès Admin" : "Click 5 times for Admin access"}
+            >
+              {lang === "fr" ? "Contact" : "Contact"}
+            </h3>
+            <ul className="space-y-5 text-white/70 font-light">
+              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
+                <Phone size={18} className="text-secondary/70 shrink-0" />
+                <span>+261 37 71 473 00</span>
+              </li>
+              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
+                <Mail size={18} className="text-secondary/70 shrink-0" />
+                <a href="mailto:purewindmadakiteschool@gmail.com">purewindmadakiteschool@gmail.com</a>
+              </li>
+              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
+                <MapPin size={18} className="text-secondary/70 shrink-0" />
+                <span>{lang === "fr" ? "Baie de Sakalava, Madagascar" : "Sakalava Bay, Madagascar"}</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* SOCIALS */}
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="font-sans uppercase tracking-[0.2em] text-sm text-secondary font-medium mb-8">
+              {lang === "fr" ? "Suivez-nous" : "Follow us"}
+            </h3>
+            <div className="flex items-center justify-center md:justify-start gap-4">
+              <a href="https://www.facebook.com/share/14eXeJeRUyd/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
+                <FaFacebookF size={16} />
+              </a>
+              <a href="https://www.instagram.com/flo_tour_guide/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
+                <FaInstagram size={18} />
+              </a>
+              <a href="https://wa.me/261377147300" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
+                <FaWhatsapp size={18} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* COPYRIGHT & DEVELOPER */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white/40 font-light tracking-wide">
+          <p className="text-center md:text-left">
+            © {new Date().getFullYear()} Pure Wind Kite School. <br className="md:hidden" />
+            {lang === "fr" ? "Tous droits réservés." : "All rights reserved."}
+          </p>
+
+          <a
+            href="https://wa.me/261328422916"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 hover:text-white transition-colors group"
+          >
+            <span className="uppercase tracking-widest text-[10px]">
+              {lang === "fr" ? "Développé par" : "Developed by"}{" "}
+              <strong className="font-medium text-white/70 group-hover:text-secondary transition-colors">TIANA Florent</strong>
+            </span>
+            <div className="relative w-7 h-7 overflow-hidden rounded-full border border-white/20 group-hover:border-secondary transition-colors">
+              <Image
+                src="/images/10.jpg"
+                alt="Florent"
+                fill
+                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+          </a>
         </div>
       </div>
     </footer>
