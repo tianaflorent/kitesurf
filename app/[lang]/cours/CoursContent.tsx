@@ -158,14 +158,14 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                   src={item.img}
                   alt={item.alt}
                   fill
-                  className="object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+                  className="object-cover opacity-80 md:opacity-60 md:grayscale md:group-hover:grayscale-0 md:group-hover:opacity-100 transition-all duration-700 md:group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-background/90 via-background/20 to-transparent"></div>
                 <div className="relative z-10">
-                  <span className="text-secondary font-script text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 absolute -top-8 -left-2">+</span>
+                  <span className="text-secondary font-script text-2xl opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 absolute -top-8 -left-2 hidden md:inline">+</span>
                   <h3 className="font-sans text-xs uppercase tracking-widest text-foreground font-medium mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-[10px] uppercase tracking-widest font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 h-0 group-hover:h-auto overflow-hidden">
-                    {lang === 'fr' ? 'Découvrir' : 'Discover'}
+                  <p className="text-muted-foreground text-[10px] md:text-xs font-light opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 h-auto md:h-0 md:group-hover:h-auto overflow-hidden">
+                    {item.desc}
                   </p>
                 </div>
               </div>
@@ -197,7 +197,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                   src="/images/IMG-20260305-WA0006.jpg"
                   alt="Excursions Madagascar"
                   fill
-                  className="object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  className="object-cover md:grayscale-[20%] md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
                 <div className="absolute bottom-8 left-8 right-8 bg-background/95 backdrop-blur-md p-8 border border-white/10 flex flex-col justify-between">
@@ -205,7 +205,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                     <h3 className="text-2xl font-serif mb-3 tracking-tight">{t.excursions}</h3>
                     <p className="text-muted-foreground font-light text-sm leading-relaxed line-clamp-2">{t.excursionsDesc}</p>
                   </div>
-                  <span className="text-secondary uppercase tracking-widest text-[10px] mt-6 group-hover:text-foreground transition-colors">
+                  <span className="text-secondary uppercase tracking-widest text-[10px] mt-6 md:group-hover:text-foreground transition-colors">
                     {lang === 'fr' ? 'Voir les détails' : 'View details'} &rarr;
                   </span>
                 </div>
@@ -220,7 +220,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                   src="/images/IMG-20260305-WA0005.jpg"
                   alt="Hébergement Sakalava"
                   fill
-                  className="object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  className="object-cover md:grayscale-[20%] md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
                 <div className="absolute top-8 left-8 right-8 bg-background/95 backdrop-blur-md p-8 border border-white/10 flex flex-col justify-between">
@@ -228,7 +228,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                     <h3 className="text-2xl font-serif mb-3 tracking-tight">{t.accommodation}</h3>
                     <p className="text-muted-foreground font-light text-sm leading-relaxed line-clamp-2">{t.accommodationDesc}</p>
                   </div>
-                  <span className="text-secondary uppercase tracking-widest text-[10px] mt-6 group-hover:text-foreground transition-colors">
+                  <span className="text-secondary uppercase tracking-widest text-[10px] mt-6 md:group-hover:text-foreground transition-colors">
                     {lang === 'fr' ? 'Voir les détails' : 'View details'} &rarr;
                   </span>
                 </div>

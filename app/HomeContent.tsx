@@ -204,7 +204,7 @@ function GalleryEditorial({ t, lang }: { t: Dictionary['home'], lang: string }) 
             src={`/images/${img}`} 
             alt={alt} 
             fill
-            className="object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+            className="object-cover md:grayscale-[30%] md:group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
           />
         </div>
       ))}
