@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -29,6 +30,17 @@ export default function Navbar() {
     onLogout,
   } = useStaffUser(pathname);
 
+  const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === `/${lang}` || pathname === `/${lang}/` || pathname === "/";
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const isTransparent = isHome && !scrolled;
+
   const menus = [
     { name: lang === "fr" ? "Accueil" : "Home", href: `/${lang}`, icon: Home },
     { name: lang === "fr" ? "Cours" : "Courses", href: `/${lang}/cours`, icon: BookOpen },
@@ -40,8 +52,15 @@ export default function Navbar() {
   return (
     <>
       {/* ================= NAVBAR TOP ================= */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/40 transition-all duration-300">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center px-6 lg:px-8 py-3 lg:py-4">
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isTransparent 
+            ? "bg-transparent border-transparent py-2" 
+            : "bg-background/95 backdrop-blur-md border-b border-border/40 py-1"
+        }`}
+        style={isTransparent ? { '--color-foreground': 'white', '--color-muted-foreground': 'rgba(255,255,255,0.7)', '--color-primary-foreground': 'black', '--color-primary': 'white' } as React.CSSProperties : {}}
+      >
+        <div className="max-w-7xl mx-auto w-full flex justify-between items-center px-6 lg:px-8 py-2">
 
           {/* LOGO */}
           <Link href={`/${lang}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
@@ -78,8 +97,8 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Spacer calibré sur la nouvelle hauteur */}
-      <div className="h-[72px] lg:h-[84px]" />
+      {/* Spacer calibré sur la hauteur (désactivé sur l'accueil pour le mode transparent) */}
+      {!isHome && <div className="h-[72px] lg:h-[84px]" />}
     </>
   );
 }

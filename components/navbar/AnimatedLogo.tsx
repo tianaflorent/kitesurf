@@ -16,7 +16,7 @@ export default function AnimatedLogo() {
         priority
       />
 
-      <span className="text-blue-700 font-bold flex text-lg md:text-xl lg:text-2xl tracking-wide">
+      <span className="font-bold flex text-lg md:text-xl lg:text-2xl tracking-wide text-foreground transition-colors duration-500">
         {text.split("").map((letter, index) => (
           <span
             key={index}

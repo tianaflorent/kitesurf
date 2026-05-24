@@ -23,29 +23,29 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
           <video autoPlay loop muted playsInline className="w-full h-full object-cover">
             <source src="/videos/video-hero.mp4" type="video/mp4" />
           </video>
-          {/* Subtle elegant gradient overlay */}
-          <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-black/20" />
+          {/* Subtle elegant gradient overlay, darker at the bottom for text readability */}
+          <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         </div>
         
-        <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto mt-20">
-          <span className="font-script text-4xl md:text-5xl text-primary-foreground/90 mb-4 font-light transform -rotate-2 drop-shadow-sm">
+        {/* Alignement bottom-left pour laisser respirer la vidéo */}
+        <div className="relative z-10 flex flex-col items-start text-left px-6 lg:px-12 w-full max-w-7xl mx-auto mt-auto mb-20 lg:mb-32">
+          <span className="font-script text-4xl md:text-6xl text-secondary/90 mb-6 font-light transform -rotate-2 drop-shadow-sm">
             L&apos;excellence du kitesurf
           </span>
-          <h1 className="text-6xl md:text-8xl font-serif text-white tracking-tight leading-[0.9] animate-slide-in-left drop-shadow-lg font-light uppercase">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white tracking-tight leading-[1.1] animate-slide-in-left drop-shadow-lg font-light uppercase max-w-3xl">
             {t.heroTitle}
           </h1>
-          <div className="w-px h-16 bg-primary-foreground/50 mx-auto my-8" />
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl font-sans font-light tracking-wide leading-relaxed">
+          <p className="mt-8 text-lg md:text-xl text-white/80 max-w-xl font-sans font-light tracking-wide leading-relaxed">
             {t.heroSubtitle}
           </p>
-          <div className="mt-14 flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
-            <Button asChild size="lg" className="rounded-none text-base px-10 py-7 uppercase tracking-widest bg-primary text-primary-foreground hover:bg-primary/90 transition-all border border-primary">
+          <div className="mt-12 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <Button asChild size="lg" className="rounded-none text-xs md:text-sm px-8 py-6 uppercase tracking-widest bg-primary text-primary-foreground hover:bg-primary/90 transition-all border border-primary">
               <Link href="/reservation">
                 {t.bookButton}
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-none text-base px-10 py-7 uppercase tracking-widest bg-transparent text-white border-white/40 hover:bg-white hover:text-black transition-all">
+            <Button asChild variant="outline" size="lg" className="rounded-none text-xs md:text-sm px-8 py-6 uppercase tracking-widest bg-transparent text-white border-white/40 hover:bg-white hover:text-black transition-all">
               <Link href="/cours">{t.coursesButton}</Link>
             </Button>
           </div>
