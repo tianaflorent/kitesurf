@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import ClientLayout from "../components/ClientLayout";
-import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, Jost, Great_Vibes } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { i18n, type Locale } from "@/i18n-config";
 
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-heading' });
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans' });
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], style: ['normal', 'italic'], variable: '--font-serif' });
+const jost = Jost({ subsets: ['latin'], weight: ['300', '400', '500'], variable: '--font-sans' });
+const greatVibes = Great_Vibes({ subsets: ['latin'], weight: ['400'], variable: '--font-script' });
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
 
@@ -97,8 +98,8 @@ export default async function RootLayout({
 }) {
   const { lang } = await params;
   return (
-    <html lang={lang} className={cn("font-sans", plusJakarta.variable, outfit.variable)}>
-      <body className="flex flex-col min-h-screen relative bg-slate-50 text-slate-800">
+    <html lang={lang} className={cn("font-sans", jost.variable, cormorant.variable, greatVibes.variable)}>
+      <body className="flex flex-col min-h-screen relative bg-background text-foreground selection:bg-secondary/40 selection:text-foreground">
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

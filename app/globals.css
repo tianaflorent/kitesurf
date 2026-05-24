@@ -50,8 +50,9 @@
    THEME TAILWIND & SHADCN
 ========================================= */
 @theme inline {
-  --font-heading: var(--font-heading);
+  --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
+  --font-script: var(--font-script);
   
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -220,8 +221,8 @@
     scroll-behavior: smooth;
   }
   
-  /* Applique la police géométrique (Outfit) à tous les titres par défaut */
+  /* Applique la police Serif luxueuse à tous les titres par défaut */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-serif font-light tracking-tight;
   }
 }
