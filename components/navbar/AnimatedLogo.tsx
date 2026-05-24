@@ -8,7 +8,7 @@ export default function AnimatedLogo() {
   return (
     <span className="flex items-center gap-3">
       <Image
-        src="/images/IMG-20260318-WA0001.jpg"
+        src="/images/logo.png"
         alt="Kite School Logo"
         width={90}
         height={90}
