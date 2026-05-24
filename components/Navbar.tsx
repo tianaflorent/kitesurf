@@ -1,20 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import {
-  Home,
-  BookOpen,
-  Images,
-  Info,
-  Mail,
-} from "lucide-react";
+  Navbar as ResizableNavbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+  NavbarButton,
+} from "@/components/ui/resizable-navbar";
 import AnimatedLogo from "@/components/navbar/AnimatedLogo";
-import DesktopMenu from "@/components/navbar/DesktopMenu";
 import LanguageSwitch from "@/components/navbar/LanguageSwitch";
 import StaffProfileMenu from "@/components/navbar/StaffProfileMenu";
 import useStaffUser from "@/app/hooks/useStaffUser";
+import Link from "next/link";
 
 export default function Navbar() {
   const pathname = usePathname() || "";
@@ -30,52 +32,32 @@ export default function Navbar() {
     onLogout,
   } = useStaffUser(pathname);
 
-  const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isHome = pathname === `/${lang}` || pathname === `/${lang}/` || pathname === "/";
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const isTransparent = isHome && !scrolled;
-
-  const menus = [
-    { name: lang === "fr" ? "Accueil" : "Home", href: `/${lang}`, icon: Home },
-    { name: lang === "fr" ? "Cours" : "Courses", href: `/${lang}/cours`, icon: BookOpen },
-    { name: lang === "fr" ? "Galerie" : "Gallery", href: `/${lang}/galerie`, icon: Images },
-    { name: lang === "fr" ? "À propos" : "About", href: `/${lang}/apropos`, icon: Info },
-    { name: lang === "fr" ? "Contact" : "Contact", href: `/${lang}/contact`, icon: Mail },
+  const navItems = [
+    { name: lang === "fr" ? "Accueil" : "Home", link: `/${lang}` },
+    { name: lang === "fr" ? "Cours" : "Courses", link: `/${lang}/cours` },
+    { name: lang === "fr" ? "Galerie" : "Gallery", link: `/${lang}/galerie` },
+    { name: lang === "fr" ? "À propos" : "About", link: `/${lang}/apropos` },
+    { name: lang === "fr" ? "Contact" : "Contact", link: `/${lang}/contact` },
   ];
 
   return (
     <>
-      {/* ================= NAVBAR TOP ================= */}
-      <header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isTransparent 
-            ? "bg-transparent border-transparent py-2" 
-            : "bg-background/95 backdrop-blur-md border-b border-border/40 py-1"
-        }`}
-        style={isTransparent ? { '--color-foreground': 'white', '--color-muted-foreground': 'rgba(255,255,255,0.7)', '--color-primary-foreground': 'black', '--color-primary': 'white' } as React.CSSProperties : {}}
-      >
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center px-6 lg:px-8 py-2">
-
-          {/* LOGO */}
-          <Link href={`/${lang}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
+      <ResizableNavbar>
+        {/* Desktop Navigation */}
+        <NavBody className="max-w-360 mx-auto justify-between px-6 lg:px-12">
+          <Link href={`/${lang}`} className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
             <AnimatedLogo />
           </Link>
-
-          {/* ---------------- DESKTOP MENU ---------------- */}
-          <DesktopMenu items={menus} pathname={pathname} />
-
-          {/* ---------------- ACTIONS ---------------- */}
-          <div className="flex items-center gap-6 lg:gap-8">
+          
+          <NavItems items={navItems} />
+          
+          <div className="flex items-center gap-6 shrink-0">
             <LanguageSwitch />
-
             {isStaff ? (
-              <div ref={profileRef} className="hidden lg:relative lg:block">
+              <div ref={profileRef} className="relative block">
                 <StaffProfileMenu
                   user={user}
                   initials={initials}
@@ -85,17 +67,63 @@ export default function Navbar() {
                 />
               </div>
             ) : (
-              <Link
-                href={`/${lang}/reservation`}
-                className="hidden lg:flex h-12 items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 transition-colors px-8 text-xs font-medium tracking-[0.2em] uppercase rounded-none shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              <NavbarButton 
+                as={Link} 
+                href={`/${lang}/reservation`} 
+                variant="primary" 
+                className="rounded-none bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-light uppercase tracking-[0.15em] text-xs px-6 py-3"
               >
                 {lang === "fr" ? "Réserver" : "Book"}
-              </Link>
+              </NavbarButton>
             )}
           </div>
+        </NavBody>
 
-        </div>
-      </header>
+        {/* Mobile Navigation */}
+        <MobileNav>
+          <MobileNavHeader className="justify-between">
+            <Link href={`/${lang}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
+              <AnimatedLogo />
+            </Link>
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </MobileNavHeader>
+
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
+            {navItems.map((item, idx) => (
+              <Link
+                key={`mobile-link-${idx}`}
+                href={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="relative text-foreground uppercase tracking-widest text-sm font-light hover:text-secondary transition-colors"
+              >
+                <span className="block">{item.name}</span>
+              </Link>
+            ))}
+            <div className="flex w-full flex-col gap-6 mt-8">
+              <div className="self-start">
+                <LanguageSwitch />
+              </div>
+              {!isStaff && (
+                <NavbarButton
+                  as={Link}
+                  href={`/${lang}/reservation`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full rounded-none bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-light uppercase tracking-widest py-4"
+                >
+                  {lang === "fr" ? "Réserver" : "Book"}
+                </NavbarButton>
+              )}
+            </div>
+          </MobileNavMenu>
+        </MobileNav>
+      </ResizableNavbar>
 
       {/* Spacer calibré sur la hauteur (désactivé sur l'accueil pour le mode transparent) */}
       {!isHome && <div className="h-[72px] lg:h-[84px]" />}

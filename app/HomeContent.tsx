@@ -18,18 +18,18 @@ export default function HomeContent({ dictionary: t }: HomeContentProps) {
   return (
     <main className="pb-0 bg-background overflow-hidden">
       {/* ================= HERO ================= */}
-      <section className="relative h-screen min-h-[700px] flex items-center justify-center border-b border-border">
+      <section className="relative min-h-screen flex flex-col justify-center border-b border-border pt-24 lg:pt-32 pb-24 lg:pb-32">
         <div className="absolute inset-0 z-0">
           <video autoPlay loop muted playsInline className="w-full h-full object-cover">
             <source src="/videos/video-hero.mp4" type="video/mp4" />
           </video>
           {/* Subtle elegant gradient overlay, darker at the bottom for text readability */}
           <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         </div>
         
         {/* Alignement bottom-left pour laisser respirer la vidéo */}
-        <div className="relative z-10 flex flex-col items-start text-left px-6 lg:px-12 w-full max-w-7xl mx-auto mt-auto mb-20 lg:mb-32">
+        <div className="relative z-10 flex flex-col items-start text-left px-6 lg:px-12 w-full max-w-7xl mx-auto">
           <span className="font-script text-4xl md:text-6xl text-secondary/90 mb-6 font-light transform -rotate-2 drop-shadow-sm">
             L&apos;excellence du kitesurf
           </span>

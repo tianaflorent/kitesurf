@@ -6,17 +6,18 @@ export default function AnimatedLogo() {
   const text = "Pure wind kite";
 
   return (
-    <span className="flex items-center gap-3">
-      <Image
-        src="/images/logo.png"
-        alt="Kite School Logo"
-        width={90}
-        height={90}
-        className="object-contain"
-        priority
-      />
+    <span className="flex items-center gap-3 group">
+      <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden">
+        <Image
+          src="/images/logo.png"
+          alt="Kite School Logo"
+          fill
+          className="object-contain transition-transform duration-700 group-hover:scale-105"
+          priority
+        />
+      </div>
 
-      <span className="font-bold flex text-lg md:text-xl lg:text-2xl tracking-wide text-foreground transition-colors duration-500">
+      <span className="font-serif font-medium flex text-lg md:text-xl tracking-widest uppercase transition-colors duration-500">
         {text.split("").map((letter, index) => (
           <span
             key={index}
