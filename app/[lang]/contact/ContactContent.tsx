@@ -139,6 +139,39 @@ export default function ContactContent({ dictionary }: { dictionary: Dictionary[
         </div>
       </section>
 
+      {/* 3. MAP */}
+      <section className="relative bg-muted/30 border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div>
+              <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-4 block">
+                Localisation
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif text-foreground font-light tracking-tighter">
+                Nous Situer
+              </h2>
+            </div>
+            <a href="https://www.google.com/maps/place/Baie+de+Sakalava/@-12.2275,49.3775,15z" target="_blank" rel="noopener noreferrer"
+              className="text-foreground font-sans uppercase tracking-[0.2em] text-xs font-light hover:text-secondary transition-colors">
+              Ouvrir dans Google Maps →
+            </a>
+          </div>
+        </div>
+        <div className="w-full h-[400px] md:h-[500px] relative">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15000!2d49.3775!3d-12.2275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBaie+de+Sakalava!5e0!3m2!1sfr!2smg!4v1700000000000!5m2!1sfr!2smg"
+            width="100%"
+            height="100%"
+            style={{ border: 0, filter: "grayscale(80%) contrast(1.1)" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Pure Wind Kite School – Baie de Sakalava, Diego Suarez, Madagascar"
+            className="hover:grayscale-0 transition-all duration-700"
+          />
+        </div>
+      </section>
+
       {/* BOUTON FLOTTANT WHATSAPP REDESIGN */}
       <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer"
         aria-label="Contacter Pure Wind Kite School sur WhatsApp"

@@ -113,10 +113,11 @@ export default function HomeContent({ dictionary: t, lang }: HomeContentProps) {
                 className="object-cover hover:scale-105 transition-transform duration-1000 grayscale-[20%] hover:grayscale-0"
               />
             </div>
-            <div className="absolute -bottom-8 -left-8 bg-background p-6 border border-border z-20 flex items-center gap-4 hidden md:flex shadow-2xl">
-              <MapPin size={24} className="text-secondary" strokeWidth={1} />
+            <a href="https://www.google.com/maps/place/Baie+de+Sakalava/@-12.2275,49.3775,15z" target="_blank" rel="noopener noreferrer"
+              className="absolute -bottom-8 -left-8 bg-background p-6 border border-border z-20 hidden md:flex items-center gap-4 shadow-2xl hover:border-secondary transition-colors duration-500 cursor-pointer group/badge">
+              <MapPin size={24} className="text-secondary group-hover/badge:scale-110 transition-transform" strokeWidth={1} />
               <span className="font-serif italic text-xl tracking-wide">Sakalava Bay, Madagascar</span>
-            </div>
+            </a>
           </div>
         </div>
       </section>
