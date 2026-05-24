@@ -203,7 +203,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
                   src="/images/IMG-20260305-WA0006.jpg"
                   alt="Excursions Madagascar"
                   fill
-                  className="object-cover md:grayscale-[20%] md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  className="object-cover md:grayscale-20 md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
                 <div className="absolute bottom-8 left-8 right-8 bg-background/95 backdrop-blur-md p-8 border border-white/10 flex flex-col justify-between">
@@ -252,7 +252,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12"
+            className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6 md:p-12"
           >
             <div className="absolute inset-0 bg-background/80 backdrop-blur-xl" onClick={() => setSelectedService(null)} />
             

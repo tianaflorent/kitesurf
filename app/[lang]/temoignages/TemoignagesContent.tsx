@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft, Star } from "lucide-react";
 import { type Dictionary } from "@/context/translations";
-import ReviewCard from "@/components/reusable/ReviewCard";
-import StarRating from "@/components/reusable/StarRating";
 import { Review } from "@/lib/types";
 
 export default function TemoignagesContent({ dictionary, lang }: { dictionary: Dictionary["home"], lang: string }) {
@@ -35,46 +35,147 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
   }, []);
 
   return (
-    <main className="min-h-screen py-24 px-6 bg-linear-to-b from-blue-50 via-white to-blue-100">
-      <div className="max-w-7xl mx-auto">
+    <main className="bg-background min-h-screen">
 
-        {/* HEADER */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold text-blue-900">{t.allReviewsTitle}</h1>
-          <p className="mt-4 text-gray-600">{t.allReviewsDesc}</p>
+      {/* 1. HERO */}
+      <section className="relative min-h-[50vh] md:min-h-[70vh] flex items-end pb-24">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/IMG-20260304-WA0043.jpg"
+            alt="Témoignages – Pure Wind Kite School Madagascar"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent"></div>
         </div>
 
-        {/* NOTE MOYENNE */}
-        <div className="bg-white rounded-3xl shadow-lg p-10 text-center mb-16 max-w-2xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-4">{t.averageRating}</h2>
-          <div className="flex justify-center mb-4">
-            <StarRating rating={Math.round(average)} size={28} />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-12 pt-32">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground font-light tracking-tighter leading-[0.9] mb-6">
+              {t.allReviewsTitle}
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground font-light tracking-wide max-w-xl">
+              {t.allReviewsDesc}
+            </p>
           </div>
-          <p className="text-xl font-bold text-blue-900">{average.toFixed(1)} / 5</p>
-          <p className="text-gray-500 mt-2">{t.basedOnReviews.replace("{count}", String(reviews.length))}</p>
-        </div>
-
-        {/* LISTE DES AVIS */}
-        {loading ? (
-          <p className="text-center text-gray-400 animate-pulse">Chargement...</p>
-        ) : reviews.length === 0 ? (
-          <p className="text-center text-gray-500">{t.noReviews}</p>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review) => (
-              <ReviewCard key={review.id} review={review} />
-            ))}
+          <div className="hidden md:flex items-center gap-6 pb-4">
+            <span className="w-16 h-px bg-secondary"></span>
+            <span className="text-secondary font-script text-3xl">Avis</span>
           </div>
-        )}
-
-        {/* BOUTON RETOUR */}
-        <div className="text-center mt-20">
-          <Link href={`/${lang}`} className="inline-block bg-linear-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:scale-105 transition">
-            {t.backHome}
-          </Link>
         </div>
+      </section>
 
-      </div>
+      {/* 2. AVERAGE RATING */}
+      <section className="py-16 md:py-20 px-6 bg-muted/30 border-y border-border">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+          <div className="flex items-center gap-8">
+            <span className="text-7xl md:text-8xl font-serif text-foreground font-light tracking-tighter leading-none">
+              {average.toFixed(1)}
+            </span>
+            <div>
+              <div className="flex gap-1 mb-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star
+                    key={star}
+                    size={20}
+                    className={`${Math.round(average) >= star ? "text-secondary fill-secondary" : "text-border"}`}
+                  />
+                ))}
+              </div>
+              <p className="text-muted-foreground font-light text-sm">
+                {t.basedOnReviews.replace("{count}", String(reviews.length))}
+              </p>
+            </div>
+          </div>
+          <div className="hidden md:block">
+            <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold">
+              {t.averageRating}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. REVIEWS GRID */}
+      <section className="py-24 md:py-32 px-6 bg-background">
+        <div className="max-w-7xl mx-auto">
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="text-center">
+                <div className="w-12 h-12 border border-border border-t-secondary animate-spin mx-auto mb-6"></div>
+                <p className="text-muted-foreground font-light uppercase tracking-widest text-xs">
+                  {lang === "fr" ? "Chargement..." : "Loading..."}
+                </p>
+              </div>
+            </div>
+          ) : reviews.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-muted-foreground font-serif text-2xl font-light">{t.noReviews}</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+              {reviews.map((review) => (
+                <EditorialReviewCard key={review.id} review={review} />
+              ))}
+            </div>
+          )}
+
+          {/* BACK LINK */}
+          <div className="mt-20 pt-16 border-t border-border">
+            <Link href={`/${lang}`}
+              className="inline-flex items-center gap-4 text-foreground font-sans uppercase tracking-[0.2em] text-xs font-light hover:text-secondary transition-colors group">
+              <ArrowLeft size={16} strokeWidth={1} className="group-hover:-translate-x-1 transition-transform" />
+              {t.backHome}
+            </Link>
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }
+
+/**
+ * Editorial-style review card — replaces the old rounded shadow card.
+ */
+function EditorialReviewCard({ review }: { review: Pick<Review, "id" | "name" | "comment" | "rating" | "createdAt"> }) {
+  const initial = review.name.charAt(0).toUpperCase();
+  const formattedDate = new Date(review.createdAt).toLocaleDateString("fr-FR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  return (
+    <div className="bg-background p-8 md:p-10 flex flex-col group">
+      {/* Stars */}
+      <div className="flex gap-1 mb-8">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <Star
+            key={star}
+            size={14}
+            className={`${review.rating >= star ? "text-secondary fill-secondary" : "text-border"}`}
+          />
+        ))}
+      </div>
+
+      {/* Quote */}
+      <p className="text-foreground font-serif text-lg md:text-xl font-light leading-relaxed flex-1 mb-10">
+        &ldquo;{review.comment}&rdquo;
+      </p>
+
+      {/* Author */}
+      <div className="flex items-center gap-4 pt-6 border-t border-border">
+        <div className="w-10 h-10 bg-muted flex items-center justify-center text-foreground font-serif text-sm">
+          {initial}
+        </div>
+        <div>
+          <h3 className="font-sans text-sm text-foreground font-medium tracking-wide">{review.name}</h3>
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground/60 mt-0.5">{formattedDate}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
