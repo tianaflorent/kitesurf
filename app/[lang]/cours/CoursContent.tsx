@@ -6,6 +6,7 @@ import Image from "next/image";
 import { type Dictionary } from "@/context/translations";
 import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
+import ImgCoursHero from "@/public/images/cours/courHero.jpg"
 
 export default function CoursContent({ dictionary, lang }: { dictionary: Dictionary["cours"], lang: string }) {
   const t = dictionary;
@@ -40,7 +41,7 @@ export default function CoursContent({ dictionary, lang }: { dictionary: Diction
       <section className="relative min-h-[80vh] flex items-end pb-32">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/IMG-20260304-WA0026.jpg"
+            src={ImgCoursHero}
             alt="Kitesurf Courses Sakalava Bay"
             fill
             className="object-cover"
