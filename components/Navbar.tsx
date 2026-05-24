@@ -41,7 +41,8 @@ export default function Navbar() {
     pathname.startsWith(`/${lang}/cours`) ||
     pathname.startsWith(`/${lang}/galerie`) ||
     pathname.startsWith(`/${lang}/apropos`) ||
-    pathname.startsWith(`/${lang}/contact`);
+    pathname.startsWith(`/${lang}/contact`) ||
+    pathname.startsWith(`/${lang}/reservation`);
 
   const navItems = [
     { name: lang === "fr" ? "Accueil" : "Home", link: `/${lang}` },

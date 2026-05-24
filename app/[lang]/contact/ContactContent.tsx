@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from "lucide-react";
 import { type Dictionary } from "@/context/translations";
+import ContactHero from "@/public/images/contact/contactHero.jpg";
 
 export default function ContactContent({ dictionary }: { dictionary: Dictionary["contact"] }) {
   const t = dictionary;
@@ -34,7 +35,7 @@ export default function ContactContent({ dictionary }: { dictionary: Dictionary[
       <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-end pb-32">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/IMG-20260304-WA0028.jpg"
+            src={ContactHero}
             alt="Contactez Pure Wind Kite School – école de kitesurf à Diego Suarez, Madagascar"
             fill
             className="object-cover"
