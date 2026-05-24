@@ -48,5 +48,5 @@ export default async function GaleriePage({ params }: { params: Promise<{ lang: 
   const { lang } = await params;
   const dict = getDictionary(lang);
 
-  return <GalerieContent dictionary={dict.galerie} />;
+  return <GalerieContent dictionary={dict.galerie} lang={lang} />;
 }
