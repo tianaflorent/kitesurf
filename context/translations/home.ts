@@ -21,7 +21,7 @@ export const homeTranslations = {
     locationDesc: "La baie de Sakalava offre des eaux cristallines, un vent constant et un environnement idéal pour débuter ou se perfectionner.",
     spotLabel: "Le spot",
     discoverSanctuary: "Découvrir le sanctuaire",
-    sakalavaBay: "Sakalava Bay, Madagascar",
+    sakalavaBay: "Baie de Sakalava, Madagascar",
     galleryTitle: "Galerie",
     galleryDesc: "Découvrez l'ambiance unique de notre école de kitesurf à baie Sakalava.",
     communityTitle: "Rejoignez notre communauté",
