@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HomeContent from "../HomeContent";
+import HomeContent from "./HomeContent";
 import { LocalBusinessJsonLd, FAQJsonLd } from "../components/JsonLd";
 import { getDictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/i18n-config";
