@@ -49,7 +49,7 @@ function HeroSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
 
       <div className="relative z-10 flex flex-col items-start text-left px-6 lg:px-12 w-full max-w-7xl mx-auto">
         <span className="font-script text-4xl md:text-6xl text-secondary/90 mb-6 font-light transform -rotate-2 drop-shadow-sm">
-          L&apos;excellence du kitesurf
+          {t.heroTagline}
         </span>
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1] animate-slide-in-left drop-shadow-lg font-light uppercase max-w-3xl">
           {t.heroTitle}
@@ -86,9 +86,9 @@ function EditorialIntroSection({ t }: { t: HomeDictionary }) {
         <div className="relative">
           <div className="absolute -left-6 -top-6 w-32 h-32 border-t border-l border-border/60" />
           <h2 className="text-4xl md:text-6xl font-serif text-foreground font-light tracking-tighter leading-tight">
-            Une expérience <br />
+            {t.experienceTitle} <br />
             <span className="font-script text-5xl md:text-7xl text-secondary block mt-2 ml-10">
-              inoubliable
+              {t.experienceSubtitle}
             </span>
           </h2>
           <div className="w-12 h-px bg-primary my-10" />
@@ -109,7 +109,7 @@ function LocationSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
     <section className="py-32 px-6 bg-muted/30 border-y border-border">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
         <div className="lg:w-5/12 order-2 lg:order-1 relative z-10">
-          <span className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold mb-4 block">Le spot</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-secondary font-semibold mb-4 block">{t.spotLabel}</span>
           <h2 className="text-5xl md:text-7xl font-serif text-foreground font-light leading-[0.9] tracking-tighter mb-8">
             {t.locationTitle}
           </h2>
@@ -120,7 +120,7 @@ function LocationSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
             size="lg"
             className="rounded-none uppercase tracking-widest text-xs px-8 py-6 border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
           >
-            <Link href={`/${lang}/contact`}>Découvrir le sanctuaire</Link>
+            <Link href={`/${lang}/contact`}>{t.discoverSanctuary}</Link>
           </Button>
         </div>
 
@@ -141,7 +141,7 @@ function LocationSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
             className="absolute -bottom-8 -left-8 bg-background p-6 border border-border z-20 hidden md:flex items-center gap-4 shadow-2xl hover:border-secondary transition-colors duration-500 cursor-pointer group/badge"
           >
             <MapPin size={24} className="text-secondary group-hover/badge:scale-110 transition-transform" strokeWidth={1} />
-            <span className="font-serif italic text-xl tracking-wide">Sakalava Bay, Madagascar</span>
+            <span className="font-serif italic text-xl tracking-wide">{t.sakalavaBay}</span>
           </a>
         </div>
       </div>
@@ -173,7 +173,7 @@ function CommunitySection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
     <section className="py-32 px-6 relative bg-primary">
       <div className="absolute inset-0 bg-[url('/images/IMG-20260304-WA0042.jpg')] bg-cover bg-center opacity-10 mix-blend-overlay" />
       <div className="max-w-4xl mx-auto relative z-10 text-center text-primary-foreground">
-        <span className="font-script text-5xl md:text-6xl text-secondary mb-6 block transform -rotate-2">Rejoignez la tribu</span>
+        <span className="font-script text-5xl md:text-6xl text-secondary mb-6 block transform -rotate-2">{t.communityTagline}</span>
         <h2 className="text-5xl md:text-7xl font-serif font-light uppercase tracking-tighter mb-10 border-y border-primary-foreground/20 py-8">
           {t.communityTitle}
         </h2>

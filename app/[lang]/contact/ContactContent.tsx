@@ -35,7 +35,7 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
       {/* 1. HERO INVITATION */}
       <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-end pb-32">
         <div className="absolute inset-0 z-0">
-          <Image 
+          <Image
             src={ContactHero}
             alt="Contactez Pure Wind Kite School – école de kitesurf à Diego Suarez, Madagascar"
             fill
@@ -45,7 +45,7 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
           <div className="absolute inset-0 bg-black/40 mix-blend-overlay"></div>
           <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent"></div>
         </div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-12 pt-32">
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground font-light tracking-tighter leading-[0.9] mb-8">
@@ -57,7 +57,7 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
           </div>
           <div className="hidden md:flex items-center gap-6 pb-4">
             <span className="w-16 h-px bg-secondary"></span>
-            <span className="text-secondary font-script text-3xl">Rencontre</span>
+            <span className="text-secondary font-script text-3xl">{t.heroTagline}</span>
           </div>
         </div>
       </section>
@@ -65,18 +65,18 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
       {/* 2. CONTACT SPLIT LAYOUT */}
       <section className="py-24 md:py-32 px-6 bg-background">
         <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row gap-16 lg:gap-24">
-          
+
           {/* LEFT: INFO */}
           <div className="w-full lg:w-5/12 space-y-16">
             <div>
               <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
-                Coordonnées
+                {t.contactInfoLabel}
               </span>
               <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter mb-12">
-                Nous Trouver
+                {t.findUsTitle}
               </h2>
             </div>
-            
+
             <div className="space-y-12">
               <InfoRow icon={<Phone strokeWidth={1} size={28} />} title={t.phoneTitle} subtitle="+261 37 71 473 00" note={t.phoneNote} />
               <InfoRow icon={<Mail strokeWidth={1} size={28} />} title={t.emailTitle} subtitle="purewindmadakiteschool@gmail.com" note={t.emailNote} />
@@ -89,12 +89,12 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
           <div className="w-full lg:w-7/12">
             <div className="bg-muted/30 p-8 md:p-16 border border-border">
               <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
-                Message
+                {t.formLabel}
               </span>
               <h2 className="text-3xl md:text-4xl font-serif text-foreground font-light tracking-tighter mb-12">
                 {t.formTitle}
               </h2>
-              
+
               <form onSubmit={handleSubmit}>
                 <div className="relative z-0 w-full mb-10 group">
                   <input type="text" name="name" id="name" placeholder=" " value={name} onChange={(e) => setName(e.target.value)} required
@@ -146,7 +146,7 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
             <div>
               <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
-                FAQ
+                {t.faqLabel}
               </span>
               <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter">
                 {faq.pageTitle}
@@ -171,15 +171,15 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <div>
               <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-4 block">
-                Localisation
+                {t.locationLabel}
               </span>
               <h2 className="text-3xl md:text-4xl font-serif text-foreground font-light tracking-tighter">
-                Nous Situer
+                {t.locateUsTitle}
               </h2>
             </div>
             <a href="https://www.google.com/maps/place/Baie+de+Sakalava/@-12.2275,49.3775,15z" target="_blank" rel="noopener noreferrer"
               className="text-foreground font-sans uppercase tracking-[0.2em] text-xs font-light hover:text-secondary transition-colors">
-              Ouvrir dans Google Maps →
+              {t.openInMaps}
             </a>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
         className="fixed right-6 bottom-6 z-50 group flex items-center gap-4"
       >
         <span className="bg-background/80 backdrop-blur-md border border-border px-4 py-2 text-xs uppercase tracking-widest font-light text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block">
-          WhatsApp
+          {t.whatsappLabel}
         </span>
         <div className="w-14 h-14 bg-foreground/90 backdrop-blur-xl flex items-center justify-center text-background hover:bg-[#25D366] transition-colors duration-500 shadow-2xl">
           <MessageCircle size={24} strokeWidth={1.5} />
