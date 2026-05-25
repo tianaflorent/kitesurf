@@ -1,24 +1,28 @@
 "use client";
 
-import { useLanguage } from "@/context/LanguageContext";
-import Link from "next/link";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 import {
-  Home,
-  BookOpen,
-  Images,
-  Info,
-  Mail,
-} from "lucide-react";
+  Navbar as ResizableNavbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+  NavbarButton,
+} from "@/components/ui/resizable-navbar";
 import AnimatedLogo from "@/components/navbar/AnimatedLogo";
-import DesktopMenu from "@/components/navbar/DesktopMenu";
 import LanguageSwitch from "@/components/navbar/LanguageSwitch";
 import StaffProfileMenu from "@/components/navbar/StaffProfileMenu";
 import useStaffUser from "@/app/hooks/useStaffUser";
+import Link from "next/link";
 
 export default function Navbar() {
-  const { lang, setLang } = useLanguage();
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
+  const langSegment = pathname.split('/')[1];
+  const lang = (langSegment === 'fr' || langSegment === 'en') ? langSegment : 'fr';
   const {
     user,
     isStaff,
@@ -29,35 +33,42 @@ export default function Navbar() {
     onLogout,
   } = useStaffUser(pathname);
 
-  const menus = [
-    { name: lang === "FR" ? "Accueil" : "Home", href: "/", icon: Home },
-    { name: lang === "FR" ? "Cours" : "Courses", href: "/cours", icon: BookOpen },
-    { name: lang === "FR" ? "Galerie" : "Gallery", href: "/galerie", icon: Images },
-    { name: lang === "FR" ? "À propos" : "About", href: "/apropos", icon: Info },
-    { name: lang === "FR" ? "Contact" : "Contact", href: "/contact", icon: Mail },
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isImmersive = 
+    pathname === `/${lang}` || 
+    pathname === `/${lang}/` || 
+    pathname === "/" ||
+    pathname.startsWith(`/${lang}/cours`) ||
+    pathname.startsWith(`/${lang}/galerie`) ||
+    pathname.startsWith(`/${lang}/apropos`) ||
+    pathname.startsWith(`/${lang}/contact`) ||
+    pathname.startsWith(`/${lang}/reservation`) ||
+    pathname.startsWith(`/${lang}/temoignages`) ||
+    pathname.startsWith(`/${lang}/faq`);
+
+  const navItems = [
+    { name: lang === "fr" ? "Accueil" : "Home", link: `/${lang}` },
+    { name: lang === "fr" ? "Cours" : "Courses", link: `/${lang}/cours` },
+    { name: lang === "fr" ? "Galerie" : "Gallery", link: `/${lang}/galerie` },
+    { name: lang === "fr" ? "À propos" : "About", link: `/${lang}/apropos` },
+    { name: lang === "fr" ? "Contact" : "Contact", link: `/${lang}/contact` },
   ];
 
   return (
     <>
-      {/* ================= NAVBAR TOP (TOUS ÉCRANS) ================= */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md shadow-sm">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center px-5 lg:px-1 py-1 lg:py-3">
-
-          {/* LOGO */}
-          <Link href="/">
+      <ResizableNavbar>
+        {/* Desktop Navigation */}
+        <NavBody className="max-w-360 mx-auto justify-between px-6 lg:px-12">
+          <Link href={`/${lang}`} className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
             <AnimatedLogo />
           </Link>
-
-          {/* ---------------- DESKTOP MENU (lg et +) ---------------- */}
-          <DesktopMenu items={menus} pathname={pathname} />
-
-          {/* ---------------- ACTIONS ---------------- */}
-          <div className="flex items-center gap-4 lg:gap-6">
-            <LanguageSwitch lang={lang} setLang={setLang} />
-
-            {/* Bouton visible seulement desktop */}
+          
+          <NavItems items={navItems} pathname={pathname} />
+          
+          <div className="flex items-center gap-6 shrink-0">
+            <LanguageSwitch />
             {isStaff ? (
-              <div ref={profileRef} className="hidden lg:relative lg:block">
+              <div ref={profileRef} className="relative block">
                 <StaffProfileMenu
                   user={user}
                   initials={initials}
@@ -67,20 +78,72 @@ export default function Navbar() {
                 />
               </div>
             ) : (
-              <Link
-                href="/reservation"
-                className="hidden lg:block bg-blue-700 hover:bg-blue-600 transition px-6 py-2 rounded-xl text-white font-semibold shadow-md"
+              <NavbarButton 
+                as={Link} 
+                href={`/${lang}/reservation`} 
+                variant="primary" 
+                className="rounded-none bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-light uppercase tracking-[0.15em] text-xs px-6 py-3"
               >
-                {lang === "FR" ? "Réserver" : "Book"}
-              </Link>
+                {lang === "fr" ? "Réserver" : "Book"}
+              </NavbarButton>
             )}
           </div>
+        </NavBody>
 
-        </div>
-      </header>
+        {/* Mobile Navigation */}
+        <MobileNav>
+          <MobileNavHeader className="justify-between">
+            <Link href={`/${lang}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
+              <AnimatedLogo />
+            </Link>
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </MobileNavHeader>
 
-      {/* Spacer top pour éviter overlap */}
-      <div className="h-18.75 lg:h-22.5" />
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
+            {navItems.map((item, idx) => {
+              const isActive = pathname === item.link;
+              return (
+                <Link
+                  key={`mobile-link-${idx}`}
+                  href={item.link}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "relative uppercase tracking-widest text-sm transition-colors",
+                    isActive ? "text-secondary font-medium" : "text-foreground font-light hover:text-secondary"
+                  )}
+                >
+                  <span className="block">{item.name}</span>
+                </Link>
+              );
+            })}
+            <div className="flex w-full flex-col gap-6 mt-8">
+              <div className="self-start">
+                <LanguageSwitch />
+              </div>
+              {!isStaff && (
+                <NavbarButton
+                  as={Link}
+                  href={`/${lang}/reservation`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full rounded-none bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-light uppercase tracking-widest py-4"
+                >
+                  {lang === "fr" ? "Réserver" : "Book"}
+                </NavbarButton>
+              )}
+            </div>
+          </MobileNavMenu>
+        </MobileNav>
+      </ResizableNavbar>
+
+      {/* Spacer calibré sur la hauteur (désactivé sur les pages immersives pour le mode transparent) */}
+      {!isImmersive && <div className="h-[72px] lg:h-[84px]" />}
     </>
   );
 }

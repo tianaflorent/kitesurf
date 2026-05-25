@@ -9,8 +9,8 @@ import TextInput from "@/components/reusable/TextInput";
 import PrimaryButton from "@/components/reusable/PrimaryButton";
 import LoadingSpinner from "@/components/reusable/LoadingSpinner";
 import { useState } from "react";
-import { useLanguage } from "@/context/LanguageContext";
 import { dictionaries } from "@/context/translations";
+import { usePathname } from "next/navigation";
 
 type Values = {
   email: string;
@@ -22,7 +22,9 @@ export default function AdminLoginPage() {
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const { lang } = useLanguage();
+  const pathname = usePathname() || "";
+  const langSegment = pathname.split('/')[1];
+  const lang = (langSegment === 'fr' || langSegment === 'en') ? langSegment : 'fr';
   const t = dictionaries[lang].home;
 
   const {

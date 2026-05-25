@@ -2,8 +2,6 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import BottomNav from "@/components/BottomNav";
-import { LanguageProvider } from "@/context/LanguageContext";
 import { Toaster } from "react-hot-toast";
 import { usePathname } from "next/navigation";
 
@@ -12,7 +10,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const isAppSite = !pathname?.startsWith("/admin") && !pathname?.startsWith("/auth");
 
   return (
-    <LanguageProvider>
+    <>
       <Toaster
         position="top-center"
         toastOptions={{
@@ -32,12 +30,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <main className="flex-1">{children}</main>
 
       {isAppSite && <Footer />}
-
-      {isAppSite && (
-        <div className="fixed bottom-0 left-0 right-0 lg:hidden">
-          <BottomNav />
-        </div>
-      )}
-    </LanguageProvider>
+    </>
   );
 }

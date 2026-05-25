@@ -1,56 +1,31 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://purewindkiteschool.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
+const locales = ["fr", "en"];
+const routes = [
+  { path: "", priority: 1.0, changeFrequency: "weekly" as const },
+  { path: "/cours", priority: 0.9, changeFrequency: "monthly" as const },
+  { path: "/reservation", priority: 0.9, changeFrequency: "weekly" as const },
+  { path: "/apropos", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/contact", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/galerie", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/faq", priority: 0.6, changeFrequency: "monthly" as const },
+  { path: "/temoignages", priority: 0.6, changeFrequency: "weekly" as const },
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: BASE_URL,
+  return routes.flatMap((route) => {
+    return locales.map((locale) => ({
+      url: `${BASE_URL}/${locale}${route.path}`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/cours`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/reservation`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/apropos`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/galerie`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/faq`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/temoignages`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.6,
-    },
-  ];
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+      alternates: {
+        languages: {
+          fr: `${BASE_URL}/fr${route.path}`,
+          en: `${BASE_URL}/en${route.path}`,
+        },
+      },
+    }));
+  });
 }

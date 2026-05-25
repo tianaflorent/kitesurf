@@ -22,24 +22,24 @@ export const aproposTranslations = {
         description: "Passionné de kitesurf depuis 10 ans, Bien Aimé guide les débutants et avancés avec patience et expertise.",
         image: "/images/IMG-20260304-WA0022.jpg",
       },
-      // {
-      //   nom: "Lina Andriam",
-      //   role: "Instructrice",
-      //   description: "Experte en sécurité aquatique, Lina assure le bon déroulement des cours et la sécurité des élèves.",
-      //   image: "/images/IMG-20260304-WA0020.jpg",
-      // },
-      // {
-      //   nom: "Hery Rabe",
-      //   role: "Coordinateur",
-      //   description: "Hery organise les sessions, le matériel et les excursions locales pour une expérience optimale.",
-      //   image: "/images/IMG-20260304-WA0016.jpg",
-      // },
-      // {
-      //   nom: "Miora Fidy",
-      //   role: "Support",
-      //   description: "Disponible pour répondre à toutes vos questions et assister l'équipe pendant les cours.",
-      //   image: "/images/IMG-20260304-WA0013.jpg",
-      // },
+      {
+        nom: "Lina Andriam",
+        role: "Instructrice",
+        description: "Experte en sécurité aquatique, Lina assure le bon déroulement des cours et la sécurité des élèves.",
+        image: "/images/IMG-20260304-WA0020.jpg",
+      },
+      {
+        nom: "Hery Rabe",
+        role: "Coordinateur",
+        description: "Hery organise les sessions, le matériel et les excursions locales pour une expérience optimale.",
+        image: "/images/IMG-20260304-WA0016.jpg",
+      },
+      {
+        nom: "Miora Fidy",
+        role: "Support",
+        description: "Disponible pour répondre à toutes vos questions et assister l'équipe pendant les cours.",
+        image: "/images/IMG-20260304-WA0013.jpg",
+      },
     ],
     philosophyTitle: "Notre Philosophie",
     philosophyText1: "À la Pure Wind Kite School Madagascar, nous pensons que le kitesurf doit être accessible à tous. Chaque élève progresse à son rythme, accompagné par des instructeurs expérimentés et attentifs.",
@@ -62,9 +62,9 @@ export const aproposTranslations = {
     teamMemberAlt: "{name} – {role} at Pure Wind Kite School, Diego Suarez",
     teamMembers: [
       {
-        nom: "Jean Rakoto",
+        nom: "Bien Aimé",
         role: "Head Instructor",
-        description: "Passionate kitesurfer for 10 years, Jean guides beginners and advanced riders with patience and expertise.",
+        description: "Passionate kitesurfer for 10 years, Bien Aimé guides beginners and advanced riders with patience and expertise.",
         image: "/images/IMG-20260304-WA0022.jpg",
       },
       {

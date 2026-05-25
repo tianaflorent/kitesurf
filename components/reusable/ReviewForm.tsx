@@ -60,12 +60,12 @@ export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-4xl p-8 md:p-12">
-      <div className="text-center mb-10">
-        <h3 className="text-2xl font-semibold text-slate-900 tracking-tight">
+    <div className="w-full">
+      <div className="text-center mb-16">
+        <h3 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter">
           {t.reviewFormTitle2}
         </h3>
-        <p className="text-slate-500 text-sm mt-2">
+        <p className="text-muted-foreground font-light text-lg mt-4 max-w-xl mx-auto">
           {t.reviewFormSubtitle}
         </p>
       </div>

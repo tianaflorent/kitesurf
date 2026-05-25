@@ -1,22 +1,22 @@
 "use client";
 
-import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Home, BookOpen, Images, Info, PhoneCall } from "lucide-react";
 
 export default function BottomNav() {
-  const { lang } = useLanguage();
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
+  const langSegment = pathname.split('/')[1];
+  const lang = (langSegment === 'fr' || langSegment === 'en') ? langSegment : 'fr';
   const [shake, setShake] = useState<string | null>(null);
 
   const menus = [
-    { name: lang === "FR" ? "Accueil" : "Home", href: "/", icon: Home },
-    { name: lang === "FR" ? "Cours" : "Courses", href: "/cours", icon: BookOpen },
-    { name: lang === "FR" ? "Galerie" : "Gallery", href: "/galerie", icon: Images },
-    { name: lang === "FR" ? "À propos" : "About", href: "/apropos", icon: Info },
-    { name: lang === "FR" ? "Contact" : "Contact", href: "/contact", icon: PhoneCall },
+    { name: lang === "fr" ? "Accueil" : "Home", href: `/${lang}`, icon: Home },
+    { name: lang === "fr" ? "Cours" : "Courses", href: `/${lang}/cours`, icon: BookOpen },
+    { name: lang === "fr" ? "Galerie" : "Gallery", href: `/${lang}/galerie`, icon: Images },
+    { name: lang === "fr" ? "À propos" : "About", href: `/${lang}/apropos`, icon: Info },
+    { name: lang === "fr" ? "Contact" : "Contact", href: `/${lang}/contact`, icon: PhoneCall },
   ];
 
   const handleClick = (name: string) => {

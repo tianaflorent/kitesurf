@@ -20,8 +20,8 @@ export default function RatingField<TFieldValues extends FieldValues>({
   const [hover, setHover] = useState(0);
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-slate-50/50 rounded-2xl border border-slate-100/50">
-      <label className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">
+    <div className="flex flex-col items-center justify-center p-8 bg-muted/10 border border-border rounded-none mb-4">
+      <label className="text-xs font-sans uppercase tracking-[0.2em] text-foreground mb-6">
         {label}
       </label>
       <Controller
@@ -40,7 +40,7 @@ export default function RatingField<TFieldValues extends FieldValues>({
         )}
       />
       {error ? (
-        <p className="text-[11px] text-red-500 mt-2 font-medium animate-pulse">{error}</p>
+        <p className="text-xs text-red-500 mt-4 font-light tracking-wide animate-pulse">{error}</p>
       ) : null}
     </div>
   );
