@@ -44,7 +44,7 @@ function HeroSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
           <source src={HERO_VIDEO_SRC} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
       </div>
 
       <div className="relative z-10 flex flex-col items-start text-left px-6 lg:px-12 w-full max-w-7xl mx-auto">
@@ -126,22 +126,22 @@ function LocationSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
 
         <div className="lg:w-7/12 order-1 lg:order-2 relative w-full">
           <div className="absolute -inset-4 border border-secondary/30 translate-x-4 translate-y-4 z-0 hidden md:block" />
-          <div className="relative aspect-[4/3] w-full overflow-hidden z-10">
+          <div className="relative aspect-4/3 w-full overflow-hidden z-10">
             <Image
               src={SPOT_IMAGE_SRC}
               alt="Baie de Sakalava vue du ciel"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-1000 grayscale-[20%] hover:grayscale-0"
+              className="object-cover hover:scale-105 transition-transform duration-1000 grayscale-20 hover:grayscale-0"
             />
           </div>
           <a
             href="https://www.google.com/maps/place/Baie+de+Sakalava/@-12.2275,49.3775,15z"
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute -bottom-8 -left-8 bg-background p-6 border border-border z-20 hidden md:flex items-center gap-4 shadow-2xl hover:border-secondary transition-colors duration-500 cursor-pointer group/badge"
+            className="absolute -bottom-4 left-4 md:-bottom-8 md:-left-8 bg-background py-2 px-3 md:py-4 md:px-6 border border-border z-20 flex items-center gap-2 md:gap-4 shadow-2xl hover:border-secondary transition-colors duration-500 cursor-pointer group/badge"
           >
-            <MapPin size={24} className="text-secondary group-hover/badge:scale-110 transition-transform" strokeWidth={1} />
-            <span className="font-serif italic text-xl tracking-wide">{t.sakalavaBay}</span>
+            <MapPin className="text-secondary group-hover/badge:scale-110 transition-transform w-4 h-4 md:w-5 md:h-5" strokeWidth={1.5} />
+            <span className="font-serif italic text-xs md:text-lg tracking-wide">{t.sakalavaBay}</span>
           </a>
         </div>
       </div>
@@ -152,7 +152,7 @@ function LocationSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
 function GallerySection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
   return (
     <section className="py-32 bg-background">
-      <div className="max-w-[90rem] mx-auto px-6">
+      <div className="max-w-360 mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-border pb-8">
           <div>
             <h2 className="text-5xl md:text-7xl font-serif text-foreground font-light tracking-tighter">{t.galleryTitle}</h2>
@@ -226,16 +226,16 @@ function GalleryEditorial({ t, lang }: { t: HomeDictionary; lang: Locale }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
       {GALLERY_IMAGES.map(({ img, alt }, i) => (
-        <div key={i} className={`relative aspect-[3/4] group overflow-hidden ${i % 2 !== 0 ? "md:mt-16" : ""}`}>
+        <div key={i} className={`relative aspect-3/4 group overflow-hidden ${i % 2 !== 0 ? "md:mt-16" : ""}`}>
           <Image
             src={`/images/${img}`}
             alt={alt}
             fill
-            className="object-cover md:grayscale-[30%] md:group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+            className="object-cover md:grayscale-30 md:group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
           />
         </div>
       ))}
-      <div className="relative aspect-[3/4] group overflow-hidden bg-muted flex items-center justify-center p-8 text-center border border-border hover:border-secondary transition-colors md:mt-16 cursor-pointer">
+      <div className="relative aspect-3/4 group overflow-hidden bg-muted flex items-center justify-center p-8 text-center border border-border hover:border-secondary transition-colors md:mt-16 cursor-pointer">
         <Link href={`/${lang}/galerie`} className="absolute inset-0 z-10" />
         <div>
           <span className="block font-script text-4xl text-secondary mb-4">+</span>

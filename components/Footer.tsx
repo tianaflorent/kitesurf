@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
@@ -55,7 +54,7 @@ export default function Footer() {
             <ul className="space-y-5 text-white/70 font-light">
               <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
                 <Phone size={18} className="text-secondary/70 shrink-0" />
-                <span>+261 37 71 473 00</span>
+                <a href="tel:+261377147300">+261 37 71 473 00</a>
               </li>
               <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
                 <Mail size={18} className="text-secondary/70 shrink-0" />
@@ -76,10 +75,10 @@ export default function Footer() {
               {lang === "fr" ? "Suivez-nous" : "Follow us"}
             </h3>
             <div className="flex items-center justify-center md:justify-start gap-4">
-              <a href="https://www.facebook.com/share/14eXeJeRUyd/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
+              <a href="https://www.facebook.com/profile.php?id=61588059466832" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
                 <FaFacebookF size={16} />
               </a>
-              <a href="https://www.instagram.com/flo_tour_guide/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
+              <a href="https://www.instagram.com/pure_winde_kite_school?igsh=MWhxa25xbDk5Znk4dg==" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
                 <FaInstagram size={18} />
               </a>
               <a href="https://wa.me/261377147300" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
@@ -89,32 +88,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* COPYRIGHT & DEVELOPER */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white/40 font-light tracking-wide">
-          <p className="text-center md:text-left">
+        {/* COPYRIGHT */}
+        <div className="pt-8 border-t border-white/10 flex flex-col items-center justify-center gap-6 text-sm text-white/40 font-light tracking-wide">
+          <p className="text-center">
             © {new Date().getFullYear()} Pure Wind Kite School. <br className="md:hidden" />
             {lang === "fr" ? "Tous droits réservés." : "All rights reserved."}
           </p>
-
-          <a
-            href="https://wa.me/261328422916"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 hover:text-white transition-colors group"
-          >
-            <span className="uppercase tracking-widest text-[10px]">
-              {lang === "fr" ? "Développé par" : "Developed by"}{" "}
-              <strong className="font-medium text-white/70 group-hover:text-secondary transition-colors">TIANA Florent</strong>
-            </span>
-            <div className="relative w-7 h-7 overflow-hidden rounded-full border border-white/20 group-hover:border-secondary transition-colors">
-              <Image
-                src="/images/10.jpg"
-                alt="Florent"
-                fill
-                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-          </a>
         </div>
       </div>
     </footer>

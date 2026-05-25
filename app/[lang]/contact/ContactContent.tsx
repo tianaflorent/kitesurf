@@ -78,10 +78,34 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
             </div>
 
             <div className="space-y-12">
-              <InfoRow icon={<Phone strokeWidth={1} size={28} />} title={t.phoneTitle} subtitle="+261 37 71 473 00" note={t.phoneNote} />
-              <InfoRow icon={<Mail strokeWidth={1} size={28} />} title={t.emailTitle} subtitle="purewindmadakiteschool@gmail.com" note={t.emailNote} />
-              <InfoRow icon={<MapPin strokeWidth={1} size={28} />} title={t.addressTitle} subtitle="Baie de Sakalava, Antsiranana (Diego Suarez), Madagascar" note={t.addressNote} />
-              <InfoRow icon={<Clock strokeWidth={1} size={28} />} title={t.hoursTitle} subtitle={t.hoursWeek} note={t.hoursWeekend} />
+              <InfoRow 
+                icon={<Phone strokeWidth={1} size={28} />} 
+                title={t.phoneTitle} 
+                subtitle="+261 37 71 473 00" 
+                href="tel:+261377147300"
+                note={t.phoneNote} 
+              />
+              <InfoRow 
+                icon={<Mail strokeWidth={1} size={28} />} 
+                title={t.emailTitle} 
+                subtitle="purewindmadakiteschool@gmail.com" 
+                href="mailto:purewindmadakiteschool@gmail.com"
+                note={t.emailNote} 
+              />
+              <InfoRow 
+                icon={<MapPin strokeWidth={1} size={28} />} 
+                title={t.addressTitle} 
+                subtitle="Baie de Sakalava, Antsiranana (Diego Suarez), Madagascar" 
+                href="https://www.google.com/maps/place/Baie+de+Sakalava/@-12.2275,49.3775,15z"
+                external
+                note={t.addressNote} 
+              />
+              <InfoRow 
+                icon={<Clock strokeWidth={1} size={28} />} 
+                title={t.hoursTitle} 
+                subtitle={t.hoursWeek} 
+                note={t.hoursWeekend} 
+              />
             </div>
           </div>
 
@@ -215,7 +239,21 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
   );
 }
 
-function InfoRow({ icon, title, subtitle, note }: { icon: React.ReactNode; title: string; subtitle: string; note: string }) {
+function InfoRow({ 
+  icon, 
+  title, 
+  subtitle, 
+  href, 
+  external, 
+  note 
+}: { 
+  icon: React.ReactNode; 
+  title: string; 
+  subtitle: string; 
+  href?: string; 
+  external?: boolean; 
+  note: string 
+}) {
   return (
     <div className="flex gap-6 items-start group">
       <div className="text-secondary mt-1 opacity-80 group-hover:opacity-100 transition-opacity">
@@ -223,7 +261,17 @@ function InfoRow({ icon, title, subtitle, note }: { icon: React.ReactNode; title
       </div>
       <div>
         <h3 className="font-serif text-2xl text-foreground font-light mb-2">{title}</h3>
-        <p className="text-muted-foreground font-light leading-relaxed mb-1">{subtitle}</p>
+        {href ? (
+          <a 
+            href={href} 
+            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            className="text-muted-foreground font-light leading-relaxed mb-1 hover:text-secondary transition-colors block"
+          >
+            {subtitle}
+          </a>
+        ) : (
+          <p className="text-muted-foreground font-light leading-relaxed mb-1">{subtitle}</p>
+        )}
         <p className="text-[10px] uppercase tracking-widest text-muted-foreground/60">{note}</p>
       </div>
     </div>

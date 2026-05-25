@@ -53,8 +53,8 @@ export function LocalBusinessJsonLd() {
     image: `${BASE_URL}/images/IMG-20260304-WA0043.jpg`,
     logo: `${BASE_URL}/favicon.ico`,
     sameAs: [
-      "https://www.facebook.com/tianaflorent.5",
-      "https://www.instagram.com/flo_tour_guide/",
+      "https://www.facebook.com/profile.php?id=61588059466832",
+      "https://www.instagram.com/pure_winde_kite_school?igsh=MWhxa25xbDk5Znk4dg==",
       `https://wa.me/261377147300`,
     ],
     hasMap: "https://maps.google.com/?q=Baie+de+Sakalava+Diego+Suarez+Madagascar",
