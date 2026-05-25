@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, MessageCircle, Plus, Minus } from "lucide-react";
 import { type Dictionary } from "@/context/translations";
 import ContactHero from "@/public/images/contact/contactHero.jpg";
 
-export default function ContactContent({ dictionary }: { dictionary: Dictionary["contact"] }) {
+export default function ContactContent({ dictionary, faqDictionary }: { dictionary: Dictionary["contact"]; faqDictionary: Dictionary["faq"] }) {
+  const faq = faqDictionary;
   const t = dictionary;
 
   const [name, setName] = useState("");
@@ -139,7 +140,32 @@ export default function ContactContent({ dictionary }: { dictionary: Dictionary[
         </div>
       </section>
 
-      {/* 3. MAP */}
+      {/* 3. FAQ ACCORDION */}
+      <section className="py-24 md:py-32 px-6 bg-background border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+            <div>
+              <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
+                FAQ
+              </span>
+              <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter">
+                {faq.pageTitle}
+              </h2>
+            </div>
+            <p className="text-muted-foreground font-light text-sm max-w-md leading-relaxed hidden md:block text-right">
+              {faq.pageDescription}
+            </p>
+          </div>
+
+          <div className="divide-y divide-border border-y border-border">
+            {faq.faqItems.map((item: { question: string; answer: string }, i: number) => (
+              <FAQAccordionItem key={i} question={item.question} answer={item.answer} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. MAP */}
       <section className="relative bg-muted/30 border-t border-border">
         <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
@@ -200,6 +226,39 @@ function InfoRow({ icon, title, subtitle, note }: { icon: React.ReactNode; title
         <p className="text-muted-foreground font-light leading-relaxed mb-1">{subtitle}</p>
         <p className="text-[10px] uppercase tracking-widest text-muted-foreground/60">{note}</p>
       </div>
+    </div>
+  );
+}
+
+function FAQAccordionItem({ question, answer, index }: { question: string; answer: string; index: number }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="group">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between gap-8 py-8 text-left cursor-pointer"
+      >
+        <div className="flex items-center gap-6">
+          <span className="text-secondary/50 font-script text-2xl min-w-8">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 className="font-serif text-lg md:text-xl text-foreground font-light tracking-tight group-hover:text-secondary transition-colors">
+            {question}
+          </h3>
+        </div>
+        <div className="text-secondary shrink-0">
+          {open ? <Minus size={18} strokeWidth={1} /> : <Plus size={18} strokeWidth={1} />}
+        </div>
+      </button>
+      {open && (
+        <div className="pb-8 pl-14 pr-8">
+          <p className="text-muted-foreground font-light leading-relaxed max-w-2xl">
+            {answer}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

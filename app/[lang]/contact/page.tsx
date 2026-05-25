@@ -48,5 +48,5 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
   const { lang } = await params;
   const dict = getDictionary(lang);
 
-  return <ContactContent dictionary={dict.contact} />;
+  return <ContactContent dictionary={dict.contact} faqDictionary={dict.faq} />;
 }
