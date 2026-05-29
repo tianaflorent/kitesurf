@@ -221,7 +221,7 @@
     scroll-behavior: smooth;
   }
   
-  /* Applique la police moderne (Outfit) à tous les titres par défaut */
+  /* Applique la police moderne (Plus Jakarta Sans) à tous les titres par défaut */
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-medium tracking-tight;
   }
