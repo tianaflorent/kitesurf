@@ -48,10 +48,10 @@ function HeroSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
       </div>
 
       <div className="relative z-10 flex flex-col items-start text-left px-6 lg:px-12 w-full max-w-7xl mx-auto">
-        <span className="font-script text-4xl md:text-6xl text-secondary/90 mb-6 font-light transform -rotate-2 drop-shadow-sm">
+        <span className="font-script text-4xl md:text-6xl text-white mb-6 font-light transform -rotate-2 drop-shadow-md">
           {t.heroTagline}
         </span>
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading text-white tracking-tight leading-[1.1] animate-slide-in-left drop-shadow-lg font-light  max-w-3xl">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading text-white tracking-tight leading-[1.1] animate-slide-in-left drop-shadow-lg  max-w-3xl">
           {t.heroTitle}
         </h1>
         <p className="mt-8 text-lg md:text-xl text-white/80 max-w-xl font-sans font-light tracking-wide leading-relaxed">

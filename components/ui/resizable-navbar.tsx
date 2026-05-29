@@ -120,7 +120,7 @@ export const NavItems = ({ items, pathname, className, onItemClick }: NavItemsPr
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "hidden flex-1 flex-row items-center justify-center space-x-10 text-xs uppercase tracking-[0.2em] font-medium lg:flex",
+        "hidden flex-1 flex-row items-center justify-center space-x-10 text-sm uppercase tracking-wider font-medium lg:flex",
         className,
       )}
     >
@@ -134,7 +134,7 @@ export const NavItems = ({ items, pathname, className, onItemClick }: NavItemsPr
             onClick={onItemClick}
             className={cn(
               "relative px-2 py-2 transition-colors duration-300",
-              isActive ? "text-secondary font-medium" : "hover:text-secondary"
+              isActive ? "text-primary font-medium" : "hover:text-primary"
             )}
             key={`link-${idx}`}
             href={item.link}
@@ -142,7 +142,7 @@ export const NavItems = ({ items, pathname, className, onItemClick }: NavItemsPr
             {showUnderline && (
               <motion.div
                 layoutId="active-nav-link"
-                className="absolute -bottom-1 left-0 right-0 h-[1px] bg-secondary"
+                className="absolute -bottom-1 left-0 right-0 h-[1px] bg-primary"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
