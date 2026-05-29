@@ -61,7 +61,7 @@ function HeroSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
           <Button
             asChild
             size="lg"
-            className="rounded-none text-xs md:text-sm px-8 py-6 uppercase tracking-widest bg-primary text-primary-foreground hover:bg-primary/90 transition-all border border-primary"
+            className="text-xs md:text-sm px-8 py-6 uppercase tracking-widest bg-primary text-primary-foreground hover:bg-primary/90 transition-all border border-primary"
           >
             <Link href={`/${lang}/reservation`}>{t.bookButton}</Link>
           </Button>
@@ -69,7 +69,7 @@ function HeroSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
             asChild
             variant="outline"
             size="lg"
-            className="rounded-none text-xs md:text-sm px-8 py-6 uppercase tracking-widest bg-transparent text-white border-white/40 hover:bg-white hover:text-black transition-all"
+            className="text-xs md:text-sm px-8 py-6 uppercase tracking-widest bg-transparent text-white border-white/40 hover:bg-white hover:text-black transition-all"
           >
             <Link href={`/${lang}/cours`}>{t.coursesButton}</Link>
           </Button>
@@ -118,7 +118,7 @@ function LocationSection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
             asChild
             variant="outline"
             size="lg"
-            className="rounded-none uppercase tracking-widest text-xs px-8 py-6 border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
+            className="uppercase tracking-widest text-xs px-8 py-6 border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
           >
             <Link href={`/${lang}/contact`}>{t.discoverSanctuary}</Link>
           </Button>
@@ -181,7 +181,7 @@ function CommunitySection({ t, lang }: { t: HomeDictionary; lang: Locale }) {
         <Button
           asChild
           size="lg"
-          className="rounded-none bg-secondary text-secondary-foreground hover:bg-secondary/90 uppercase tracking-[0.2em] px-12 py-8 text-sm transition-all border-none"
+          className="bg-secondary text-secondary-foreground hover:bg-secondary/90 uppercase tracking-[0.2em] px-12 py-8 text-sm transition-all border-none"
         >
           <Link href={`/${lang}/contact`}>{t.bookNow}</Link>
         </Button>

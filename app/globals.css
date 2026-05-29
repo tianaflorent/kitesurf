@@ -50,7 +50,7 @@
    THEME TAILWIND & SHADCN
 ========================================= */
 @theme inline {
-  --font-serif: var(--font-serif);
+  --font-heading: var(--font-heading);
   --font-sans: var(--font-sans);
   --font-script: var(--font-script);
   
@@ -110,8 +110,8 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.04 250);
 
-  /* Primary : Bleu Marine riche (Élégance, Mer profonde) */
-  --primary: oklch(0.30 0.06 250);
+  /* Primary : Bleu Océan Vif (Frais, Énergique, Plus Clair) */
+  --primary: oklch(0.58 0.16 240);
   --primary-foreground: oklch(0.99 0.01 90);
 
   /* Secondary : Sable / Champagne Doré (Le Luxe subtil) */
@@ -136,8 +136,8 @@
   /* Focus ring : Sable doré */
   --ring: oklch(0.86 0.05 85);
 
-  /* RADIUS : 0 pour un côté "Magazine / Luxe" aux bords francs */
-  --radius: 0rem; 
+  /* RADIUS : Style entièrement arrondi pour un look très moderne et doux */
+  --radius: 1rem;
 
   /* Graphiques */
   --chart-1: oklch(0.30 0.06 250); /* Bleu profond */
@@ -221,8 +221,8 @@
     scroll-behavior: smooth;
   }
   
-  /* Applique la police Serif luxueuse à tous les titres par défaut */
+  /* Applique la police moderne (Outfit) à tous les titres par défaut */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-light tracking-tight;
+    @apply font-heading font-medium tracking-tight;
   }
 }
