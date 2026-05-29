@@ -17,7 +17,7 @@ export default function AnimatedLogo() {
         />
       </div>
 
-      <span className="font-serif font-medium flex text-lg md:text-xl tracking-widest uppercase transition-colors duration-500">
+      <span className="font-heading font-medium flex text-lg md:text-xl tracking-widest uppercase transition-colors duration-500">
         {text.split("").map((letter, index) => (
           <span
             key={index}

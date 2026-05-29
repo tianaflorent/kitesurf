@@ -82,7 +82,7 @@ export default function Navbar() {
                 as={Link} 
                 href={`/${lang}/reservation`} 
                 variant="primary" 
-                className="rounded-none bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-light uppercase tracking-[0.15em] text-xs px-6 py-3"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-light uppercase tracking-[0.15em] text-xs px-6 py-3"
               >
                 {lang === "fr" ? "Réserver" : "Book"}
               </NavbarButton>
@@ -132,7 +132,7 @@ export default function Navbar() {
                   href={`/${lang}/reservation`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   variant="primary"
-                  className="w-full rounded-none bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-light uppercase tracking-widest py-4"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-light uppercase tracking-widest py-4"
                 >
                   {lang === "fr" ? "Réserver" : "Book"}
                 </NavbarButton>
