@@ -38,7 +38,7 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
     <main className="bg-background min-h-screen">
 
       {/* 1. HERO */}
-      <section className="relative min-h-[40vh] md:min-h-[50vh] flex items-end pb-16">
+      <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-end pb-32">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/IMG-20260304-WA0043.jpg"
@@ -47,21 +47,24 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/50 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-8 pt-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-12 pt-32">
           <div className="max-w-3xl">
-            <span className="text-primary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-3 block">
-              {lang === "fr" ? "Livre d'or" : "Guestbook"}
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight leading-none mb-6">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading text-white font-extrabold tracking-tight leading-[1.1] mb-8">
               {t.allReviewsTitle}
             </h1>
-            <p className="text-lg md:text-xl text-zinc-300 font-light tracking-wide max-w-2xl">
+            <p className="text-lg md:text-xl text-white/90 font-light tracking-wide leading-relaxed max-w-xl">
               {t.allReviewsDesc}
             </p>
+          </div>
+          <div className="hidden md:flex items-center gap-6 pb-4">
+            <span className="w-12 h-1 bg-secondary rounded-full"></span>
+            <span className="text-secondary font-heading font-bold text-lg uppercase tracking-widest">
+              {lang === "fr" ? "Livre d'or" : "Guestbook"}
+            </span>
           </div>
         </div>
       </section>
