@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Star } from "lucide-react";
+import { ArrowLeft, Star, Quote } from "lucide-react";
 import { type Dictionary } from "@/context/translations";
 import { Review } from "@/lib/types";
 
@@ -38,7 +38,7 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
     <main className="bg-background min-h-screen">
 
       {/* 1. HERO */}
-      <section className="relative min-h-[50vh] md:min-h-[70vh] flex items-end pb-24">
+      <section className="relative min-h-[40vh] md:min-h-[50vh] flex items-end pb-16">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/IMG-20260304-WA0043.jpg"
@@ -47,31 +47,30 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/40 mix-blend-overlay"></div>
-          <div className="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-black/50 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-12 pt-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-8 pt-32">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground font-light tracking-tighter leading-[0.9] mb-6">
+            <span className="text-primary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-3 block">
+              {lang === "fr" ? "Livre d'or" : "Guestbook"}
+            </span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight leading-none mb-6">
               {t.allReviewsTitle}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground font-light tracking-wide max-w-xl">
+            <p className="text-lg md:text-xl text-zinc-300 font-light tracking-wide max-w-2xl">
               {t.allReviewsDesc}
             </p>
-          </div>
-          <div className="hidden md:flex items-center gap-6 pb-4">
-            <span className="w-16 h-px bg-secondary"></span>
-            <span className="text-secondary font-script text-3xl">Avis</span>
           </div>
         </div>
       </section>
 
       {/* 2. AVERAGE RATING */}
-      <section className="py-16 md:py-20 px-6 bg-muted/30 border-y border-border">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
-          <div className="flex items-center gap-8">
-            <span className="text-7xl md:text-8xl font-serif text-foreground font-light tracking-tighter leading-none">
+      <section className="py-12 px-6 bg-card border-y border-border">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-6">
+            <span className="text-6xl md:text-7xl font-heading font-bold text-foreground tracking-tight leading-none">
               {average.toFixed(1)}
             </span>
             <div>
@@ -79,8 +78,8 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star
                     key={star}
-                    size={20}
-                    className={`${Math.round(average) >= star ? "text-secondary fill-secondary" : "text-border"}`}
+                    size={18}
+                    className={`${Math.round(average) >= star ? "text-amber-400 fill-amber-400" : "text-muted fill-muted"}`}
                   />
                 ))}
               </div>
@@ -89,8 +88,8 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
               </p>
             </div>
           </div>
-          <div className="hidden md:block">
-            <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold">
+          <div className="text-center sm:text-right">
+            <span className="text-primary font-sans uppercase tracking-[0.2em] text-xs font-semibold">
               {t.averageRating}
             </span>
           </div>
@@ -98,12 +97,12 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
       </section>
 
       {/* 3. REVIEWS GRID */}
-      <section className="py-24 md:py-32 px-6 bg-background">
+      <section className="py-20 md:py-28 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="text-center">
-                <div className="w-12 h-12 border border-border border-t-secondary animate-spin mx-auto mb-6"></div>
+                <div className="w-10 h-10 border-2 border-muted border-t-primary rounded-full animate-spin mx-auto mb-6"></div>
                 <p className="text-muted-foreground font-light uppercase tracking-widest text-xs">
                   {lang === "fr" ? "Chargement..." : "Loading..."}
                 </p>
@@ -111,10 +110,10 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
             </div>
           ) : reviews.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-muted-foreground font-serif text-2xl font-light">{t.noReviews}</p>
+              <p className="text-muted-foreground font-heading text-xl font-light">{t.noReviews}</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {reviews.map((review) => (
                 <EditorialReviewCard key={review.id} review={review} />
               ))}
@@ -122,10 +121,10 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
           )}
 
           {/* BACK LINK */}
-          <div className="mt-20 pt-16 border-t border-border">
+          <div className="mt-20 pt-12 border-t border-border">
             <Link href={`/${lang}`}
-              className="inline-flex items-center gap-4 text-foreground font-sans uppercase tracking-[0.2em] text-xs font-light hover:text-secondary transition-colors group">
-              <ArrowLeft size={16} strokeWidth={1} className="group-hover:-translate-x-1 transition-transform" />
+              className="inline-flex items-center gap-4 text-foreground font-sans uppercase tracking-[0.2em] text-xs font-semibold hover:text-primary transition-colors group">
+              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
               {t.backHome}
             </Link>
           </div>
@@ -137,10 +136,11 @@ export default function TemoignagesContent({ dictionary, lang }: { dictionary: D
 }
 
 /**
- * Editorial-style review card — replaces the old rounded shadow card.
+ * Editorial-style review card — matches the guestbook cards on home page.
  */
-function EditorialReviewCard({ review }: { review: Pick<Review, "id" | "name" | "comment" | "rating" | "createdAt"> }) {
-  const initial = review.name.charAt(0).toUpperCase();
+function EditorialReviewCard({ review }: { review: Pick<Review, "id" | "name" | "firstName" | "comment" | "rating" | "createdAt"> }) {
+  const authorName = review.name || review.firstName || "Anonymous";
+  const initial = authorName.charAt(0).toUpperCase();
   const formattedDate = new Date(review.createdAt).toLocaleDateString("fr-FR", {
     year: "numeric",
     month: "long",
@@ -148,34 +148,40 @@ function EditorialReviewCard({ review }: { review: Pick<Review, "id" | "name" | 
   });
 
   return (
-    <div className="bg-background p-8 md:p-10 flex flex-col group">
-      {/* Stars */}
-      <div className="flex gap-1 mb-8">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <Star
-            key={star}
-            size={14}
-            className={`${review.rating >= star ? "text-secondary fill-secondary" : "text-border"}`}
-          />
-        ))}
-      </div>
+    <div className="bg-card border border-border rounded-2xl p-8 hover:border-primary/30 hover:shadow-xl transition-all duration-300 relative group flex flex-col justify-between">
+      {/* Decorative Quote mark in background */}
+      <Quote className="absolute top-6 right-6 size-12 text-primary/8 z-0 transition-transform group-hover:-translate-y-1 group-hover:text-primary/15 duration-500" />
 
-      {/* Quote */}
-      <p className="text-foreground font-serif text-lg md:text-xl font-light leading-relaxed flex-1 mb-10">
-        &ldquo;{review.comment}&rdquo;
-      </p>
-
-      {/* Author */}
-      <div className="flex items-center gap-4 pt-6 border-t border-border">
-        <div className="w-10 h-10 bg-muted flex items-center justify-center text-foreground font-serif text-sm">
-          {initial}
-        </div>
+      <div className="relative z-10 flex flex-col h-full justify-between gap-6">
         <div>
-          <h3 className="font-sans text-sm text-foreground font-medium tracking-wide">{review.name}</h3>
-          <p className="text-[10px] uppercase tracking-widest text-muted-foreground/60 mt-0.5">{formattedDate}</p>
+          {/* Stars */}
+          <div className="flex gap-1 mb-6">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Star
+                key={star}
+                size={14}
+                className={`${review.rating >= star ? "text-amber-400 fill-amber-400" : "text-muted fill-muted"}`}
+              />
+            ))}
+          </div>
+
+          {/* Quote text */}
+          <p className="text-foreground/85 font-sans text-base md:text-lg font-light leading-relaxed mb-6">
+            &ldquo;{review.comment}&rdquo;
+          </p>
+        </div>
+
+        {/* Author details */}
+        <div className="border-t border-border pt-4 mt-auto flex items-center gap-4">
+          <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-heading font-semibold text-sm shrink-0">
+            {initial}
+          </div>
+          <div>
+            <h3 className="font-heading text-sm text-foreground font-semibold tracking-wide">{authorName}</h3>
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/60 mt-0.5">{formattedDate}</p>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
