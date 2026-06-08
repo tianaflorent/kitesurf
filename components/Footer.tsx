@@ -25,7 +25,7 @@ export default function Footer() {
     <footer className="relative bg-zinc-950 text-zinc-100 pt-24 pb-12 overflow-hidden border-t border-zinc-900">
       {/* Arrière-plan subtil */}
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-[0.25] mix-blend-luminosity grayscale"
+        className="absolute inset-0 bg-cover bg-center opacity-[0.35] mix-blend-luminosity grayscale"
         style={{ backgroundImage: `url('/images/IMG-20260304-WA0021.jpg')` }}
       />
       
@@ -35,7 +35,7 @@ export default function Footer() {
           {/* BRANDING */}
           <div className="md:col-span-5 lg:col-span-5 flex flex-col items-center md:items-start text-center md:text-left md:pr-8">
             <h2 className="font-heading text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight mb-6 break-words xl:break-normal text-white">PUREWINDMADAKITESCHOOL</h2>
-            <p className="text-zinc-400 font-light leading-relaxed max-w-sm">
+            <p className="text-zinc-300 font-light leading-relaxed max-w-sm">
               {lang === 'fr' 
                 ? "L'excellence du kitesurf dans le sanctuaire de la Baie de Sakalava, Madagascar." 
                 : "The excellence of kitesurfing in the sanctuary of Sakalava Bay, Madagascar."}
@@ -51,7 +51,7 @@ export default function Footer() {
             >
               {lang === "fr" ? "Contact" : "Contact"}
             </h3>
-            <ul className="space-y-5 text-zinc-400 font-light">
+            <ul className="space-y-5 text-zinc-300 font-light">
               <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
                 <Phone size={18} className="text-secondary/70 shrink-0" />
                 <a href="tel:+261377147300">+261 37 71 473 00</a>
@@ -75,13 +75,13 @@ export default function Footer() {
               {lang === "fr" ? "Suivez-nous" : "Follow us"}
             </h3>
             <div className="flex items-center justify-center md:justify-start gap-4">
-              <a href="https://www.facebook.com/profile.php?id=61588059466832" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-foreground hover:bg-secondary hover:text-primary-foreground hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md">
+              <a href="https://www.facebook.com/profile.php?id=61588059466832" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 flex items-center justify-center text-zinc-100 hover:bg-secondary hover:text-primary-foreground hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md">
                 <FaFacebookF size={16} />
               </a>
-              <a href="https://www.instagram.com/pure_winde_kite_school?igsh=MWhxa25xbDk5Znk4dg==" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-foreground hover:bg-secondary hover:text-primary-foreground hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md">
+              <a href="https://www.instagram.com/pure_winde_kite_school?igsh=MWhxa25xbDk5Znk4dg==" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 flex items-center justify-center text-zinc-100 hover:bg-secondary hover:text-primary-foreground hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md">
                 <FaInstagram size={18} />
               </a>
-              <a href="https://wa.me/261377147300" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-foreground hover:bg-secondary hover:text-primary-foreground hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md">
+              <a href="https://wa.me/261377147300" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 flex items-center justify-center text-zinc-100 hover:bg-secondary hover:text-primary-foreground hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md">
                 <FaWhatsapp size={18} />
               </a>
             </div>
@@ -89,7 +89,7 @@ export default function Footer() {
         </div>
 
         {/* COPYRIGHT */}
-        <div className="pt-8 border-t border-zinc-800 flex flex-col items-center justify-center gap-6 text-sm text-zinc-500 font-light tracking-wide">
+        <div className="pt-8 border-t border-zinc-800 flex flex-col items-center justify-center gap-6 text-sm text-zinc-400 font-light tracking-wide">
           <p className="text-center">
             © {new Date().getFullYear()} Pure Wind Kite School. <br className="md:hidden" />
             {lang === "fr" ? "Tous droits réservés." : "All rights reserved."}
