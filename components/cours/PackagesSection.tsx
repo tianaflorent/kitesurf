@@ -58,14 +58,14 @@ export default function PackagesSection({ t, lang }: PackagesSectionProps) {
         <div className="grid lg:grid-cols-3 gap-16 lg:gap-8">
           {packages.map((pkg) => (
             <div key={pkg.key} className={pkg.wrapperClassName}>
-              <div className="mb-8 relative aspect-4/3 overflow-hidden rounded-2xl shadow-md">
+              <Link href={`/${lang}/reservation`} className="mb-8 relative aspect-4/3 overflow-hidden rounded-2xl shadow-md block cursor-pointer">
                 <Image
                   src={pkg.imageSrc}
                   fill
                   alt={pkg.imageAlt}
                   className="object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                 />
-              </div>
+              </Link>
               <div className="flex-1 flex flex-col">
                 <span className="text-secondary/35 font-heading font-extrabold text-3xl mb-2 block">{pkg.index}</span>
                 <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground tracking-tight mb-4">{pkg.title}</h2>
