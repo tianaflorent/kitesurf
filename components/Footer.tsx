@@ -22,20 +22,20 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-background text-foreground pt-24 pb-12 overflow-hidden border-t border-border">
+    <footer className="relative bg-zinc-950 text-zinc-100 pt-24 pb-12 overflow-hidden border-t border-zinc-900">
       {/* Arrière-plan subtil */}
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-[0.03] mix-blend-luminosity grayscale"
+        className="absolute inset-0 bg-cover bg-center opacity-[0.25] mix-blend-luminosity grayscale"
         style={{ backgroundImage: `url('/images/IMG-20260304-WA0021.jpg')` }}
       />
       
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-24">
           
           {/* BRANDING */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h2 className="font-heading text-3xl font-extrabold tracking-tight mb-6">PURE WIND KITE</h2>
-            <p className="text-muted-foreground font-light leading-relaxed max-w-sm">
+          <div className="md:col-span-5 lg:col-span-5 flex flex-col items-center md:items-start text-center md:text-left md:pr-8">
+            <h2 className="font-heading text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight mb-6 break-words xl:break-normal text-white">PUREWINDMADAKITESCHOOL</h2>
+            <p className="text-zinc-400 font-light leading-relaxed max-w-sm">
               {lang === 'fr' 
                 ? "L'excellence du kitesurf dans le sanctuaire de la Baie de Sakalava, Madagascar." 
                 : "The excellence of kitesurfing in the sanctuary of Sakalava Bay, Madagascar."}
@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
 
           {/* CONTACT */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          <div className="md:col-span-4 lg:col-span-4 flex flex-col items-center md:items-start text-center md:text-left">
             <h3 
               className="font-heading uppercase tracking-widest text-sm text-secondary font-bold mb-8 cursor-pointer select-none"
               onClick={handleContactClick}
@@ -51,16 +51,16 @@ export default function Footer() {
             >
               {lang === "fr" ? "Contact" : "Contact"}
             </h3>
-            <ul className="space-y-5 text-muted-foreground font-light">
-              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-foreground transition-colors">
+            <ul className="space-y-5 text-zinc-400 font-light">
+              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
                 <Phone size={18} className="text-secondary/70 shrink-0" />
                 <a href="tel:+261377147300">+261 37 71 473 00</a>
               </li>
-              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-foreground transition-colors">
+              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
                 <Mail size={18} className="text-secondary/70 shrink-0" />
                 <a href="mailto:purewindmadakiteschool@gmail.com">purewindmadakiteschool@gmail.com</a>
               </li>
-              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-foreground transition-colors">
+              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
                 <MapPin size={18} className="text-secondary/70 shrink-0" />
                 <a href="https://www.google.com/maps/place/Baie+de+Sakalava/@-12.2275,49.3775,15z" target="_blank" rel="noopener noreferrer">
                   {lang === "fr" ? "Baie de Sakalava, Madagascar" : "Sakalava Bay, Madagascar"}
@@ -70,7 +70,7 @@ export default function Footer() {
           </div>
 
           {/* SOCIALS */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="md:col-span-3 lg:col-span-3 flex flex-col items-center md:items-start">
             <h3 className="font-heading uppercase tracking-widest text-sm text-secondary font-bold mb-8">
               {lang === "fr" ? "Suivez-nous" : "Follow us"}
             </h3>
@@ -89,7 +89,7 @@ export default function Footer() {
         </div>
 
         {/* COPYRIGHT */}
-        <div className="pt-8 border-t border-border flex flex-col items-center justify-center gap-6 text-sm text-muted-foreground/60 font-light tracking-wide">
+        <div className="pt-8 border-t border-zinc-800 flex flex-col items-center justify-center gap-6 text-sm text-zinc-500 font-light tracking-wide">
           <p className="text-center">
             © {new Date().getFullYear()} Pure Wind Kite School. <br className="md:hidden" />
             {lang === "fr" ? "Tous droits réservés." : "All rights reserved."}
