@@ -58,7 +58,7 @@ export default function PackagesSection({ t, lang }: PackagesSectionProps) {
         <div className="grid lg:grid-cols-3 gap-16 lg:gap-8">
           {packages.map((pkg) => (
             <div key={pkg.key} className={pkg.wrapperClassName}>
-              <Link href={`/${lang}/reservation`} className="mb-8 relative aspect-4/3 overflow-hidden rounded-2xl shadow-md block cursor-pointer">
+              <Link href={`/${lang}/reservation?level=${pkg.key}`} className="mb-8 relative aspect-4/3 overflow-hidden rounded-2xl shadow-md block cursor-pointer">
                 <Image
                   src={pkg.imageSrc}
                   fill
@@ -77,7 +77,7 @@ export default function PackagesSection({ t, lang }: PackagesSectionProps) {
                     </p>
                   ))}
                 </div>
-                <Link href={`/${lang}/reservation`} className={pkg.ctaClassName}>
+                <Link href={`/${lang}/reservation?level=${pkg.key}`} className={pkg.ctaClassName}>
                   {t.reserve}
                 </Link>
               </div>

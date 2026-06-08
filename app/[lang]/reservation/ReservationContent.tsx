@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {  ArrowLeft } from "lucide-react";
@@ -8,11 +9,20 @@ import { type Dictionary } from "@/context/translations";
 
 export default function ReservationContent({ dictionary, lang }: { dictionary: Dictionary["reservation"], lang: string }) {
   const t = dictionary;
+  const searchParams = useSearchParams();
+
+  // Map URL key (beginner/intermediate/advanced) → translated label
+  const levelFromUrl = useMemo(() => {
+    const key = searchParams.get("level");
+    if (key === "intermediate") return t.intermediate;
+    if (key === "advanced") return t.advanced;
+    return t.beginner; // default
+  }, [searchParams, t]);
 
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
-  const [niveau, setNiveau] = useState<string>(t.beginner);
+  const [niveau, setNiveau] = useState<string>(() => levelFromUrl);
   const [date, setDate] = useState("");
   const [nombre, setNombre] = useState(1);
   const [loading, setLoading] = useState(false);

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import ReservationContent from "./ReservationContent";
 import { getDictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/i18n-config";
@@ -48,5 +49,9 @@ export default async function ReservationPage({ params }: { params: Promise<{ la
   const { lang } = await params;
   const dict = getDictionary(lang);
 
-  return <ReservationContent dictionary={dict.reservation} lang={lang} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ReservationContent dictionary={dict.reservation} lang={lang} />
+    </Suspense>
+  );
 }
