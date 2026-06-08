@@ -3,6 +3,7 @@ import CoursContent from "./CoursContent";
 import { CourseListJsonLd } from "../../components/JsonLd";
 import { getDictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/i18n-config";
+import { SITE_URL } from "@/lib/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Cours de kitesurf pour tous niveaux à la Baie de Sakalava, Diego Suarez. Matériel certifié fourni, instructeurs expérimentés."
         : "Kitesurf courses for all levels in Sakalava Bay, Diego Suarez. Certified equipment provided, experienced instructors.",
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/cours`,
+      url: `${SITE_URL}/${lang}/cours`,
       images: [
         {
           url: "/images/IMG-20260304-WA0026.jpg",
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/cours`,
+      canonical: `${SITE_URL}/${lang}/cours`,
     },
   };
 }

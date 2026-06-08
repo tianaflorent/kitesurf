@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/constants";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
+const BASE_URL = SITE_URL;
 const locales = ["fr", "en"];
 const routes = [
   { path: "", priority: 1.0, changeFrequency: "weekly" as const },

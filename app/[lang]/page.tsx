@@ -3,6 +3,7 @@ import HomeContent from "./HomeContent";
 import { LocalBusinessJsonLd, FAQJsonLd } from "../components/JsonLd";
 import { getDictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/i18n-config";
+import { SITE_URL } from "@/lib/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr 
         ? "Découvrez le kitesurf dans les eaux cristallines de la Baie de Sakalava, Diego Suarez. Cours pour tous niveaux, matériel certifié fourni."
         : "Discover kitesurfing in the crystal clear waters of Sakalava Bay, Diego Suarez. Courses for all levels, certified equipment provided.",
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}`,
+      url: `${SITE_URL}/${lang}`,
       images: [
         {
           url: "/images/IMG-20260304-WA0043.jpg",
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}`,
+      canonical: `${SITE_URL}/${lang}`,
     },
   };
 }

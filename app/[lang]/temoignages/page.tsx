@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import TemoignagesContent from "./TemoignagesContent";
 import { getDictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/i18n-config";
+import { SITE_URL } from "@/lib/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Découvrez les expériences de nos élèves à la Baie de Sakalava. Plus de 50 formés, avis 5 étoiles."
         : "Discover the experiences of our students in Sakalava Bay. Over 50 trained, 5 star reviews.",
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/temoignages`,
+      url: `${SITE_URL}/${lang}/temoignages`,
       images: [
         {
           url: "/images/IMG-20260304-WA0043.jpg",
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/temoignages`,
+      canonical: `${SITE_URL}/${lang}/temoignages`,
     },
   };
 }

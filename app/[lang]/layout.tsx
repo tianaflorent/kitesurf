@@ -4,11 +4,12 @@ import ClientLayout from "../components/ClientLayout";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { i18n, type Locale } from "@/i18n-config";
+import { SITE_URL } from "@/lib/constants";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], variable: '--font-heading' });
 const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600'], variable: '--font-sans' });
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
+const BASE_URL = SITE_URL;
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
