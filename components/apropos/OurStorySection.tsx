@@ -13,7 +13,7 @@ export default function OurStorySection({ t }: OurStorySectionProps) {
     <section className="py-24 md:py-32 px-6 bg-background">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         <div className="w-full lg:w-1/2 relative">
-          <div className="relative aspect-4/5 w-full">
+          <div className="relative aspect-4/5 w-full rounded-2xl overflow-hidden shadow-lg">
             <Image
               src="/images/IMG-20260304-WA0037.jpg"
               alt={t.ourStoryImageAlt}
@@ -28,7 +28,7 @@ export default function OurStorySection({ t }: OurStorySectionProps) {
           <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
             Origines
           </span>
-          <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter mb-10">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground tracking-tight mb-10">
             {t.ourStoryTitle}
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed mb-8">

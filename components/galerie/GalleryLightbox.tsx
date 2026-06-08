@@ -74,7 +74,7 @@ export default function GalleryLightbox({
 
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 md:top-0 md:right-0 z-20 w-12 h-12 bg-background/50 backdrop-blur-md flex items-center justify-center hover:bg-foreground hover:text-background transition-colors pointer-events-auto"
+              className="absolute top-4 right-4 md:top-0 md:right-0 z-20 w-12 h-12 bg-background/50 backdrop-blur-md flex items-center justify-center rounded-full hover:bg-foreground hover:text-background transition-colors pointer-events-auto"
               aria-label="Fermer"
             >
               <X size={24} strokeWidth={1} />
@@ -84,14 +84,14 @@ export default function GalleryLightbox({
               <>
                 <button
                   onClick={onPrevious}
-                  className="absolute left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-background/50 backdrop-blur-md flex items-center justify-center hover:bg-foreground hover:text-background transition-colors pointer-events-auto"
+                  className="absolute left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-background/50 backdrop-blur-md flex items-center justify-center rounded-full hover:bg-foreground hover:text-background transition-colors pointer-events-auto"
                   aria-label="Image précédente"
                 >
                   <ChevronLeft size={24} strokeWidth={1} />
                 </button>
                 <button
                   onClick={onNext}
-                  className="absolute right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-background/50 backdrop-blur-md flex items-center justify-center hover:bg-foreground hover:text-background transition-colors pointer-events-auto"
+                  className="absolute right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-background/50 backdrop-blur-md flex items-center justify-center rounded-full hover:bg-foreground hover:text-background transition-colors pointer-events-auto"
                   aria-label="Image suivante"
                 >
                   <ChevronRight size={24} strokeWidth={1} />
@@ -100,7 +100,7 @@ export default function GalleryLightbox({
             )}
 
             <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-auto">
-              <span className="inline-block bg-background/50 backdrop-blur-md px-4 py-2 text-xs uppercase tracking-widest text-foreground font-light">
+              <span className="inline-block bg-background/80 backdrop-blur-md px-6 py-2 rounded-full text-xs uppercase tracking-[0.15em] font-heading font-semibold text-foreground shadow-lg">
                 {selectedIndex + 1} / {items.length} — {currentItem.category}
               </span>
             </div>

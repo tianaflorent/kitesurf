@@ -22,10 +22,10 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#050505] text-white pt-24 pb-12 overflow-hidden border-t border-white/10">
+    <footer className="relative bg-background text-foreground pt-24 pb-12 overflow-hidden border-t border-border">
       {/* Arrière-plan subtil */}
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-[0.07] mix-blend-luminosity grayscale"
+        className="absolute inset-0 bg-cover bg-center opacity-[0.03] mix-blend-luminosity grayscale"
         style={{ backgroundImage: `url('/images/IMG-20260304-WA0021.jpg')` }}
       />
       
@@ -34,8 +34,8 @@ export default function Footer() {
           
           {/* BRANDING */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h2 className="font-serif text-3xl font-light tracking-widest mb-6">PURE WIND KITE</h2>
-            <p className="text-white/50 font-light leading-relaxed max-w-sm">
+            <h2 className="font-heading text-3xl font-extrabold tracking-tight mb-6">PURE WIND KITE</h2>
+            <p className="text-muted-foreground font-light leading-relaxed max-w-sm">
               {lang === 'fr' 
                 ? "L'excellence du kitesurf dans le sanctuaire de la Baie de Sakalava, Madagascar." 
                 : "The excellence of kitesurfing in the sanctuary of Sakalava Bay, Madagascar."}
@@ -45,22 +45,22 @@ export default function Footer() {
           {/* CONTACT */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h3 
-              className="font-sans uppercase tracking-[0.2em] text-sm text-secondary font-medium mb-8 cursor-pointer select-none"
+              className="font-heading uppercase tracking-widest text-sm text-secondary font-bold mb-8 cursor-pointer select-none"
               onClick={handleContactClick}
               title={lang === "fr" ? "Cliquez 5 fois pour accès Admin" : "Click 5 times for Admin access"}
             >
               {lang === "fr" ? "Contact" : "Contact"}
             </h3>
-            <ul className="space-y-5 text-white/70 font-light">
-              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
+            <ul className="space-y-5 text-muted-foreground font-light">
+              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-foreground transition-colors">
                 <Phone size={18} className="text-secondary/70 shrink-0" />
                 <a href="tel:+261377147300">+261 37 71 473 00</a>
               </li>
-              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
+              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-foreground transition-colors">
                 <Mail size={18} className="text-secondary/70 shrink-0" />
                 <a href="mailto:purewindmadakiteschool@gmail.com">purewindmadakiteschool@gmail.com</a>
               </li>
-              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-white transition-colors">
+              <li className="flex items-center justify-center md:justify-start gap-4 hover:text-foreground transition-colors">
                 <MapPin size={18} className="text-secondary/70 shrink-0" />
                 <a href="https://www.google.com/maps/place/Baie+de+Sakalava/@-12.2275,49.3775,15z" target="_blank" rel="noopener noreferrer">
                   {lang === "fr" ? "Baie de Sakalava, Madagascar" : "Sakalava Bay, Madagascar"}
@@ -71,17 +71,17 @@ export default function Footer() {
 
           {/* SOCIALS */}
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="font-sans uppercase tracking-[0.2em] text-sm text-secondary font-medium mb-8">
+            <h3 className="font-heading uppercase tracking-widest text-sm text-secondary font-bold mb-8">
               {lang === "fr" ? "Suivez-nous" : "Follow us"}
             </h3>
             <div className="flex items-center justify-center md:justify-start gap-4">
-              <a href="https://www.facebook.com/profile.php?id=61588059466832" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
+              <a href="https://www.facebook.com/profile.php?id=61588059466832" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-foreground hover:bg-secondary hover:text-primary-foreground hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md">
                 <FaFacebookF size={16} />
               </a>
-              <a href="https://www.instagram.com/pure_winde_kite_school?igsh=MWhxa25xbDk5Znk4dg==" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
+              <a href="https://www.instagram.com/pure_winde_kite_school?igsh=MWhxa25xbDk5Znk4dg==" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-foreground hover:bg-secondary hover:text-primary-foreground hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md">
                 <FaInstagram size={18} />
               </a>
-              <a href="https://wa.me/261377147300" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:bg-secondary hover:text-black hover:border-secondary transition-all duration-500">
+              <a href="https://wa.me/261377147300" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-foreground hover:bg-secondary hover:text-primary-foreground hover:border-secondary transition-all duration-300 shadow-sm hover:shadow-md">
                 <FaWhatsapp size={18} />
               </a>
             </div>
@@ -89,7 +89,7 @@ export default function Footer() {
         </div>
 
         {/* COPYRIGHT */}
-        <div className="pt-8 border-t border-white/10 flex flex-col items-center justify-center gap-6 text-sm text-white/40 font-light tracking-wide">
+        <div className="pt-8 border-t border-border flex flex-col items-center justify-center gap-6 text-sm text-muted-foreground/60 font-light tracking-wide">
           <p className="text-center">
             © {new Date().getFullYear()} Pure Wind Kite School. <br className="md:hidden" />
             {lang === "fr" ? "Tous droits réservés." : "All rights reserved."}

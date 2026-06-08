@@ -12,8 +12,8 @@ interface GalleryGridProps {
  */
 export default function GalleryGrid({ items, onImageClick }: GalleryGridProps) {
   return (
-    <section className="bg-background pb-32">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-border">
+    <section className="bg-background pb-32 px-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden shadow-sm">
         <AnimatePresence mode="popLayout">
           {items.map((item, index) => (
             <motion.div
@@ -24,7 +24,7 @@ export default function GalleryGrid({ items, onImageClick }: GalleryGridProps) {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4 }}
               onClick={() => onImageClick(index)}
-              className="bg-background group relative aspect-square md:aspect-[3/4] overflow-hidden cursor-pointer"
+              className="bg-background group relative aspect-square md:aspect-3/4 overflow-hidden cursor-pointer"
             >
               <Image
                 src={item.src}
@@ -35,10 +35,10 @@ export default function GalleryGrid({ items, onImageClick }: GalleryGridProps) {
               />
               <div className="absolute inset-0 bg-linear-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block" />
               <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 hidden md:block">
-                <span className="text-secondary font-sans uppercase tracking-[0.2em] text-[10px] font-semibold mb-2 block">
+                <span className="text-secondary font-heading uppercase tracking-[0.15em] text-[10px] font-bold mb-2 block">
                   Pure Wind
                 </span>
-                <h3 className="font-serif text-lg text-foreground font-light">{item.category}</h3>
+                <h3 className="font-heading text-xl text-foreground font-bold tracking-tight">{item.category}</h3>
               </div>
             </motion.div>
           ))}

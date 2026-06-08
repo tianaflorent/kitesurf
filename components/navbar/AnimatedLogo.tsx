@@ -7,12 +7,12 @@ export default function AnimatedLogo() {
 
   return (
     <span className="flex items-center gap-3 group">
-      <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden">
+      <div className="relative w-12 h-12 md:w-14 md:h-14">
         <Image
-          src="/images/logo.png"
+          src="/images/logo-v2.png"
           alt="Kite School Logo"
           fill
-          className="object-contain transition-transform duration-700 group-hover:scale-105"
+          className="object-contain scale-[1.7] md:scale-[2] transition-transform duration-700 group-hover:scale-[1.8] md:group-hover:scale-[2.1]"
           priority
         />
       </div>

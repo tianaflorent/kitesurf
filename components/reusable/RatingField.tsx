@@ -20,7 +20,7 @@ export default function RatingField<TFieldValues extends FieldValues>({
   const [hover, setHover] = useState(0);
 
   return (
-    <div className="flex flex-col items-center justify-center p-8 bg-muted/10 border border-border rounded-none mb-4">
+    <div className="flex flex-col items-center justify-center p-8 bg-muted/30 border border-border rounded-xl mb-4">
       <label className="text-xs font-sans uppercase tracking-[0.2em] text-foreground mb-6">
         {label}
       </label>

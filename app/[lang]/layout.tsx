@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import ClientLayout from "../components/ClientLayout";
-import { Plus_Jakarta_Sans, Inter, Great_Vibes } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { i18n, type Locale } from "@/i18n-config";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], variable: '--font-heading' });
 const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600'], variable: '--font-sans' });
-const greatVibes = Great_Vibes({ subsets: ['latin'], weight: ['400'], variable: '--font-script' });
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
 
@@ -98,7 +97,7 @@ export default async function RootLayout({
 }) {
   const { lang } = await params;
   return (
-    <html lang={lang} className={cn("font-sans", inter.variable, plusJakartaSans.variable, greatVibes.variable)}>
+    <html lang={lang} className={cn("font-sans", inter.variable, plusJakartaSans.variable)}>
       <body className="flex flex-col min-h-screen relative bg-background text-foreground selection:bg-secondary/40 selection:text-foreground">
         <ClientLayout>{children}</ClientLayout>
       </body>

@@ -10,6 +10,7 @@ interface PackagesSectionProps {
 
 /**
  * Section des packages de cours (débutant, intermédiaire, avancé).
+ * Cards concises axées sur le contenu pédagogique — les tarifs sont dans PricingSection.
  */
 export default function PackagesSection({ t, lang }: PackagesSectionProps) {
   const packages: PackageItem[] = [
@@ -21,9 +22,9 @@ export default function PackagesSection({ t, lang }: PackagesSectionProps) {
       imageAlt: "Débutant",
       title: t.beginnerTitle,
       description: t.beginnerDesc,
-      bullets: [t.beginner1, t.beginner2, t.beginner3],
+      bullets: [t.beginner1, t.beginner2, t.beginner3, t.beginner4, t.beginner5, t.beginner6],
       ctaClassName:
-        "inline-block text-center w-full uppercase tracking-widest text-xs px-8 py-5 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors",
+        "inline-block text-center w-full uppercase tracking-[0.15em] text-xs px-8 py-4 border-2 border-foreground text-foreground rounded-full font-heading font-semibold hover:bg-foreground hover:text-background transition-all active:scale-[0.98]",
     },
     {
       key: "intermediate",
@@ -33,9 +34,9 @@ export default function PackagesSection({ t, lang }: PackagesSectionProps) {
       imageAlt: "Intermédiaire",
       title: t.intermediateTitle,
       description: t.intermediateDesc,
-      bullets: [t.intermediate1, t.intermediate2, t.intermediate3, t.intermediate4],
+      bullets: [t.intermediate1, t.intermediate2, t.intermediate3, t.intermediate4, t.intermediate5, t.intermediate6],
       ctaClassName:
-        "inline-block text-center w-full uppercase tracking-widest text-xs px-8 py-5 bg-primary text-primary-foreground border border-primary hover:bg-primary/90 transition-colors",
+        "inline-block text-center w-full uppercase tracking-[0.15em] text-xs px-8 py-4 bg-primary text-primary-foreground border-2 border-primary rounded-full font-heading font-semibold hover:bg-primary/90 transition-all active:scale-[0.98]",
     },
     {
       key: "advanced",
@@ -45,9 +46,9 @@ export default function PackagesSection({ t, lang }: PackagesSectionProps) {
       imageAlt: "Avancé",
       title: t.advancedTitle,
       description: t.advancedDesc,
-      bullets: [t.advanced1, t.advanced2, t.advanced3, t.advanced4],
+      bullets: [t.advanced1, t.advanced2, t.advanced3],
       ctaClassName:
-        "inline-block text-center w-full uppercase tracking-widest text-xs px-8 py-5 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors",
+        "inline-block text-center w-full uppercase tracking-[0.15em] text-xs px-8 py-4 border-2 border-foreground text-foreground rounded-full font-heading font-semibold hover:bg-foreground hover:text-background transition-all active:scale-[0.98]",
     },
   ];
 
@@ -57,7 +58,7 @@ export default function PackagesSection({ t, lang }: PackagesSectionProps) {
         <div className="grid lg:grid-cols-3 gap-16 lg:gap-8">
           {packages.map((pkg) => (
             <div key={pkg.key} className={pkg.wrapperClassName}>
-              <div className="mb-8 relative aspect-[4/3] overflow-hidden">
+              <div className="mb-8 relative aspect-4/3 overflow-hidden rounded-2xl shadow-md">
                 <Image
                   src={pkg.imageSrc}
                   fill
@@ -66,10 +67,10 @@ export default function PackagesSection({ t, lang }: PackagesSectionProps) {
                 />
               </div>
               <div className="flex-1 flex flex-col">
-                <span className="text-secondary font-script text-4xl mb-4">{pkg.index}</span>
-                <h2 className="text-3xl font-serif text-foreground font-light tracking-tight mb-4">{pkg.title}</h2>
-                <p className="text-muted-foreground font-light leading-relaxed mb-8 flex-1">{pkg.description}</p>
-                <div className="space-y-4 mb-12 border-l border-border pl-6">
+                <span className="text-secondary/35 font-heading font-extrabold text-3xl mb-2 block">{pkg.index}</span>
+                <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground tracking-tight mb-4">{pkg.title}</h2>
+                <p className="text-muted-foreground font-light leading-relaxed mb-8">{pkg.description}</p>
+                <div className="space-y-4 mb-12 border-l border-border pl-6 flex-1">
                   {pkg.bullets.map((bullet, i) => (
                     <p key={i} className="text-sm font-light text-foreground">
                       {bullet}

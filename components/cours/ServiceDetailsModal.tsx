@@ -40,11 +40,11 @@ export default function ServiceDetailsModal({
         <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
           {getServiceDetailsLabel(lang)}
         </span>
-        <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter mb-8">
+        <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground tracking-tight mb-8">
           {isExcursions ? t.excursions : t.accommodation}
         </h2>
 
-        <div className="w-12 h-px bg-primary mb-8" />
+        <div className="w-12 h-1 bg-secondary mb-8 rounded-full" />
 
         <p className="text-muted-foreground font-light leading-loose mb-12 text-lg">
           {isExcursions ? t.excursionsDesc : t.accommodationDesc}
@@ -54,7 +54,7 @@ export default function ServiceDetailsModal({
           <Link
             href={`/${lang}/contact`}
             onClick={onClose}
-            className="inline-block text-center w-full uppercase tracking-widest text-xs px-8 py-5 bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-colors"
+            className="inline-block text-center w-full uppercase tracking-[0.15em] text-xs px-8 py-4 bg-primary text-primary-foreground border-2 border-primary rounded-full font-heading font-semibold hover:bg-primary/90 transition-all active:scale-[0.98]"
           >
             {getContactToBookLabel(lang)}
           </Link>

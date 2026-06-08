@@ -1,4 +1,3 @@
-import type { Locale } from "@/i18n-config";
 import type { Dictionary } from "@/context/translations";
 
 export type ServiceKey = "excursions" | "accommodation";
@@ -9,6 +8,8 @@ export type EquipmentItem = {
   img: string;
   alt: string;
 };
+
+export type CoursDictionary = Dictionary["cours"];
 
 export type PackageItem = {
   key: "beginner" | "intermediate" | "advanced";
@@ -21,5 +22,3 @@ export type PackageItem = {
   bullets: string[];
   ctaClassName: string;
 };
-
-export type CoursDictionary = Dictionary["cours"];

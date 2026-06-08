@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import toast from "react-hot-toast";
-import { Send, User, Mail, MessageSquare } from "lucide-react";
+import { User, Mail, MessageSquare } from "lucide-react";
 import FormField from "./FormField";
 import TextInput from "./TextInput";
 import TextArea from "./TextArea";
@@ -61,11 +61,12 @@ export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
 
   return (
     <div className="w-full">
-      <div className="text-center mb-16">
-        <h3 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter">
+      <div className="text-center mb-12">
+        <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground tracking-tight">
           {t.reviewFormTitle2}
         </h3>
-        <p className="text-muted-foreground font-light text-lg mt-4 max-w-xl mx-auto">
+        <div className="w-10 h-1 bg-secondary mx-auto mt-4 mb-4 rounded-full" />
+        <p className="text-muted-foreground font-light text-base mt-3 max-w-xl mx-auto">
           {t.reviewFormSubtitle}
         </p>
       </div>
@@ -114,7 +115,6 @@ export default function ReviewForm({ t, onSuccess }: ReviewFormProps) {
           ) : (
             <>
               <span>{t.submitReviewBtn}</span>
-              <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </>
           )}
         </PrimaryButton>

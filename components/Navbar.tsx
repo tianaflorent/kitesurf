@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -9,8 +8,6 @@ import {
   NavItems,
   MobileNav,
   MobileNavHeader,
-  MobileNavToggle,
-  MobileNavMenu,
   NavbarButton,
 } from "@/components/ui/resizable-navbar";
 import AnimatedLogo from "@/components/navbar/AnimatedLogo";
@@ -33,7 +30,6 @@ export default function Navbar() {
     onLogout,
   } = useStaffUser(pathname);
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isImmersive = 
     pathname === `/${lang}` || 
     pathname === `/${lang}/` || 
@@ -96,49 +92,10 @@ export default function Navbar() {
             <Link href={`/${lang}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
               <AnimatedLogo />
             </Link>
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
-          </MobileNavHeader>
-
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
-            {navItems.map((item, idx) => {
-              const isActive = pathname === item.link;
-              return (
-                <Link
-                  key={`mobile-link-${idx}`}
-                  href={item.link}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn(
-                    "relative uppercase tracking-widest text-sm transition-colors",
-                    isActive ? "text-secondary font-medium" : "text-foreground font-light hover:text-secondary"
-                  )}
-                >
-                  <span className="block">{item.name}</span>
-                </Link>
-              );
-            })}
-            <div className="flex w-full flex-col gap-6 mt-8">
-              <div className="self-start">
-                <LanguageSwitch />
-              </div>
-              {!isStaff && (
-                <NavbarButton
-                  as={Link}
-                  href={`/${lang}/reservation`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variant="primary"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all uppercase tracking-widest py-4 font-semibold"
-                >
-                  {lang === "fr" ? "Réserver" : "Book"}
-                </NavbarButton>
-              )}
+            <div className="flex items-center gap-4">
+              <LanguageSwitch />
             </div>
-          </MobileNavMenu>
+          </MobileNavHeader>
         </MobileNav>
       </ResizableNavbar>
 
