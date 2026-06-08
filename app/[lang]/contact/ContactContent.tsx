@@ -226,7 +226,7 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
       {/* BOUTON FLOTTANT WHATSAPP REDESIGN */}
       <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer"
         aria-label="Contacter Pure Wind Kite School sur WhatsApp"
-        className="fixed right-6 bottom-6 z-50 group flex items-center gap-4"
+        className="fixed right-6 bottom-24 lg:bottom-6 z-50 group flex items-center gap-4"
       >
         <span className="bg-background/80 backdrop-blur-md border border-border px-4 py-2 rounded-full text-xs uppercase tracking-[0.15em] font-heading font-semibold text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block">
           {t.whatsappLabel}
