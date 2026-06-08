@@ -19,7 +19,6 @@ export default function GalerieContent({ dictionary, lang }: { dictionary: Dicti
     { name: t.learning, value: "Apprentissage" },
     { name: t.landscapes, value: "Paysages" },
     { name: t.equipment, value: "Matériel" },
-    { name: t.tarif, value: "Tarif" },
   ];
 
   const gallery: GalleryItem[] = [
