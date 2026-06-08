@@ -86,7 +86,7 @@ function SoloMemberSpotlight({ membre, t }: TeamCardProps) {
           src={membre.image}
           alt={t.teamMemberAlt.replace("{name}", membre.nom).replace("{role}", membre.role)}
           fill
-          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+          className="object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
         />
       </div>
       <div className="flex flex-col justify-center p-8 md:p-12 gap-4">

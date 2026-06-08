@@ -18,7 +18,7 @@ export default function OurStorySection({ t }: OurStorySectionProps) {
               src="/images/IMG-20260304-WA0037.jpg"
               alt={t.ourStoryImageAlt}
               fill
-              className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="object-cover md:grayscale md:hover:grayscale-0 transition-all duration-700"
             />
           </div>
           {/* Decorative element */}
