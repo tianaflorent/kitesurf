@@ -9,12 +9,6 @@ import HeroVideo from "@/components/HeroVideo";
 
 const SPOT_IMAGE_SRC = "/images/accueil/spot.jpg";
 
-const GALLERY_IMAGES = [
-  { img: "IMG-20260304-WA0042.jpg", alt: "Session de kitesurf à la Baie de Sakalava" },
-  { img: "IMG-20260304-WA0029.jpg", alt: "Kiters en action à Diego Suarez, Madagascar" },
-  { img: "IMG-20260304-WA0024.jpg", alt: "Cours de kitesurf débutant – Pure Wind Kite School" },
-] as const;
-
 interface HomeContentProps {
   dictionary: Dictionary["home"];
   lang: Locale;
@@ -218,26 +212,56 @@ function EditorialValueCard({ num, title, desc }: EditorialValueCardProps) {
   );
 }
 
+const GALLERY_IMAGES_EXTENDED = [
+  { img: "IMG-20260304-WA0042.jpg", alt: "Session de kitesurf à la Baie de Sakalava" },
+  { img: "IMG-20260304-WA0029.jpg", alt: "Kiters en action à Diego Suarez, Madagascar" },
+  { img: "IMG-20260304-WA0024.jpg", alt: "Cours de kitesurf débutant – Pure Wind Kite School" },
+  { img: "IMG-20260305-WA0139.jpg", alt: "Navigation kitesurf en vitesse à la Baie de Sakalava" },
+  { img: "IMG-20260305-WA0133.jpg", alt: "Acrobatie kitesurf sur les vagues de Madagascar" },
+] as const;
+
 function GalleryEditorial({ t, lang }: { t: HomeDictionary; lang: Locale }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-      {GALLERY_IMAGES.map(({ img, alt }, i) => (
-        <div key={i} className={`relative aspect-3/4 group overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 ${i % 2 !== 0 ? "md:mt-16" : ""}`}>
+    <div className="relative">
+      {/* Horizontal scroll container */}
+      <div className="flex gap-4 md:gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory -mx-6 px-6">
+        {GALLERY_IMAGES_EXTENDED.map(({ img, alt }, i) => (
+          <div
+            key={i}
+            className="relative shrink-0 w-[280px] md:w-[340px] aspect-3/4 group overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 snap-start"
+          >
+            <Image
+              src={`/images/${img}`}
+              alt={alt}
+              fill
+              className="object-cover md:grayscale-30 md:group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+            />
+          </div>
+        ))}
+
+        {/* "See more" card with background image */}
+        <div className="relative shrink-0 w-[280px] md:w-[340px] aspect-3/4 group overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 snap-start cursor-pointer">
+          <Link href={`/${lang}/galerie`} className="absolute inset-0 z-20" />
+          {/* Background image */}
           <Image
-            src={`/images/${img}`}
-            alt={alt}
+            src="/images/IMG-20260305-WA0134.jpg"
+            alt="Voir toute la galerie – Pure Wind Kite School"
             fill
-            className="object-cover md:grayscale-30 md:group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+            className="object-cover scale-105 group-hover:scale-110 transition-transform duration-700"
           />
-        </div>
-      ))}
-      <div className="relative aspect-3/4 group overflow-hidden bg-muted/40 flex items-center justify-center p-8 text-center border border-border/80 hover:border-secondary hover:bg-muted/70 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 md:mt-16 cursor-pointer">
-        <Link href={`/${lang}/galerie`} className="absolute inset-0 z-10" />
-        <div>
-          <span className="block font-heading text-4xl text-secondary mb-4 font-bold">+</span>
-          <span className="block font-heading text-lg font-bold uppercase tracking-wider">{t.morephoto}</span>
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-500 z-10" />
+          {/* Text content */}
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-8 text-center">
+            <span className="block font-heading text-5xl text-white font-extrabold mb-2">+</span>
+            <span className="block font-heading text-base font-bold uppercase tracking-[0.2em] text-white mb-2">{t.morephoto}</span>
+            <span className="mt-4 w-10 h-0.5 bg-secondary mx-auto block group-hover:w-16 transition-all duration-300" />
+          </div>
         </div>
       </div>
+
+      {/* Scroll hint fade gradient on right */}
+      <div className="absolute top-0 right-0 h-full w-16 bg-linear-to-l from-background to-transparent pointer-events-none" />
     </div>
   );
 }

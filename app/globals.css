@@ -207,3 +207,14 @@
     @apply font-heading font-medium tracking-tight;
   }
 }
+
+/* =========================================
+   UTILITY: HIDE SCROLLBAR (but keep scroll functional)
+========================================= */
+.scrollbar-hide {
+  -ms-overflow-style: none;   /* IE / Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;              /* Chrome / Safari / Opera */
+}

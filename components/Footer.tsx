@@ -34,7 +34,7 @@ export default function Footer() {
           
           {/* BRANDING */}
           <div className="md:col-span-5 lg:col-span-5 flex flex-col items-center md:items-start text-center md:text-left md:pr-8">
-            <h2 className="font-heading text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight mb-6 break-words xl:break-normal text-white">PUREWINDMADAKITESCHOOL</h2>
+            <h2 className="font-heading text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight mb-6 wrap-anywhere xl:break-normal text-white">PUREWINDMADAKITESCHOOL</h2>
             <p className="text-zinc-300 font-light leading-relaxed max-w-sm">
               {lang === 'fr' 
                 ? "L'excellence du kitesurf dans le sanctuaire de la Baie de Sakalava, Madagascar." 
