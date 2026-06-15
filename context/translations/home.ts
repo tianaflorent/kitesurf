@@ -1,7 +1,7 @@
 // Traduction page accueil
 export const homeTranslations = {
   FR: {
-    heroTitle: "Bienvenue chez Purewind kite school Madagascar",
+    heroTitle: "Bienvenue chez PURE WIND KITE SCHOOL Madagascar",
     heroSubtitle: "Plongez dans l'univers du kitesurf et vivez une expérience unique au cœur de la baie de Sakalava, entre eaux turquoise, vent constant et paysages à couper le souffle.",
     heroTagline: "L'excellence du kitesurf",
     bookButton: "Réservez votre cours",
@@ -74,7 +74,7 @@ export const homeTranslations = {
     submitReviewBtn: "Publier mon avis",
   },
   EN: {
-    heroTitle: "Welcome to Purewind kite school Madagascar",
+    heroTitle: "Welcome to PURE WIND KITE SCHOOL Madagascar",
     heroSubtitle: "Dive into the world of kitesurfing and enjoy a unique experience in the heart of Sakalava Bay, surrounded by turquoise waters, steady winds, and breathtaking landscapes.",
     heroTagline: "Kitesurfing excellence",
     bookButton: "Book your lesson",
