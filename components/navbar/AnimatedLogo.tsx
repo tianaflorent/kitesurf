@@ -6,7 +6,7 @@ export default function AnimatedLogo() {
   const text = "Pure wind kite";
 
   return (
-    <span className="flex items-center gap-3 group">
+    <span className="flex items-center gap-6 md:gap-10 group">
       <div className="relative w-12 h-12 md:w-14 md:h-14">
         <Image
           src="/images/logo-v2.png"
