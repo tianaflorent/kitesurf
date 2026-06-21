@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle, Plus, Minus } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, Plus, Minus } from "lucide-react";
 import { type Dictionary } from "@/context/translations";
 import ContactHero from "@/public/images/contact/contactHero.jpg";
 
@@ -42,22 +42,22 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/40 mix-blend-overlay"></div>
-          <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-12 pt-32">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground font-light tracking-tighter leading-[0.9] mb-8">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading text-white font-extrabold tracking-tight leading-[1.1] mb-8">
               {t.heroTitle}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground font-light tracking-wide max-w-xl">
+            <p className="text-lg md:text-xl text-white/90 font-light tracking-wide leading-relaxed max-w-xl">
               {t.heroText}
             </p>
           </div>
           <div className="hidden md:flex items-center gap-6 pb-4">
-            <span className="w-16 h-px bg-secondary"></span>
-            <span className="text-secondary font-script text-3xl">{t.heroTagline}</span>
+            <span className="w-12 h-1 bg-secondary rounded-full"></span>
+            <span className="text-secondary font-heading font-bold text-lg uppercase tracking-widest">{t.heroTagline}</span>
           </div>
         </div>
       </section>
@@ -72,7 +72,7 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
               <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
                 {t.contactInfoLabel}
               </span>
-              <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter mb-12">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground tracking-tight mb-12">
                 {t.findUsTitle}
               </h2>
             </div>
@@ -111,13 +111,14 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
 
           {/* RIGHT: FORM */}
           <div className="w-full lg:w-7/12">
-            <div className="bg-muted/30 p-8 md:p-16 border border-border">
+            <div className="bg-card border border-border rounded-2xl p-8 md:p-12">
               <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
                 {t.formLabel}
               </span>
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground font-light tracking-tighter mb-12">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground tracking-tight mb-4">
                 {t.formTitle}
               </h2>
+              <div className="w-10 h-1 bg-secondary rounded-full mb-12" />
 
               <form onSubmit={handleSubmit}>
                 <div className="relative z-0 w-full mb-10 group">
@@ -153,9 +154,9 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
                 </div>
 
                 <button type="submit" disabled={loading}
-                  className={`w-full cursor-pointer bg-foreground hover:bg-black transition-colors text-background font-sans uppercase tracking-[0.2em] text-xs font-semibold py-5 flex items-center justify-center gap-3 mt-12 ${loading ? "opacity-70" : "opacity-100"}`}
+                  className={`w-full cursor-pointer bg-primary hover:bg-primary/90 transition-all text-primary-foreground font-heading uppercase tracking-[0.15em] text-xs font-semibold py-4 rounded-full flex items-center justify-center gap-3 mt-12 active:scale-[0.98] ${loading ? "opacity-70" : "opacity-100"}`}
                 >
-                  {loading ? <span className="animate-pulse">{t.preparing}</span> : <>{t.send} <Send size={16} strokeWidth={1.5} /></>}
+                  {loading ? <span className="animate-pulse">{t.preparing}</span> : <>{t.send}</>}
                 </button>
               </form>
             </div>
@@ -172,7 +173,7 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
               <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-6 block">
                 {t.faqLabel}
               </span>
-              <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground tracking-tight">
                 {faq.pageTitle}
               </h2>
             </div>
@@ -197,7 +198,7 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
               <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-4 block">
                 {t.locationLabel}
               </span>
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground font-light tracking-tighter">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground tracking-tight">
                 {t.locateUsTitle}
               </h2>
             </div>
@@ -225,12 +226,12 @@ export default function ContactContent({ dictionary, faqDictionary }: { dictiona
       {/* BOUTON FLOTTANT WHATSAPP REDESIGN */}
       <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer"
         aria-label="Contacter Pure Wind Kite School sur WhatsApp"
-        className="fixed right-6 bottom-6 z-50 group flex items-center gap-4"
+        className="fixed right-6 bottom-24 lg:bottom-6 z-50 group flex items-center gap-4"
       >
-        <span className="bg-background/80 backdrop-blur-md border border-border px-4 py-2 text-xs uppercase tracking-widest font-light text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block">
+        <span className="bg-background/80 backdrop-blur-md border border-border px-4 py-2 rounded-full text-xs uppercase tracking-[0.15em] font-heading font-semibold text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block">
           {t.whatsappLabel}
         </span>
-        <div className="w-14 h-14 bg-foreground/90 backdrop-blur-xl flex items-center justify-center text-background hover:bg-[#25D366] transition-colors duration-500 shadow-2xl">
+        <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-primary-foreground hover:bg-[#25D366] transition-colors duration-500 shadow-2xl">
           <MessageCircle size={24} strokeWidth={1.5} />
         </div>
       </a>
@@ -260,7 +261,7 @@ function InfoRow({
         {icon}
       </div>
       <div>
-        <h3 className="font-serif text-2xl text-foreground font-light mb-2">{title}</h3>
+        <h3 className="font-heading font-bold text-xl text-foreground tracking-tight mb-2">{title}</h3>
         {href ? (
           <a 
             href={href} 
@@ -289,10 +290,10 @@ function FAQAccordionItem({ question, answer, index }: { question: string; answe
         className="w-full flex items-center justify-between gap-8 py-8 text-left cursor-pointer"
       >
         <div className="flex items-center gap-6">
-          <span className="text-secondary/50 font-script text-2xl min-w-8">
+          <span className="text-secondary/50 font-heading font-extrabold text-xl min-w-8">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <h3 className="font-serif text-lg md:text-xl text-foreground font-light tracking-tight group-hover:text-secondary transition-colors">
+          <h3 className="font-heading font-semibold text-base md:text-lg text-foreground tracking-tight group-hover:text-secondary transition-colors">
             {question}
           </h3>
         </div>

@@ -45,3 +45,8 @@ yarn-error.log*
 next-env.d.ts
 
 /lib/prisma-client
+
+# Large source video files (raw DJI footage)
+public/videos/video-hero-3.MP4
+public/videos/video-hero-2.MP4
+public/videos/VID-20260304-WA0046~2.mp4

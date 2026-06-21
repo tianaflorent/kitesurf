@@ -15,9 +15,10 @@ export default function OurValuesSection({ t }: OurValuesSectionProps) {
           <span className="text-secondary font-sans uppercase tracking-[0.2em] text-xs font-semibold mb-4 block">
             Engagement
           </span>
-          <h2 className="text-4xl md:text-5xl font-serif text-foreground font-light tracking-tighter">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground tracking-tight">
             {t.ourValuesTitle}
           </h2>
+          <div className="w-12 h-1 bg-secondary mx-auto mt-6 rounded-full" />
         </div>
 
         <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
@@ -38,12 +39,12 @@ interface ValueCardProps {
 
 function ValueCard({ num, title, desc }: ValueCardProps) {
   return (
-    <div className="flex flex-col group">
-      <span className="text-5xl font-script text-secondary mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+    <div className="flex flex-col group bg-card border border-border rounded-2xl p-8 hover:border-primary/30 hover:shadow-md transition-all duration-300">
+      <span className="text-3xl font-heading font-extrabold text-secondary/30 mb-6 group-hover:text-secondary/60 transition-colors duration-300">
         {num}
       </span>
-      <h3 className="text-2xl font-serif text-foreground font-light mb-4">{title}</h3>
-      <div className="w-12 h-px bg-border mb-6 group-hover:bg-secondary transition-colors duration-500"></div>
+      <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground tracking-tight mb-4">{title}</h3>
+      <div className="w-10 h-1 bg-secondary mb-6 rounded-full group-hover:w-16 transition-all duration-500"></div>
       <p className="text-muted-foreground font-light leading-relaxed flex-1">{desc}</p>
     </div>
   );

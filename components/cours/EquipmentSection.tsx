@@ -27,19 +27,29 @@ export default function EquipmentSection({
             <span className="text-secondary font-sans uppercase tracking-[0.3em] text-xs font-semibold mb-6 block">
               {getGearLabel(lang)}
             </span>
-            <h2 className="text-5xl md:text-6xl font-serif text-foreground font-light tracking-tighter mb-6">
+            <h2 className="text-4xl md:text-6xl font-heading font-bold text-foreground tracking-tight mb-6">
               {t.equipmentTitle}
             </h2>
             <p className="text-lg text-muted-foreground font-light leading-relaxed">{t.equipmentDesc}</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-border">
+        {/* Surveillance mention */}
+        <div className="mb-12 flex items-start gap-4 max-w-2xl">
+          <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center shrink-0 mt-0.5">
+            <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <p className="text-muted-foreground font-light leading-relaxed text-sm">{t.rentalPresentation}</p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-border rounded-2xl overflow-hidden shadow-sm">
           {equipments.map((item) => (
             <div
               key={item.title}
               onClick={() => onSelectEquipment(item)}
-              className="bg-background group relative aspect-[3/4] overflow-hidden flex flex-col justify-end p-6 cursor-pointer"
+              className="bg-background group relative aspect-3/4 overflow-hidden flex flex-col justify-end p-6 cursor-pointer"
             >
               <Image
                 src={item.img}
@@ -49,7 +59,7 @@ export default function EquipmentSection({
               />
               <div className="absolute inset-0 bg-linear-to-t from-background/90 via-background/20 to-transparent"></div>
               <div className="relative z-10">
-                <span className="text-secondary font-script text-2xl opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 absolute -top-8 -left-2 hidden md:inline">
+                <span className="text-secondary font-heading font-light text-2xl opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 absolute -top-8 -left-2 hidden md:inline">
                   +
                 </span>
                 <h3 className="font-sans text-xs uppercase tracking-widest text-foreground font-medium mb-2">

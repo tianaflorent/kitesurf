@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import GalerieContent from "./GalerieContent";
 import { getDictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/i18n-config";
+import { SITE_URL } from "@/lib/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Découvrez nos photos de kitesurf dans les eaux cristallines de la Baie de Sakalava, Diego Suarez."
         : "Discover our kitesurfing photos in the crystal clear waters of Sakalava Bay, Diego Suarez.",
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/galerie`,
+      url: `${SITE_URL}/${lang}/galerie`,
       images: [
         {
           url: "/images/IMG-20260305-WA0137.jpg",
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/galerie`,
+      canonical: `${SITE_URL}/${lang}/galerie`,
     },
   };
 }

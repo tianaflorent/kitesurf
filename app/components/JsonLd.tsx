@@ -2,8 +2,9 @@
  * JSON-LD Structured Data Components
  * Server Components — rendered at build time, injected in <head>
  */
+import { SITE_URL } from "@/lib/constants";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
+const BASE_URL = SITE_URL;
 
 /** LocalBusiness + SportsActivityLocation — for homepage */
 export function LocalBusinessJsonLd() {

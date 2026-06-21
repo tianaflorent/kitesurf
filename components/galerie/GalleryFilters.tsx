@@ -19,15 +19,15 @@ export default function GalleryFilters({ categories, active, onFilterChange }: G
             <button
               key={cat.value}
               onClick={() => onFilterChange(cat.value)}
-              className={`relative uppercase tracking-[0.2em] text-xs transition-colors py-4 ${
+              className={`relative font-heading uppercase tracking-[0.15em] text-xs transition-colors py-4 cursor-pointer ${
                 active === cat.value
-                  ? "text-foreground font-semibold"
-                  : "text-muted-foreground hover:text-foreground font-light"
+                  ? "text-primary font-bold"
+                  : "text-muted-foreground hover:text-primary font-medium"
               }`}
             >
               {cat.name}
               {active === cat.value && (
-                <motion.div layoutId="activeFilter" className="absolute bottom-0 left-0 right-0 h-px bg-foreground" />
+                <motion.div layoutId="activeFilter" className="absolute bottom-0 left-0 right-0 h-px bg-primary" />
               )}
             </button>
           ))}

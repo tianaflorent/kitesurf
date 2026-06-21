@@ -15,7 +15,6 @@ interface EquipmentDetailsModalProps {
  * Modal affichant les détails d'un équipement.
  */
 export default function EquipmentDetailsModal({
-  t,
   lang,
   selectedEquipment,
   onClose,
@@ -34,17 +33,17 @@ export default function EquipmentDetailsModal({
         <span className="text-secondary font-sans uppercase tracking-[0.2em] text-[10px] font-semibold mb-4 block">
           {getEquipmentBrandLabel(lang)}
         </span>
-        <h2 className="text-3xl font-serif text-foreground font-light tracking-tighter mb-6">
+        <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground tracking-tight mb-6">
           {selectedEquipment.title}
         </h2>
 
-        <div className="w-12 h-px bg-primary mb-6" />
+        <div className="w-12 h-1 bg-secondary mb-6 rounded-full" />
 
         <p className="text-muted-foreground font-light leading-relaxed mb-8 text-sm">{selectedEquipment.desc}</p>
 
         <button
           onClick={onClose}
-          className="inline-block text-center w-full uppercase tracking-widest text-[10px] py-4 bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-colors"
+          className="inline-block text-center w-full uppercase tracking-[0.15em] text-xs py-3.5 bg-primary text-primary-foreground border-2 border-primary rounded-full font-heading font-semibold hover:bg-primary/90 transition-all active:scale-[0.98]"
         >
           {getCloseLabel(lang)}
         </button>

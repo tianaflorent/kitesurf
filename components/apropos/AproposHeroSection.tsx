@@ -34,19 +34,22 @@ export default function AproposHeroSection({ t }: AproposHeroSectionProps) {
             }`}
           />
         ))}
-        <div className="absolute inset-0 bg-black/40 mix-blend-overlay"></div>
-        <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-12 pt-32">
         <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground font-light tracking-tighter leading-[0.9] mb-8">
+          <span className="text-secondary font-sans uppercase tracking-[0.3em] text-xs font-semibold mb-6 block">
             {t.aboutTitle}
+          </span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading text-white font-extrabold tracking-tight leading-[1.1] mb-8">
+            Pure Wind Kite School
           </h1>
         </div>
         <div className="hidden md:flex items-center gap-6 pb-4">
-          <span className="w-16 h-px bg-secondary"></span>
-          <span className="text-secondary font-script text-3xl">Notre Histoire</span>
+          <span className="w-12 h-1 bg-secondary rounded-full"></span>
+          <span className="text-secondary font-heading font-bold text-lg uppercase tracking-widest">Notre Histoire</span>
         </div>
       </div>
     </section>

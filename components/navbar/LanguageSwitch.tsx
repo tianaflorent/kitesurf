@@ -20,22 +20,24 @@ export default function LanguageSwitch() {
   };
 
   return (
-    <div className="flex items-center gap-2 text-xs font-light tracking-widest text-muted-foreground">
+    <div className="flex items-center bg-background/50 backdrop-blur-md border border-border rounded-full p-1 text-[10px] font-heading font-semibold tracking-widest">
       <Link
         href={switchLanguage("fr")}
-        className={`p-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:text-primary ${
-          lang === "fr" ? "text-foreground font-medium" : "hover:text-foreground"
+        className={`px-3 py-1.5 rounded-full transition-all cursor-pointer focus-visible:outline-none ${
+          lang === "fr" 
+            ? "bg-primary text-background shadow-md" 
+            : "text-muted-foreground hover:text-foreground"
         }`}
       >
         FR
       </Link>
       
-      <span className="w-px h-3 bg-border" aria-hidden="true" />
-      
       <Link
         href={switchLanguage("en")}
-        className={`p-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:text-primary ${
-          lang === "en" ? "text-foreground font-medium" : "hover:text-foreground"
+        className={`px-3 py-1.5 rounded-full transition-all cursor-pointer focus-visible:outline-none ${
+          lang === "en" 
+            ? "bg-primary text-background shadow-md" 
+            : "text-muted-foreground hover:text-foreground"
         }`}
       >
         EN

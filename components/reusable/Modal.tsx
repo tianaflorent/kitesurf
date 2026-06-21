@@ -52,12 +52,12 @@ export default function Modal({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 40, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className={`relative w-full max-w-5xl bg-background border border-border shadow-2xl overflow-hidden ${className}`}
+            className={`relative w-full max-w-5xl bg-background border border-border shadow-2xl overflow-hidden rounded-(--radius) ${className}`}
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 z-20 w-10 h-10 bg-background/50 backdrop-blur-md flex items-center justify-center hover:bg-foreground hover:text-background transition-colors"
+              className="absolute top-6 right-6 z-20 w-10 h-10 bg-background/50 backdrop-blur-md flex items-center justify-center hover:bg-foreground hover:text-background rounded-full transition-colors"
               aria-label="Fermer"
             >
               <X size={20} strokeWidth={1} />

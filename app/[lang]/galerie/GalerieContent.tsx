@@ -19,7 +19,6 @@ export default function GalerieContent({ dictionary, lang }: { dictionary: Dicti
     { name: t.learning, value: "Apprentissage" },
     { name: t.landscapes, value: "Paysages" },
     { name: t.equipment, value: "Matériel" },
-    { name: t.tarif, value: "Tarif" },
   ];
 
   const gallery: GalleryItem[] = [
@@ -59,7 +58,6 @@ export default function GalerieContent({ dictionary, lang }: { dictionary: Dicti
     { src: "/images/IMG-20260305-WA0146.jpg", category: "Paysages", alt: "Plage sauvage de la Baie de Sakalava, nord Madagascar" },
     { src: "/images/IMG-20260305-WA0151.jpg", category: "Paysages", alt: "Horizon de la Baie de Sakalava – spot kitesurf exceptionnel" },
     { src: "/images/IMG-20260305-WA0152.jpg", category: "Paysages", alt: "Eaux cristallines et sable blanc de la Baie de Sakalava" },
-    { src: "/images/IMG-20260319-WA0000.jpg", category: "Tarif", alt: "Tarifs des cours de kitesurf – Pure Wind Kite School Madagascar" },
   ];
 
   const [active, setActive] = useState("Tous");
@@ -100,22 +98,22 @@ export default function GalerieContent({ dictionary, lang }: { dictionary: Dicti
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/40 mix-blend-overlay"></div>
-          <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row md:items-end justify-between gap-12 pt-32">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground font-light tracking-tighter leading-[0.9] mb-8">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading text-white font-extrabold tracking-tight leading-[1.1] mb-8">
               {t.heroTitle}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground font-light tracking-wide max-w-xl">
+            <p className="text-lg md:text-xl text-white/90 font-light tracking-wide leading-relaxed max-w-xl">
               {t.heroSubtitle}
             </p>
           </div>
           <div className="hidden md:flex items-center gap-6 pb-4">
-            <span className="w-16 h-px bg-secondary"></span>
-            <span className="text-secondary font-script text-3xl">{lang === 'fr' ? "L'Océan" : "The Ocean"}</span>
+            <span className="w-12 h-1 bg-secondary rounded-full"></span>
+            <span className="text-secondary font-heading font-bold text-lg uppercase tracking-widest">{lang === 'fr' ? "L'Océan" : "The Ocean"}</span>
           </div>
         </div>
       </section>

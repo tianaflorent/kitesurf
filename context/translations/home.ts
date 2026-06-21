@@ -1,8 +1,8 @@
 // Traduction page accueil
 export const homeTranslations = {
   FR: {
-    heroTitle: "Bienvenue chez Purewind kite school Madagascar",
-    heroSubtitle: "Plongez dans l'univers du kitesurf et vivez une expérience unique au cœur de la baie de Sakalava, entre eaux turquoise, vent constant et paysages à couper le souffle",
+    heroTitle: "Bienvenue chez PURE WIND KITE SCHOOL Madagascar",
+    heroSubtitle: "Plongez dans l'univers du kitesurf et vivez une expérience unique au cœur de la baie de Sakalava, entre eaux turquoise, vent constant et paysages à couper le souffle.",
     heroTagline: "L'excellence du kitesurf",
     bookButton: "Réservez votre cours",
     coursesButton: "Voir les cours",
@@ -10,7 +10,7 @@ export const homeTranslations = {
     experienceTitle: "Une expérience",
     experienceSubtitle: "inoubliable",
     valuesTitle: "Pourquoi choisir notre école ?",
-    valuesDesc: "Située à Sakalava, Diego Suarez, nous proposons une expérience unique et sécurisée pour tous les niveaux.",
+    valuesDesc: "Située à Baie de Sakalava, Diego Suarez, nous proposons une expérience unique et sécurisée pour tous les niveaux.",
     progressionTitle: "Progression personnalisée",
     progressionDesc: "Des cours adaptés à votre niveau pour progresser rapidement et en toute confiance.",
     safetyTitle: "Sécurité",
@@ -74,8 +74,8 @@ export const homeTranslations = {
     submitReviewBtn: "Publier mon avis",
   },
   EN: {
-    heroTitle: "Welcome to Purewind kite school Madagascar",
-    heroSubtitle: "Dive into the world of kitesurfing and enjoy a unique experience in the heart of Sakalava Bay, surrounded by turquoise waters, steady winds, and breathtaking landscapes",
+    heroTitle: "Welcome to PURE WIND KITE SCHOOL Madagascar",
+    heroSubtitle: "Dive into the world of kitesurfing and enjoy a unique experience in the heart of Sakalava Bay, surrounded by turquoise waters, steady winds, and breathtaking landscapes.",
     heroTagline: "Kitesurfing excellence",
     bookButton: "Book your lesson",
     coursesButton: "See the courses",
@@ -83,7 +83,7 @@ export const homeTranslations = {
     experienceTitle: "An unforgettable",
     experienceSubtitle: "experience",
     valuesTitle: "Why choose our school?",
-    valuesDesc: "Located in Sakalava, Diego Suarez, we offer a unique and safe experience for all levels.",
+    valuesDesc: "Located in Sakalava Bay, Diego Suarez, we offer a unique and safe experience for all levels.",
     progressionTitle: "Personalized progression",
     progressionDesc: "Lessons tailored to your level to progress quickly and confidently.",
     safetyTitle: "Safety",

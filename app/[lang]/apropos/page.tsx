@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AproposContent from "./AproposContent";
 import { getDictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/i18n-config";
+import { SITE_URL } from "@/lib/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Notre histoire, notre équipe et nos valeurs. École de kitesurf à la Baie de Sakalava, Madagascar."
         : "Our history, our team and our values. Kitesurfing school in Sakalava Bay, Madagascar.",
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/apropos`,
+      url: `${SITE_URL}/${lang}/apropos`,
       images: [
         {
           url: "/images/IMG-20260304-WA0037.jpg",
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/apropos`,
+      canonical: `${SITE_URL}/${lang}/apropos`,
     },
   };
 }

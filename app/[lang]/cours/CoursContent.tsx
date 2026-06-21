@@ -7,6 +7,7 @@ import useBodyScrollLock from "@/app/hooks/useBodyScrollLock";
 import type { CoursDictionary, EquipmentItem, ServiceKey } from "@/components/cours/types";
 import CoursHeroSection from "@/components/cours/CoursHeroSection";
 import PackagesSection from "@/components/cours/PackagesSection";
+import PricingSection from "@/components/cours/PricingSection";
 import EquipmentSection from "@/components/cours/EquipmentSection";
 import OtherServicesSection from "@/components/cours/OtherServicesSection";
 import ServiceDetailsModal from "@/components/cours/ServiceDetailsModal";
@@ -54,6 +55,7 @@ export default function CoursContent({ dictionary, lang }: CoursContentProps) {
     <main className="bg-background overflow-hidden pb-0">
       <CoursHeroSection t={t} lang={lang} />
       <PackagesSection t={t} lang={lang} />
+      <PricingSection t={t} lang={lang} />
       <EquipmentSection t={t} lang={lang} equipments={equipments} onSelectEquipment={setSelectedEquipment} />
       <OtherServicesSection t={t} lang={lang} onSelectService={setSelectedService} />
       <ServiceDetailsModal t={t} lang={lang} selectedService={selectedService} onClose={() => setSelectedService(null)} />

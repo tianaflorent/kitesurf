@@ -19,7 +19,7 @@ export function getGearLabel(lang: Locale): string {
 }
 
 export function getFullExperienceLabel(lang: Locale): string {
-  return getLabelByLang(lang, "Expérience complète", "Full Experience");
+  return getLabelByLang(lang, "Partenariats", "Partnerships");
 }
 
 export function getViewDetailsLabel(lang: Locale): string {
@@ -27,7 +27,7 @@ export function getViewDetailsLabel(lang: Locale): string {
 }
 
 export function getServiceDetailsLabel(lang: Locale): string {
-  return getLabelByLang(lang, "Détails du service", "Service Details");
+  return getLabelByLang(lang, "Partenaire de confiance", "Trusted Partner");
 }
 
 export function getContactToBookLabel(lang: Locale): string {

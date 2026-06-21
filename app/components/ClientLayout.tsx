@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BottomNav from "@/components/BottomNav";
 import { Toaster } from "react-hot-toast";
 import { usePathname } from "next/navigation";
 
@@ -30,6 +31,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <main className="flex-1">{children}</main>
 
       {isAppSite && <Footer />}
+      {isAppSite && <BottomNav />}
     </>
   );
 }

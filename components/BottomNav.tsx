@@ -26,8 +26,8 @@ export default function BottomNav() {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg">
-        <div className="flex justify-around items-center h-16">
+      <nav className="fixed bottom-0 left-0 right-0 bg-background/90 backdrop-blur-xl border-t border-border z-100 lg:hidden pb-safe">
+        <div className="flex justify-around items-center h-16 md:h-20 px-2">
           {menus.map((menu) => {
             const Icon = menu.icon;
             const active = pathname === menu.href;
@@ -37,24 +37,27 @@ export default function BottomNav() {
                 key={menu.name}
                 href={menu.href}
                 onClick={() => handleClick(menu.name)}
-                className={`flex flex-col items-center text-xs transition-colors ${
+                className={`flex flex-col items-center gap-1 transition-colors w-full py-2 ${
                   active
-                    ? "text-blue-800 font-semibold"
-                    : "text-black font-semibold hover:text-blue-800"
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                <Icon
-                  size={25}
-                  className={`${shake === menu.name ? "animate-shake" : ""}`}
-                />
-                <span>{menu.name}</span>
+                <div className={`relative ${active ? "bg-secondary/10 p-1.5 rounded-full" : "p-1.5"}`}>
+                  <Icon
+                    size={22}
+                    strokeWidth={active ? 2 : 1.5}
+                    className={`${shake === menu.name ? "animate-shake" : ""} ${active ? "text-primary" : ""}`}
+                  />
+                </div>
+                <span className="text-[10px] uppercase font-heading tracking-widest font-semibold">{menu.name}</span>
               </Link>
             );
           })}
         </div>
       </nav>
-      {/* Permet de laisser un espace pour le nav fixe */}
-      <div className="h-16 lg:hidden" />
+      {/* Spacer pour éviter que le contenu soit caché derrière le nav */}
+      <div className="h-16 md:h-20 lg:hidden" />
     </>
   );
 }

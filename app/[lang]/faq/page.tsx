@@ -4,6 +4,7 @@ import { FAQJsonLd } from "../../components/JsonLd";
 import FAQContent from "./FAQContent";
 import { getDictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/i18n-config";
+import { SITE_URL } from "@/lib/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: isFr
         ? "Réponses à toutes vos questions sur nos cours de kitesurf à la Baie de Sakalava, Diego Suarez."
         : "Answers to all your questions about our kitesurfing courses in Sakalava Bay, Diego Suarez.",
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/faq`,
+      url: `${SITE_URL}/${lang}/faq`,
       images: [
         {
           url: "/images/IMG-20260304-WA0043.jpg",
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/faq`,
+      canonical: `${SITE_URL}/${lang}/faq`,
     },
   };
 }
